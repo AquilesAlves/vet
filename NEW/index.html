@@ -194,7 +194,8 @@
 
     /* ---------- navegação (dentro do cabeçalho) ---------- */
     .nav { flex: 1; display: flex; align-items: center; gap: 16px; }
-    .nav ul { display: flex; gap: 4px; margin: 0 auto; }
+    /* mais espaço entre os links em telas grandes; em telas médias o cabeçalho fica justo */
+    .nav ul { display: flex; gap: clamp(4px, 7vw - 56px, 56px); margin: 0 auto; }
     .nav li a {
       display: block; position: relative; padding: 9px 16px;
       border: 1.5px solid transparent; border-radius: 999px;
@@ -413,15 +414,16 @@
     /* ---------- faixa do WhatsApp (depois dos números) ---------- */
     .faixa-whats-secao { padding: 0 0 56px; background: var(--fundo); }
     .faixa-whats {
-      display: flex; align-items: center; gap: 20px; padding: 18px 20px 18px 22px;
+      display: flex; align-items: center; gap: 16px; padding: 18px 18px 18px 20px;
       background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p);
     }
     .faixa-whats-texto { display: flex; align-items: center; gap: 14px; flex: none; }
     .faixa-whats-icone { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border-radius: 50%; background: #25d366; color: #fff; font-size: 24px; }
     .faixa-whats-texto strong { display: block; font-size: 17px; color: var(--titulo); line-height: 1.3; }
     .faixa-whats-texto span span { display: block; font-size: 14px; color: var(--texto-suave); line-height: 1.4; }
-    .faixa-whats .atalhos { flex: 1; justify-content: center; }
-    .faixa-whats .btn-whats { flex: none; min-height: 48px; padding: 10px 22px; font-size: 15px; }
+    .faixa-whats .atalhos { flex: 1; justify-content: center; gap: 8px; }
+    .faixa-whats .atalho { padding: 8px 14px; }
+    .faixa-whats .btn-whats { flex: none; min-height: 48px; padding: 10px 20px; font-size: 15px; }
     .faixa-whats .btn-whats .icone { font-size: 20px; }
     .atalhos { display: flex; flex-wrap: wrap; gap: 10px; }
     .atalho {
@@ -638,12 +640,12 @@
           <li><a href="#loja">Loja</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
-        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats nav-cta" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
+        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats nav-cta" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
       </nav>
       <div class="acoes">
         <button class="botao-tema" type="button" aria-label="Ativar modo escuro"><svg class="icone" aria-hidden="true"><use href="#i-lua"/></svg></button>
         <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><svg class="icone" aria-hidden="true"><use href="#i-menu"/></svg></button>
-        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats cabecalho-cta" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
+        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats cabecalho-cta" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
       </div>
     </div>
   </header>
@@ -697,7 +699,7 @@
               <p>Tudo para o seu pet em um só lugar: banho e tosa, rações e acessórios.</p>
             </div>
           </div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
+          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
         </div>
       </div>
       <div class="controles">
@@ -752,7 +754,7 @@
             <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20banho%20e%20tosa." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Banho e tosa</a>
             <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20loja." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Loja</a>
           </div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
+          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
         </div>
       </div>
     </section>
