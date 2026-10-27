@@ -436,8 +436,9 @@
     /* ---------- rodapé ---------- */
     .rodape { background: var(--rodape-fundo); color: var(--rodape-texto); }
     /* três blocos numa linha, separados por linhas verticais */
-    .rodape-grade { display: flex; justify-content: center; align-items: center; padding: 56px 20px 48px; }
-    .rodape-grade > * { padding: 4px 48px; text-align: center; }
+    /* três colunas iguais na largura toda; todas com a mesma altura, então as linhas que dividem ficam iguais */
+    .rodape-grade { display: grid; grid-template-columns: repeat(3, 1fr); align-items: stretch; padding: 56px 20px 48px; }
+    .rodape-grade > * { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 32px; text-align: center; }
     .rodape-grade > * + * { border-left: 1px solid rgb(255 255 255 / .14); }
     .rodape-links ul { grid-template-columns: 1fr; justify-items: center; }
     .rodape-marca .logo, .rodape-marca .logo-texto { color: #fff; }
@@ -509,8 +510,8 @@
       .produtos-vitrine, .servicos { --por-linha: 2; }
       .depoimentos { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
       /* tablet: marca em cima; Navegue e crédito lado a lado embaixo */
-      .rodape-grade { flex-wrap: wrap; row-gap: 28px; }
-      .rodape-grade > .rodape-marca { flex-basis: 100%; padding: 0 0 28px; border-bottom: 1px solid rgb(255 255 255 / .14); }
+      .rodape-grade { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+      .rodape-grade > .rodape-marca { grid-column: 1 / -1; padding: 0 0 28px; border-bottom: 1px solid rgb(255 255 255 / .14); }
       .rodape-grade > .rodape-links { border-left: 0; }
       .slides { height: 460px; }
       .destaque .container { gap: 48px; }
@@ -564,7 +565,7 @@
       .faixa-whats .btn-whats { order: 4; }
       .mapa, .mapa iframe { min-height: 240px; }
       /* celular: um bloco embaixo do outro, separados por linhas */
-      .rodape-grade { flex-direction: column; align-items: stretch; row-gap: 0; padding: 48px 16px 8px; }
+      .rodape-grade { grid-template-columns: 1fr; row-gap: 0; padding: 48px 16px 8px; }
       .rodape-grade > * { padding: 24px 0; border-left: 0; }
       .rodape-grade > * + * { border-left: 0; border-top: 1px solid rgb(255 255 255 / .14); }
       .rodape-grade > .rodape-marca { padding: 0 0 24px; border-bottom: 0; }
@@ -833,6 +834,25 @@
         </div>
       </div>
     </section>
+    <section class="marcas" aria-label="Marcas que trabalhamos">
+      <div class="marcas-janela">
+        <div class="marcas-trilho">
+          <ul class="marcas-lista">
+            <li>Royal Canin</li>
+            <li>Premier</li>
+            <li>Golden</li>
+            <li>Hill's</li>
+            <li>Pedigree</li>
+            <li>Whiskas</li>
+            <li>Bravecto</li>
+            <li>NexGard</li>
+            <li>Simparic</li>
+            <li>Pipicat</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <section class="secao" id="loja">
       <div class="container">
         <div class="titulo-secao">
@@ -879,25 +899,6 @@
             <span>Antipulgas, vermífugos, medicamentos com receita, areias, tapetes higiênicos e shampoos.</span>
           </div>
           <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20a%20farm%C3%A1cia%20veterin%C3%A1ria." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Perguntar no WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="marcas" aria-label="Marcas que trabalhamos">
-      <div class="marcas-janela">
-        <div class="marcas-trilho">
-          <ul class="marcas-lista">
-            <li>Royal Canin</li>
-            <li>Premier</li>
-            <li>Golden</li>
-            <li>Hill's</li>
-            <li>Pedigree</li>
-            <li>Whiskas</li>
-            <li>Bravecto</li>
-            <li>NexGard</li>
-            <li>Simparic</li>
-            <li>Pipicat</li>
-          </ul>
         </div>
       </div>
     </section>
