@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Amigo Fiel · Clínica veterinária, banho e tosa e loja pet</title>
-  <meta name="theme-color" content="#fbf8f3">
+  <meta name="theme-color" content="#eef4ef">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%230b7a5c%22/%3E%3Cg%20fill%3D%22%23fff%22%20transform%3D%22translate%288%208%29%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2220%22%20r%3D%224.6%22/%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%2210.6%22%20r%3D%224.6%22/%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%2210.6%22%20r%3D%224.6%22/%3E%3Ccircle%20cx%3D%2237%22%20cy%3D%2220%22%20r%3D%224.6%22/%3E%3Cpath%20d%3D%22M24%2023c-5.6%200-12%207.2-12%2012.8%200%203.4%202.6%205.2%205.4%205.2%202.6%200%204.2-1.4%206.6-1.4s4%201.4%206.6%201.4c2.8%200%205.4-1.8%205.4-5.2C36%2030.2%2029.6%2023%2024%2023z%22/%3E%3C/g%3E%3C/svg%3E">
   <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,10 +27,10 @@
       --primaria: #0b7a5c;
       --primaria-esc: #075c45;
       --primaria-texto: #0b6b51;
-      --primaria-suave: #e3f2ec;
+      --primaria-suave: #d9eee3;
       --acento: #4fd1a5;
       --acento-esc: #0e8f69;
-      --acento-suave: #dcf4ea;
+      --acento-suave: #d3efe2;
       --quente: #f2b73b;
       --quente-esc: #e3a21c;
       --tinta-quente: #2b1d00;
@@ -40,11 +40,11 @@
       --faixa: var(--primaria);
       --faixa-texto: #ffffff;
 
-      --fundo: #fbf8f3;
-      --fundo-alt: #f4efe6;
-      --superficie: #ffffff;
-      --campo: #faf7f2;
-      --borda: #e5ddd0;
+      --fundo: #eef4ef;
+      --fundo-alt: #e3ece5;
+      --superficie: #f8fbf8;
+      --campo: #f1f6f2;
+      --borda: #d4e1d7;
       --titulo: #0d3a2d;
       --texto: #1c2420;
       --texto-suave: #4b5650;
@@ -69,33 +69,33 @@
       color-scheme: light;
     }
 
-    /* Modo escuro suave: verde-acinzentado, sem chegar ao preto. */
+    /* Modo escuro suave: verde-floresta, sem chegar ao preto. */
     :root[data-tema="escuro"] {
       --primaria: #5fd3a8;
       --primaria-esc: #7fdfba;
       --primaria-texto: #7fdcb8;
-      --primaria-suave: #2f4a40;
+      --primaria-suave: #285246;
       --acento: #5fd3a8;
       --acento-esc: #7fdcb8;
-      --acento-suave: #2f4a40;
+      --acento-suave: #285246;
       --quente: #f5c45e;
       --quente-esc: #f8d27f;
       --botao-fundo: #5fd3a8;
       --botao-hover: #7fdfba;
       --botao-texto: #10241c;
-      --faixa: #23463a;
+      --faixa: #1f4a3c;
       --faixa-texto: #f0f6f2;
 
-      --fundo: #1f2a26;
-      --fundo-alt: #243029;
-      --superficie: #2a3631;
-      --campo: #303d37;
-      --borda: #3b4a43;
-      --titulo: #eef5f0;
-      --texto: #e6ede9;
-      --texto-suave: #b6c3bc;
-      --texto-fraco: #8e9b94;
-      --rodape-fundo: linear-gradient(180deg, #1b2622 0%, #17201c 100%);
+      --fundo: #192e27;
+      --fundo-alt: #1d342d;
+      --superficie: #243d35;
+      --campo: #2b4840;
+      --borda: #38574d;
+      --titulo: #f0f7f2;
+      --texto: #e8f2ec;
+      --texto-suave: #b3cbc0;
+      --texto-fraco: #8aa79a;
+      --rodape-fundo: linear-gradient(180deg, #13261f 0%, #0f1f19 100%);
       --rodape-texto: #c9d6cf;
       --rodape-fraco: #93a39b;
 
@@ -121,9 +121,8 @@
     }
 
     /* troca de tema: só as cores mudam, rapidinho */
-    .trocando-tema, .trocando-tema *, .trocando-tema *::before, .trocando-tema *::after {
-      transition: background-color .3s ease, border-color .3s ease, color .3s ease, fill .3s ease !important;
-    }
+    /* troca de tema: o navegador funde a tela antiga na nova (sem animar cada elemento) */
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .45s; animation-timing-function: ease; }
 
     img { max-width: 100%; height: auto; display: block; }
     a { color: var(--primaria-texto); text-decoration: none; transition: color .2s ease; }
@@ -1155,11 +1154,14 @@
         metaCor.setAttribute('content', getComputedStyle(raiz).getPropertyValue('--fundo').trim());
       }
       function aplicarTema(tema, salvar) {
-        raiz.classList.add('trocando-tema');
-        raiz.setAttribute('data-tema', tema);
-        refletirTema();
+        var trocar = function () {
+          raiz.setAttribute('data-tema', tema);
+          refletirTema();
+        };
+        // navegadores sem View Transitions (ou quem desativou animações) trocam na hora
+        if (document.startViewTransition && !reduzMovimentoGeral) document.startViewTransition(trocar);
+        else trocar();
         if (salvar) { try { localStorage.setItem('tema', tema); } catch (e) {} }
-        setTimeout(function () { raiz.classList.remove('trocando-tema'); }, 350);
       }
       if (botaoTema) {
         botaoTema.addEventListener('click', function () {
