@@ -379,24 +379,36 @@
     .servico p { margin-bottom: 18px; font-size: 15px; line-height: 1.55; color: var(--texto-suave); }
     .servico .btn { margin-top: auto; align-self: flex-start; min-height: 42px; padding: 9px 20px; font-size: 14px; }
 
-    .contato { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
-    .contato > div { padding: 34px; background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p); }
+    .contato { display: grid; grid-template-columns: 1fr 1.25fr; gap: 28px; align-items: stretch; }
+    .contato-info { padding: 34px; background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p); }
     .contato h2 { font-size: 26px; letter-spacing: -.015em; margin-bottom: 22px; }
 
     .info-contato li { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--borda); }
     .info-contato li:first-child { padding-top: 0; }
+    .info-contato li:last-child { padding-bottom: 0; border-bottom: 0; }
     .info-contato .icone { width: 44px; height: 44px; padding: 12px; border-radius: 12px; background: var(--acento-suave); color: var(--acento-esc); }
     .info-contato strong { display: block; font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--texto-suave); }
     .info-contato div { color: var(--texto); }
-    .mapa { margin-top: 22px; overflow: hidden; border: 1px solid var(--borda); border-radius: var(--raio); }
-    .mapa iframe { display: block; width: 100%; height: 260px; border: 0; }
+    .mapa { min-height: 380px; overflow: hidden; border: 1px solid var(--borda); border-radius: var(--raio-g); background: var(--fundo-alt); box-shadow: var(--sombra-p); }
+    .mapa iframe { display: block; width: 100%; height: 100%; min-height: 380px; border: 0; }
     :root[data-tema="escuro"] .mapa iframe { filter: brightness(.85); }
 
-    .contato-whats p { color: var(--texto-suave); font-size: 17px; }
     .btn-whats { background: #25d366; color: #fff; min-height: 54px; padding-inline: 28px; font-size: 16px; }
     .btn-whats .icone { font-size: 22px; }
     .btn-whats:hover { background: #1ebe5b; color: #fff; box-shadow: 0 0 0 4px rgb(37 211 102 / .25); }
-    .atalhos-titulo { margin: 28px 0 12px; font-size: 14px; font-weight: 700; color: var(--texto-suave); }
+    /* ---------- faixa do WhatsApp (depois dos números) ---------- */
+    .faixa-whats-secao { padding: 0 0 56px; background: var(--fundo); }
+    .faixa-whats {
+      display: flex; align-items: center; gap: 20px; padding: 18px 20px 18px 22px;
+      background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p);
+    }
+    .faixa-whats-texto { display: flex; align-items: center; gap: 14px; flex: none; }
+    .faixa-whats-icone { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border-radius: 50%; background: #25d366; color: #fff; font-size: 24px; }
+    .faixa-whats-texto strong { display: block; font-size: 17px; color: var(--titulo); line-height: 1.3; }
+    .faixa-whats-texto span span { display: block; font-size: 14px; color: var(--texto-suave); line-height: 1.4; }
+    .faixa-whats .atalhos { flex: 1; justify-content: center; }
+    .faixa-whats .btn-whats { flex: none; min-height: 48px; padding: 10px 22px; font-size: 15px; }
+    .faixa-whats .btn-whats .icone { font-size: 20px; }
     .atalhos { display: flex; flex-wrap: wrap; gap: 10px; }
     .atalho {
       display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px;
@@ -406,8 +418,6 @@
     }
     .atalho .icone { color: #1fa855; font-size: 18px; }
     .atalho:hover { border-color: #25d366; color: var(--texto); box-shadow: 0 0 0 3px rgb(37 211 102 / .18); text-decoration: none; }
-    .contato-nota { margin: 24px 0 0; padding-top: 20px; border-top: 1px solid var(--borda); font-size: 15px; }
-    .contato-nota a { font-weight: 700; }
 
     /* ---------- rodapé ---------- */
     .rodape { background: var(--rodape-fundo); color: var(--rodape-texto); }
@@ -438,6 +448,13 @@
     .whatsapp:hover { background: #1ebe5b; color: #fff; text-decoration: none; box-shadow: 0 0 0 5px rgb(37 211 102 / .25), 0 12px 28px -10px rgb(37 211 102 / .9); }
 
     /* ---------- responsivo ---------- */
+    /* a faixa do WhatsApp só cabe numa linha a partir de 1200px; abaixo, os atalhos descem */
+    @media (max-width: 1199px) {
+      .faixa-whats { flex-wrap: wrap; row-gap: 16px; }
+      .faixa-whats-texto { flex: 1; }
+      .faixa-whats .atalhos { order: 3; flex-basis: 100%; justify-content: flex-start; }
+    }
+
     @media (max-width: 1100px) {
       .cabecalho .container { gap: 16px; }
       .nav li a { padding: 9px 12px; }
@@ -509,11 +526,16 @@
       .marcas-lista li { font-size: 19px; }
 
       .produtos-vitrine, .servicos { --vao: 14px; }
-      .contato > div { padding: 24px 20px; }
+      .contato-info { padding: 24px 20px; }
+      .faixa-whats-secao { padding-bottom: 40px; }
+      .faixa-whats { flex-direction: column; align-items: stretch; padding: 20px; }
+      .faixa-whats .atalhos { display: grid; grid-template-columns: 1fr 1fr; }
+      .faixa-whats .atalho { justify-content: center; }
+      .faixa-whats .btn-whats { order: 4; }
+      .mapa, .mapa iframe { min-height: 300px; }
       .rodape-grade { grid-template-columns: 1fr; gap: 36px; padding: 56px 16px 40px; }
       .rodape-links { justify-self: stretch; }
       .rodape-links ul { grid-template-columns: 1fr 1fr; }
-      .contato-whats .btn-whats { width: 100%; }
       .whatsapp { right: 16px; bottom: 16px; width: 56px; height: 56px; font-size: 28px; }
     }
 
@@ -679,6 +701,24 @@
             <span class="numero-detalhe">com produtos hipoalergênicos</span>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <section class="faixa-whats-secao" aria-label="Agende pelo WhatsApp">
+      <div class="container">
+        <div class="faixa-whats">
+          <div class="faixa-whats-texto">
+            <span class="faixa-whats-icone"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg></span>
+            <span><strong>Agende pelo WhatsApp</strong><span>Escolha o assunto e a mensagem já vai pronta</span></span>
+          </div>
+          <div class="atalhos">
+            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consulta</a>
+            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20a%20vacina%C3%A7%C3%A3o%20do%20meu%20pet." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Vacinação</a>
+            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20banho%20e%20tosa." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Banho e tosa</a>
+            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20loja." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Loja</a>
+          </div>
+          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
+        </div>
       </div>
     </section>
 
@@ -857,20 +897,7 @@
       <div class="container">
         <div class="titulo-secao"><h2>Contato</h2></div>
         <div class="contato">
-        <div class="contato-whats">
-          <h2>Fale com a gente pelo WhatsApp</h2>
-          <p>É o jeito mais rápido de agendar ou tirar uma dúvida. Escolha o assunto e a mensagem já vai pronta.</p>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
-          <p class="atalhos-titulo">Ou escolha um assunto:</p>
-          <div class="atalhos">
-            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar consulta</a>
-            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20a%20vacina%C3%A7%C3%A3o%20do%20meu%20pet." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Vacinação</a>
-            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20banho%20e%20tosa." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Banho e tosa</a>
-            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20loja." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Dúvida sobre a loja</a>
-          </div>
-          <p class="contato-nota">Prefere ligar? <a href="tel:+551130000000">(11) 3000-0000</a></p>
-        </div>
-        <div>
+        <div class="contato-info">
           <h2>Fale com a gente</h2>
           <ul class="info-contato">
             <li><svg class="icone" aria-hidden="true"><use href="#i-local"/></svg><div><strong>Endereço</strong>Rua das Flores, 123 – Centro<br>São Paulo/SP – CEP 00000-000</div></li>
@@ -878,9 +905,9 @@
             <li><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg><div><strong>WhatsApp</strong><a href="https://wa.me/5511900000000" target="_blank" rel="noopener">(11) 90000-0000</a></div></li>
             <li><svg class="icone" aria-hidden="true"><use href="#i-relogio"/></svg><div><strong>Horário</strong>Seg a Sex 8h às 19h<br>Sábado 8h às 14h</div></li>
           </ul>
-          <div class="mapa">
-            <iframe title="Mapa da clínica" loading="lazy" src="https://www.google.com/maps?q=S%C3%A3o+Paulo+SP&amp;output=embed"></iframe>
-          </div>
+        </div>
+        <div class="mapa">
+          <iframe title="Mapa da clínica" loading="lazy" src="https://www.google.com/maps?q=S%C3%A3o+Paulo+SP&amp;output=embed"></iframe>
         </div>
       </div>
       </div>
