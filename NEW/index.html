@@ -209,24 +209,29 @@
     .carrossel { position: relative; background: #12372c; }
     .slides { position: relative; height: 540px; overflow: hidden; }
     .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .9s ease, visibility 0s .9s; }
-    .slide.ativo { opacity: 1; visibility: visible; z-index: 1; transition: opacity .9s ease; }
+    .slide.ativo { opacity: 1; visibility: visible; z-index: 2; transition: opacity .9s ease; }
+    /* a foto que sai fica inteira por baixo enquanto a nova aparece: a troca não escurece no meio */
+    .slide.saindo { opacity: 1; visibility: visible; z-index: 1; transition: none; }
     .slide picture, .slide > img { position: absolute; inset: 0; }
     .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
     :root[data-tema="escuro"] .slide img { filter: brightness(.9); }
     /* escurece o lado da legenda para o texto sempre ter contraste */
     .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(8 30 24 / .55) 0%, rgb(8 30 24 / .15) 55%, transparent 80%); }
-    .slide .container { position: relative; z-index: 1; height: 100%; }
+    /* card único por cima das fotos: só o texto troca, o card e o botão ficam parados */
+    .legenda-area { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
     .legenda {
-      position: absolute; left: 20px; top: 50%; transform: translateY(-56%);
-      max-width: 500px; padding: 34px 36px 36px;
+      position: absolute; left: clamp(24px, 5vw, 96px); top: 50%; transform: translateY(-56%);
+      width: min(480px, calc(100% - 48px)); padding: 34px 36px 36px; pointer-events: auto;
       background: color-mix(in srgb, var(--superficie) 95%, transparent);
       border-radius: var(--raio-g); box-shadow: var(--sombra-g);
     }
     .legenda::before { content: ''; display: block; width: 44px; height: 5px; margin-bottom: 18px; border-radius: 5px; background: var(--quente); }
     .legenda h2 { font-size: 38px; letter-spacing: -.02em; line-height: 1.08; margin-bottom: 12px; text-wrap: balance; }
     .legenda p { color: var(--texto-suave); font-size: 17px; margin-bottom: 22px; }
-    .slide.ativo .legenda { animation: surgir .8s ease both; }
-    @keyframes surgir { from { opacity: 0; } }
+    .legenda-textos { display: grid; }
+    .sem-quebra { white-space: nowrap; }
+    .legenda-texto { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s .35s; }
+    .legenda-texto.ativo { opacity: 1; visibility: visible; transition: opacity .45s ease .3s; }
 
     /* bloco de setas e pontos: metade dentro, metade fora do carrossel */
     .controles {
@@ -478,7 +483,7 @@
       .slides { height: 420px; }
       .slide img { object-position: center; }
       .slide::after { background: linear-gradient(0deg, rgb(8 30 24 / .6) 0%, rgb(8 30 24 / .1) 60%, transparent 100%); }
-      .legenda { left: 16px; right: 16px; top: auto; bottom: 50px; transform: none; max-width: none; padding: 20px 20px 22px; border-radius: 20px; }
+      .legenda { left: 16px; right: 16px; top: auto; bottom: 50px; transform: none; width: auto; padding: 20px 20px 22px; border-radius: 20px; }
       .legenda::before { width: 36px; height: 4px; margin-bottom: 12px; }
       .legenda h2 { font-size: 25px; margin-bottom: 14px; }
       .legenda p { display: none; }
@@ -592,56 +597,51 @@
       <div class="slides">
       <div class="slide ativo" role="group" aria-roledescription="slide" aria-label="1 de 4">
         <picture>
-          <source media="(max-width: 767px)" srcset="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=600&amp;q=70 640w, https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=960&amp;h=900&amp;q=70 960w" sizes="100vw">
-          <img src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70" srcset="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1024&amp;h=400&amp;q=70 1024w, https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70 1440w, https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1920&amp;h=750&amp;q=70 1920w" sizes="100vw" alt="Cachorro marrom correndo feliz na beira do mar" fetchpriority="high">
+          <source media="(max-width: 767px)" srcset="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=600&amp;q=70 640w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=960&amp;h=900&amp;q=70 960w" sizes="100vw">
+          <img src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70" srcset="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1024&amp;h=400&amp;q=70 1024w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70 1440w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1920&amp;h=750&amp;q=70 1920w" sizes="100vw" alt="Quatro filhotes de cachorro sentados juntos na porta" fetchpriority="high">
         </picture>
-        <div class="container">
-          <div class="legenda">
-            <h2>Cuidamos de quem você ama</h2>
-            <p>Atendimento veterinário completo para cães e gatos, com carinho e tecnologia.</p>
-            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
-          </div>
-        </div>
       </div>
       <div class="slide" role="group" aria-roledescription="slide" aria-label="2 de 4">
         <picture>
-          <source media="(max-width: 767px)" data-srcset="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=600&amp;q=70 640w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=960&amp;h=900&amp;q=70 960w" sizes="100vw">
-          <img data-src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70" data-srcset="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1024&amp;h=400&amp;q=70 1024w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70 1440w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1920&amp;h=750&amp;q=70 1920w" sizes="100vw" alt="Quatro filhotes de cachorro sentados juntos na porta" decoding="async">
+          <source media="(max-width: 767px)" data-srcset="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=600&amp;q=70 640w, https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=960&amp;h=900&amp;q=70 960w" sizes="100vw">
+          <img data-src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70" data-srcset="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1024&amp;h=400&amp;q=70 1024w, https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70 1440w, https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1920&amp;h=750&amp;q=70 1920w" sizes="100vw" alt="Cachorro marrom correndo feliz na beira do mar" decoding="async">
         </picture>
-        <div class="container">
-          <div class="legenda">
-            <h2>Vacinas e check-up de filhotes</h2>
-            <p>Calendário de vacinação e primeiras consultas para a vida toda do seu amigo.</p>
-            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
-          </div>
-        </div>
       </div>
       <div class="slide" role="group" aria-roledescription="slide" aria-label="3 de 4">
         <picture>
           <source media="(max-width: 767px)" data-srcset="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=600&amp;q=70 640w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=960&amp;h=900&amp;q=70 960w" sizes="100vw">
           <img data-src="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70" data-srcset="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1024&amp;h=400&amp;q=70 1024w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70 1440w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1920&amp;h=750&amp;q=70 1920w" sizes="100vw" alt="Gato branco de olhos claros deitado numa manta" decoding="async">
         </picture>
-        <div class="container">
-          <div class="legenda">
-            <h2>Atendimento especializado para gatos</h2>
-            <p>Ambiente calmo e profissionais que entendem o jeito de cada felino.</p>
-            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
-          </div>
-        </div>
       </div>
       <div class="slide" role="group" aria-roledescription="slide" aria-label="4 de 4">
         <picture>
           <source media="(max-width: 767px)" data-srcset="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=600&amp;q=70 640w, https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=960&amp;h=900&amp;q=70 960w" sizes="100vw">
           <img data-src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70" data-srcset="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1024&amp;h=400&amp;q=70 1024w, https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70 1440w, https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1920&amp;h=750&amp;q=70 1920w" sizes="100vw" alt="Dois cachorros pequenos correndo juntos numa trilha" decoding="async">
         </picture>
-        <div class="container">
-          <div class="legenda">
-            <h2>Banho, tosa e loja completa</h2>
-            <p>Tudo para o seu pet em um só lugar: banho e tosa, rações e acessórios.</p>
-            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
-          </div>
-        </div>
       </div>
+      </div>
+      <div class="legenda-area">
+        <div class="legenda">
+          <div class="legenda-textos">
+            <div class="legenda-texto ativo">
+              <h2>Cuidamos de quem você ama</h2>
+              <p>Atendimento veterinário completo para cães e gatos, com carinho e tecnologia.</p>
+            </div>
+            <div class="legenda-texto" aria-hidden="true">
+              <h2>Vacinas e <span class="sem-quebra">check-up</span> de filhotes</h2>
+              <p>Calendário de vacinação e primeiras consultas para a vida toda do seu amigo.</p>
+            </div>
+            <div class="legenda-texto" aria-hidden="true">
+              <h2>Atendimento especializado para gatos</h2>
+              <p>Ambiente calmo e profissionais que entendem o jeito de cada felino.</p>
+            </div>
+            <div class="legenda-texto" aria-hidden="true">
+              <h2>Banho, tosa e loja completa</h2>
+              <p>Tudo para o seu pet em um só lugar: banho e tosa, rações e acessórios.</p>
+            </div>
+          </div>
+          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
+        </div>
       </div>
       <div class="controles">
         <button class="seta ant" type="button" aria-label="Slide anterior"><svg class="icone" aria-hidden="true"><use href="#i-esquerda"/></svg></button>
@@ -960,13 +960,29 @@
         var timer = null;
         var reduzMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+        var textos = carrossel.querySelectorAll('.legenda-texto');
+        var timerSaida = null;
+
         function ir(i) {
+          var anterior = atual;
           atual = (i + slides.length) % slides.length;
           // baixa a foto do slide atual, se ainda não baixou
           carregarSlide(slides[atual]);
           slides.forEach(function (s, n) {
+            s.classList.remove('saindo');
             s.classList.toggle('ativo', n === atual);
             s.setAttribute('aria-hidden', n !== atual);
+          });
+          // a foto anterior fica inteira por baixo até a nova terminar de aparecer
+          if (anterior !== atual) {
+            var saindo = slides[anterior];
+            saindo.classList.add('saindo');
+            clearTimeout(timerSaida);
+            timerSaida = setTimeout(function () { saindo.classList.remove('saindo'); }, 950);
+          }
+          textos.forEach(function (t, n) {
+            t.classList.toggle('ativo', n === atual);
+            if (n === atual) t.removeAttribute('aria-hidden'); else t.setAttribute('aria-hidden', 'true');
           });
           pontos.forEach(function (p, n) {
             p.classList.toggle('ativo', n === atual);
