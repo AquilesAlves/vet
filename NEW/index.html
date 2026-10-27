@@ -8,7 +8,308 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Clínica Veterinária Bicho Feliz */
+
+    :root {
+      --ciano: #0a808c;
+      --ciano-claro: #0fa3b1;
+      --ciano-esc: #075a63;
+      --ciano-fim: #054850;
+      --esmeralda: #00ffae;
+      --esmeralda-esc: #00916a;
+      --tinta-esmeralda: #0b3d3a;
+      --laranja: #ff8a00;
+      --laranja-esc: #e87d00;
+      --tinta-laranja: #2a1500;
+      --fundo-alt: #f4f8f8;
+      --borda: #e1e1e1;
+      --texto: #333;
+      --texto-suave: #666;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--texto);
+      background: #fff;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--ciano); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', Arial, sans-serif; margin: 0; line-height: 1.25; }
+    p { margin: 0 0 1em; }
+
+    :focus-visible { outline: 3px solid var(--laranja); outline-offset: 2px; }
+
+    .container { width: 100%; max-width: 1170px; margin: 0 auto; padding: 0 15px; }
+
+    /* ---------- botões ---------- */
+    .btn {
+      display: inline-block;
+      padding: 12px 26px;
+      border: 2px solid transparent;
+      border-radius: 3px;
+      font: 700 13px/1.2 'Montserrat', Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      text-align: center;
+      cursor: pointer;
+    }
+    .btn:hover { text-decoration: none; }
+    .btn-laranja { background: var(--laranja); color: var(--tinta-laranja); }
+    .btn-laranja:hover { background: var(--laranja-esc); }
+    .btn-ciano { background: var(--ciano); color: #fff; }
+    .btn-ciano:hover { background: var(--ciano-esc); }
+    .btn-contorno { border-color: var(--ciano); color: var(--ciano); background: transparent; }
+    .btn-contorno:hover { background: var(--ciano); color: #fff; }
+    .btn-bloco { display: block; width: 100%; }
+
+    /* ---------- barra do topo ---------- */
+    .topo { background: var(--fundo-alt); border-bottom: 1px solid var(--borda); font-size: 12px; color: var(--texto-suave); }
+    .topo .container { display: flex; justify-content: space-between; align-items: center; min-height: 36px; gap: 16px; }
+    .topo ul { display: flex; gap: 22px; flex-wrap: wrap; }
+    .topo i { color: var(--esmeralda-esc); margin-right: 6px; }
+    .topo .redes { gap: 6px; }
+    .topo .redes a { display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center; color: var(--ciano); }
+    .topo .redes a:hover { background: var(--ciano); color: #fff; }
+
+    /* ---------- cabeçalho ---------- */
+    .cabecalho .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 18px; padding-bottom: 18px; }
+    .logo { display: flex; align-items: center; gap: 12px; color: var(--texto); }
+    .logo:hover { text-decoration: none; }
+    .logo-icone { width: 52px; height: 52px; background: var(--esmeralda); color: var(--tinta-esmeralda); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex: none; }
+    .logo-texto { font: 800 20px/1.05 'Montserrat', Arial, sans-serif; text-transform: uppercase; letter-spacing: .02em; color: var(--ciano-esc); }
+    .logo-texto small { display: block; font-weight: 600; font-size: 10px; letter-spacing: .22em; color: var(--texto-suave); margin-top: 4px; }
+
+    .busca { flex: 1; max-width: 440px; display: flex; }
+    .busca input { flex: 1; min-width: 0; height: 42px; padding: 0 14px; border: 2px solid var(--borda); border-right: 0; border-radius: 3px 0 0 3px; font: inherit; font-size: 14px; }
+    .busca input:focus { outline: none; border-color: var(--ciano-claro); }
+    .busca button { width: 52px; border: 0; border-radius: 0 3px 3px 0; background: var(--esmeralda); color: var(--tinta-esmeralda); font-size: 16px; cursor: pointer; }
+    .busca button:hover { background: #00e69c; }
+
+    .conta { display: flex; gap: 22px; font-size: 13px; }
+    .conta a { color: var(--texto); display: flex; align-items: center; gap: 8px; }
+    .conta i { font-size: 20px; color: var(--ciano); }
+    .conta .carrinho-qtd { background: var(--laranja); color: var(--tinta-laranja); border-radius: 10px; padding: 0 7px; font-weight: 700; font-size: 12px; }
+
+    .menu-botao { display: none; width: 44px; height: 44px; border: 2px solid var(--ciano); background: #fff; color: var(--ciano); border-radius: 3px; font-size: 20px; cursor: pointer; }
+
+    /* ---------- navegação ---------- */
+    .nav { background: var(--ciano); }
+    .nav .container { display: flex; justify-content: space-between; align-items: stretch; }
+    .nav ul { display: flex; }
+    .nav li a { display: block; padding: 16px 24px; color: #fff; font: 700 13px/1 'Montserrat', Arial, sans-serif; text-transform: uppercase; letter-spacing: .08em; border-bottom: 4px solid transparent; }
+    .nav li a:hover { background: var(--ciano-esc); text-decoration: none; }
+    .nav li a.ativo { border-bottom-color: var(--esmeralda); background: var(--ciano-esc); }
+    .nav .nav-cta { align-self: center; padding: 10px 18px; }
+
+    /* ---------- carrossel ---------- */
+    .carrossel { position: relative; background: var(--ciano-esc); }
+    .slides { position: relative; height: 520px; overflow: hidden; }
+    .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .8s ease, visibility 0s .8s; }
+    .slide.ativo { opacity: 1; visibility: visible; z-index: 1; transition: opacity .8s ease; }
+    .slide > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+    .slide .container { position: relative; height: 100%; }
+    .legenda { position: absolute; left: 15px; top: 50%; transform: translateY(-58%); max-width: 470px; padding: 28px 32px 32px; background: rgba(255, 255, 255, .93); border-top: 6px solid var(--esmeralda); }
+    .legenda h2 { font-size: 28px; font-weight: 800; text-transform: uppercase; color: var(--ciano-esc); letter-spacing: .02em; margin-bottom: 10px; }
+    .legenda p { color: var(--texto); margin-bottom: 18px; }
+
+    /* bloco de setas e pontos: metade dentro, metade fora do carrossel */
+    .controles { position: absolute; z-index: 5; left: 50%; bottom: -31px; transform: translateX(-50%); width: 294px; height: 62px; background: var(--esmeralda); color: var(--tinta-esmeralda); display: flex; align-items: center; justify-content: space-between; padding: 0 8px; }
+    .seta { width: 42px; height: 42px; border: 0; background: transparent; color: var(--tinta-esmeralda); font-size: 20px; cursor: pointer; }
+    .seta:hover { background: rgba(11, 61, 58, .12); }
+    .pontos { display: flex; gap: 10px; }
+    .ponto { width: 14px; height: 14px; padding: 0; border: 2px solid var(--tinta-esmeralda); border-radius: 50%; background: transparent; cursor: pointer; }
+    .ponto.ativo { background: var(--tinta-esmeralda); }
+
+    /* ---------- selos ---------- */
+    .selos { padding: 62px 0 34px; background: #fff; }
+    .selos .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .selo { display: flex; align-items: center; gap: 16px; padding: 4px 10px; }
+    .selo i { font-size: 34px; color: var(--esmeralda-esc); width: 44px; text-align: center; }
+    .selo strong { display: block; font: 700 14px 'Montserrat', Arial, sans-serif; text-transform: uppercase; letter-spacing: .04em; color: var(--ciano-esc); }
+    .selo span { font-size: 13px; color: var(--texto-suave); }
+
+    /* ---------- seções ---------- */
+    .secao { padding: 64px 0; }
+    .secao-alt { background: var(--fundo-alt); }
+
+    .titulo-secao { text-align: center; margin-bottom: 40px; }
+    .titulo-secao h2 { font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--ciano-esc); }
+    .titulo-secao::after { content: ''; display: block; width: 64px; height: 4px; background: var(--esmeralda); margin: 14px auto 0; }
+    .titulo-secao p { margin: 12px 0 0; color: var(--texto-suave); }
+
+    .destaque .container { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .destaque.invertido .destaque-foto { order: 2; }
+    .destaque-foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 6px solid #fff; outline: 1px solid var(--borda); }
+    .destaque-texto h2 { font-size: 30px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; color: var(--ciano-esc); margin-bottom: 8px; }
+    .destaque-texto h2::after { content: ''; display: block; width: 64px; height: 4px; background: var(--esmeralda); margin: 14px 0 20px; }
+    .destaque-texto p { font-size: 16px; line-height: 1.75; }
+    .destaque-texto ul { margin: 0 0 24px; }
+    .destaque-texto li { padding: 3px 0 3px 28px; position: relative; }
+    .destaque-texto li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; color: var(--esmeralda-esc); }
+
+    /* ---------- produtos ---------- */
+    .produtos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .produto { background: #fff; border: 1px solid var(--borda); padding: 14px 14px 18px; position: relative; display: flex; flex-direction: column; }
+    .produto:hover { border-color: var(--ciano-claro); }
+    .produto img { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 12px; }
+    .produto h3 { font: 600 14px/1.35 'Open Sans', Arial, sans-serif; min-height: 38px; margin-bottom: 8px; color: var(--texto); }
+    .preco-antigo { font-size: 12px; color: #888; text-decoration: line-through; min-height: 18px; }
+    .preco { font: 800 22px 'Montserrat', Arial, sans-serif; color: var(--ciano-esc); }
+    .parcela { font-size: 12px; color: var(--texto-suave); margin-bottom: 14px; }
+    .produto .btn { margin-top: auto; }
+    .etiqueta { position: absolute; top: 10px; left: 10px; background: var(--laranja); color: var(--tinta-laranja); font: 800 11px 'Montserrat', Arial, sans-serif; text-transform: uppercase; letter-spacing: .05em; padding: 5px 9px; border-radius: 2px; }
+    .secao-rodape { text-align: center; margin-top: 36px; }
+
+    /* ---------- depoimentos ---------- */
+    .depoimentos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .depoimento { background: var(--fundo-alt); border: 1px solid var(--borda); border-top: 4px solid var(--esmeralda); padding: 24px 26px; }
+    .depoimento > i { color: var(--ciano-claro); font-size: 22px; margin-bottom: 10px; }
+    .depoimento p { font-style: italic; }
+    .depoimento footer { font-size: 13px; color: var(--texto-suave); }
+    .depoimento footer strong { color: var(--ciano-esc); }
+    .estrelas { color: var(--laranja); font-size: 13px; margin-bottom: 8px; letter-spacing: 2px; }
+
+    /* ---------- serviços, loja e contato ---------- */
+
+    .servicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .servico { border: 1px solid var(--borda); background: #fff; display: flex; flex-direction: column; }
+    .servico img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+    .servico-corpo { padding: 20px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+    .servico h3 { font-size: 17px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; color: var(--ciano-esc); margin-bottom: 8px; }
+    .servico p { font-size: 14px; color: var(--texto-suave); }
+    .servico .btn { margin-top: auto; align-self: flex-start; }
+
+    .loja { display: grid; grid-template-columns: 250px 1fr; gap: 30px; align-items: start; }
+    .filtros { border: 1px solid var(--borda); }
+    .filtros h3 { background: var(--ciano); color: #fff; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; padding: 12px 16px; }
+    .filtros-bloco { padding: 14px 16px 18px; border-bottom: 1px solid var(--borda); }
+    .filtros-bloco:last-child { border-bottom: 0; }
+    .filtros label { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 14px; cursor: pointer; }
+    .filtros input[type="checkbox"] { accent-color: var(--ciano); width: 16px; height: 16px; }
+    .faixa-preco { display: flex; gap: 8px; margin-bottom: 10px; }
+    .faixa-preco input { width: 100%; min-width: 0; height: 36px; padding: 0 8px; border: 1px solid var(--borda); border-radius: 3px; font: inherit; font-size: 13px; }
+    .loja .produtos { grid-template-columns: repeat(3, 1fr); }
+    .loja-topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; font-size: 14px; color: var(--texto-suave); gap: 12px; }
+    .loja-topo select { height: 36px; padding: 0 8px; border: 1px solid var(--borda); border-radius: 3px; font: inherit; font-size: 13px; background: #fff; }
+
+    .contato { display: grid; grid-template-columns: 1.15fr 1fr; gap: 44px; align-items: start; }
+    .contato h2 { font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--ciano-esc); margin-bottom: 18px; }
+    .campo { margin-bottom: 14px; }
+    .campo label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .campo input, .campo textarea, .campo select { width: 100%; padding: 10px 12px; border: 2px solid var(--borda); border-radius: 3px; font: inherit; font-size: 14px; background: #fff; }
+    .campo input:focus, .campo textarea:focus, .campo select:focus { outline: none; border-color: var(--ciano-claro); }
+    .campo textarea { min-height: 130px; resize: vertical; }
+    .campos-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-msg { display: none; margin-top: 14px; padding: 12px 16px; background: var(--esmeralda); color: var(--tinta-esmeralda); font-weight: 700; border-radius: 3px; }
+    .form-msg.visivel { display: block; }
+
+    .info-contato li { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--borda); }
+    .info-contato i { color: var(--esmeralda-esc); font-size: 20px; width: 26px; text-align: center; margin-top: 3px; }
+    .info-contato strong { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--ciano-esc); }
+    .mapa { margin-top: 24px; border: 1px solid var(--borda); }
+    .mapa iframe { display: block; width: 100%; height: 260px; border: 0; }
+
+    /* ---------- rodapé ---------- */
+    .rodape { background: var(--ciano-esc); color: #e6f4f5; margin-top: 0; }
+    .rodape-colunas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding: 52px 15px 40px; }
+    .rodape h4 { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+    .rodape h4::after { content: ''; display: block; width: 36px; height: 3px; background: var(--esmeralda); margin: 10px 0 16px; }
+    .rodape a { color: #e6f4f5; }
+    .rodape li { padding: 3px 0; font-size: 14px; }
+    .rodape p { font-size: 14px; }
+    .pagamentos { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pagamentos span { background: #fff; color: var(--ciano-esc); font: 700 11px 'Montserrat', Arial, sans-serif; padding: 6px 10px; border-radius: 2px; text-transform: uppercase; }
+    .news { display: flex; margin-top: 10px; }
+    .news input { flex: 1; min-width: 0; height: 40px; padding: 0 10px; border: 0; border-radius: 3px 0 0 3px; font: inherit; font-size: 13px; }
+    .news button { width: 46px; border: 0; background: var(--esmeralda); color: var(--tinta-esmeralda); border-radius: 0 3px 3px 0; cursor: pointer; font-size: 15px; }
+    .news button:hover { background: #00e69c; }
+    .rodape-fim { background: var(--ciano-fim); font-size: 12px; padding: 16px 0; color: #bcd9dc; }
+    .rodape-fim .container { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+    .whatsapp { position: fixed; right: 20px; bottom: 20px; z-index: 50; width: 58px; height: 58px; background: #25d366; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+    .whatsapp:hover { background: #1ebe5b; text-decoration: none; }
+
+    /* ---------- responsivo ---------- */
+    @media (max-width: 991px) {
+      .produtos { grid-template-columns: repeat(2, 1fr); }
+      .loja .produtos { grid-template-columns: repeat(2, 1fr); }
+      .servicos { grid-template-columns: repeat(2, 1fr); }
+      .depoimentos { grid-template-columns: 1fr; }
+      .rodape-colunas { grid-template-columns: repeat(2, 1fr); }
+      .conta span.rotulo { display: none; }
+      .slides { height: 440px; }
+    }
+
+    @media (max-width: 767px) {
+      .topo .container { justify-content: center; }
+      .topo .redes { display: none; }
+      .topo ul:first-child li:nth-child(2) { display: none; }
+
+      .cabecalho .container { flex-wrap: wrap; gap: 12px; padding-top: 12px; padding-bottom: 12px; }
+      .logo-texto { font-size: 17px; }
+      .logo-icone { width: 44px; height: 44px; font-size: 20px; }
+      .busca { order: 3; max-width: none; flex-basis: 100%; }
+      .conta { display: none; }
+      .menu-botao { display: block; }
+
+      .nav { display: none; }
+      .nav.aberto { display: block; }
+      .nav .container { flex-direction: column; padding: 0; }
+      .nav ul { flex-direction: column; }
+      .nav li a { padding: 15px 20px; border-bottom: 1px solid var(--ciano-esc); border-left: 4px solid transparent; }
+      .nav li a.ativo { border-bottom-color: var(--ciano-esc); border-left-color: var(--esmeralda); }
+      .nav .nav-cta { margin: 14px 15px; align-self: stretch; }
+
+      .slides { height: 380px; }
+      .slide > img { object-position: center; }
+      .legenda { left: 15px; right: 15px; top: auto; bottom: 52px; transform: none; max-width: none; padding: 16px 18px 18px; }
+      .legenda h2 { font-size: 19px; margin-bottom: 6px; }
+      .legenda p { display: none; }
+      .legenda .btn { padding: 9px 16px; font-size: 11px; }
+      .controles { width: 250px; height: 54px; bottom: -27px; }
+
+      .selos { padding-top: 50px; }
+      .selos .container { grid-template-columns: 1fr; gap: 6px; }
+      .secao { padding: 46px 0; }
+      .destaque .container { grid-template-columns: 1fr; gap: 26px; }
+      .destaque.invertido .destaque-foto { order: 0; }
+      .destaque-texto h2 { font-size: 24px; }
+
+      .servicos { grid-template-columns: 1fr; }
+      .loja { grid-template-columns: 1fr; }
+      .contato { grid-template-columns: 1fr; gap: 34px; }
+      .campos-2 { grid-template-columns: 1fr; }
+      .rodape-colunas { grid-template-columns: 1fr; padding-top: 40px; }
+    }
+
+    @media (max-width: 479px) {
+      .produtos, .loja .produtos { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .produto { padding: 10px 10px 14px; }
+      .preco { font-size: 18px; }
+      .produto .btn { padding: 10px 8px; font-size: 11px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .slide, .slide.ativo { transition: none; }
+    }
+
+    /* ---------- página única ---------- */
+    section[id] { scroll-margin-top: 0; }
+    .titulo-secao p a { font-weight: 700; }
+    .loja-vazia { grid-column: 1 / -1; margin: 0; padding: 24px; border: 1px dashed var(--borda); text-align: center; color: var(--texto-suave); }
+  </style>
 </head>
 <body>
 
@@ -28,17 +329,17 @@
 
   <header class="cabecalho">
     <div class="container">
-      <a href="index.html" class="logo" aria-label="Clínica Veterinária Bicho Feliz, página inicial">
+      <a href="#inicio" class="logo" aria-label="Clínica Veterinária Bicho Feliz, página inicial">
         <span class="logo-icone"><i class="fas fa-paw"></i></span>
         <span class="logo-texto">Bicho Feliz<small>Clínica Veterinária</small></span>
       </a>
-      <form class="busca" action="loja.html" method="get" role="search">
+      <form class="busca" action="#loja" method="get" role="search">
         <input type="search" name="q" placeholder="Buscar produtos..." aria-label="Buscar produtos">
         <button type="submit" aria-label="Buscar"><i class="fas fa-search"></i></button>
       </form>
       <div class="conta">
-        <a href="contato.html"><i class="far fa-user"></i><span class="rotulo">Minha conta</span></a>
-        <a href="loja.html"><i class="fas fa-shopping-cart"></i><span class="rotulo">Carrinho</span> <span class="carrinho-qtd">0</span></a>
+        <a href="#contato"><i class="far fa-user"></i><span class="rotulo">Minha conta</span></a>
+        <a href="#loja"><i class="fas fa-shopping-cart"></i><span class="rotulo">Carrinho</span> <span class="carrinho-qtd">0</span></a>
       </div>
       <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
     </div>
@@ -47,18 +348,18 @@
   <nav class="nav" aria-label="Principal">
     <div class="container">
       <ul>
-        <li><a href="index.html" class="ativo" aria-current="page">Início</a></li>
-        <li><a href="servicos.html">Serviços</a></li>
-        <li><a href="loja.html">Loja</a></li>
-        <li><a href="contato.html">Contato</a></li>
+        <li><a href="#inicio" class="ativo" aria-current="true">Início</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#loja">Loja</a></li>
+        <li><a href="#contato">Contato</a></li>
       </ul>
-      <a href="contato.html" class="btn btn-laranja nav-cta">Agende uma consulta</a>
+      <a href="#contato" class="btn btn-laranja nav-cta">Agende uma consulta</a>
     </div>
   </nav>
 
 
   <main>
-    <section class="carrossel" aria-roledescription="carrossel" aria-label="Destaques">
+    <section class="carrossel" id="inicio" aria-roledescription="carrossel" aria-label="Destaques">
       <div class="slides">
       <div class="slide ativo" role="group" aria-roledescription="slide" aria-label="1 de 4">
         <img src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&fit=crop&crop=faces,entropy&w=1600&h=560&q=75" alt="Cachorro marrom correndo feliz na beira do mar">
@@ -66,7 +367,7 @@
           <div class="legenda">
             <h2>Cuidamos de quem você ama</h2>
             <p>Atendimento veterinário completo para cães e gatos, com carinho e tecnologia.</p>
-            <a href="contato.html" class="btn btn-laranja">Agende uma consulta</a>
+            <a href="#contato" class="btn btn-laranja">Agende uma consulta</a>
           </div>
         </div>
       </div>
@@ -76,7 +377,7 @@
           <div class="legenda">
             <h2>Vacinas e check-up de filhotes</h2>
             <p>Calendário de vacinação e primeiras consultas para a vida toda do seu amigo.</p>
-            <a href="contato.html" class="btn btn-laranja">Agende uma consulta</a>
+            <a href="#contato" class="btn btn-laranja">Agende uma consulta</a>
           </div>
         </div>
       </div>
@@ -86,7 +387,7 @@
           <div class="legenda">
             <h2>Atendimento especializado para gatos</h2>
             <p>Ambiente calmo e profissionais que entendem o jeito de cada felino.</p>
-            <a href="servicos.html" class="btn btn-laranja">Conheça os serviços</a>
+            <a href="#servicos" class="btn btn-laranja">Conheça os serviços</a>
           </div>
         </div>
       </div>
@@ -96,7 +397,7 @@
           <div class="legenda">
             <h2>Banho, tosa e loja completa</h2>
             <p>Tudo para o seu pet em um só lugar, com frete grátis acima de R$ 99.</p>
-            <a href="loja.html" class="btn btn-laranja">Ver a loja</a>
+            <a href="#loja" class="btn btn-laranja">Ver a loja</a>
           </div>
         </div>
       </div>
@@ -121,7 +422,7 @@
       </div>
     </section>
 
-    <section class="secao secao-alt destaque">
+    <section class="secao secao-alt destaque" id="sobre">
       <div class="container">
         <div class="destaque-foto">
           <img src="https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&fit=crop&crop=faces,entropy&w=800&h=600&q=75" alt="Veterinário de jaleco com estetoscópio no pescoço" loading="lazy" width="800" height="600">
@@ -134,12 +435,12 @@
             <li>Centro cirúrgico e internação</li>
             <li>Atendimento de emergência em horário comercial</li>
           </ul>
-          <a href="servicos.html" class="btn btn-ciano">Saiba mais</a>
+          <a href="#servicos" class="btn btn-ciano">Saiba mais</a>
         </div>
       </div>
     </section>
 
-    <section class="secao destaque invertido">
+    <section class="secao destaque invertido" id="banho-e-tosa">
       <div class="container">
         <div class="destaque-foto">
           <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&crop=faces,entropy&w=800&h=600&q=75" alt="Cachorro golden retriever sendo lavado no banho" loading="lazy" width="800" height="600">
@@ -152,36 +453,105 @@
             <li>Hidratação e corte de unhas</li>
             <li>Busca e entrega (leva e traz)</li>
           </ul>
-          <a href="contato.html" class="btn btn-ciano">Agende um horário</a>
+          <a href="#contato" class="btn btn-ciano">Agende um horário</a>
         </div>
       </div>
     </section>
 
-    <section class="secao secao-alt">
+    <section class="secao secao-alt" id="servicos">
       <div class="container">
         <div class="titulo-secao">
-          <h2>Produtos em destaque</h2>
+          <h2>Cuidado completo para o seu pet</h2>
+          <p>Marque seu horário pelo telefone, WhatsApp ou pelo <a href="#contato">formulário de contato</a></p>
+        </div>
+        <div class="servicos">
+          <article class="servico">
+            <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&crop=faces,entropy&w=640&h=400&q=75" alt="Mulher acariciando um gato durante o atendimento" loading="lazy" width="640" height="400">
+            <div class="servico-corpo">
+              <h3>Consultas</h3>
+              <p>Clínica geral para cães e gatos, com acompanhamento de rotina e consultas de retorno.</p>
+              <a href="#contato" class="btn btn-contorno">Agendar</a>
+            </div>
+          </article>
+          <article class="servico">
+            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&crop=faces,entropy&w=640&h=400&q=75" alt="Filhote de cachorro correndo no gramado" loading="lazy" width="640" height="400">
+            <div class="servico-corpo">
+              <h3>Vacinas</h3>
+              <p>Vacinas para filhotes e adultos, com carteirinha digital e lembrete da próxima dose.</p>
+              <a href="#contato" class="btn btn-contorno">Agendar</a>
+            </div>
+          </article>
+          <article class="servico">
+            <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&crop=faces,entropy&w=640&h=400&q=75" alt="Equipe de jaleco numa sala de cirurgia" loading="lazy" width="640" height="400">
+            <div class="servico-corpo">
+              <h3>Cirurgias</h3>
+              <p>Centro cirúrgico equipado, anestesia monitorada e acompanhamento no pós-operatório.</p>
+              <a href="#contato" class="btn btn-contorno">Agendar</a>
+            </div>
+          </article>
+          <article class="servico">
+            <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&fit=crop&crop=faces,entropy&w=640&h=400&q=75" alt="Husky siberiano de olhos azuis" loading="lazy" width="640" height="400">
+            <div class="servico-corpo">
+              <h3>Exames</h3>
+              <p>Exames de sangue, ultrassom e raio-x com resultado rápido e laudo explicado.</p>
+              <a href="#contato" class="btn btn-contorno">Agendar</a>
+            </div>
+          </article>
+          <article class="servico">
+            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&crop=faces,entropy&w=640&h=400&q=75" alt="Cachorro golden retriever sendo lavado" loading="lazy" width="640" height="400">
+            <div class="servico-corpo">
+              <h3>Banho e tosa</h3>
+              <p>Banho, tosa higiênica, hidratação e corte de unhas, com serviço de leva e traz.</p>
+              <a href="#contato" class="btn btn-contorno">Agendar</a>
+            </div>
+          </article>
+          <article class="servico">
+            <img src="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&fit=crop&crop=faces,entropy&w=640&h=400&q=75" alt="Cachorro preto usando colar elizabetano" loading="lazy" width="640" height="400">
+            <div class="servico-corpo">
+              <h3>Internação</h3>
+              <p>Espaço tranquilo e monitorado para os pets que precisam de cuidados contínuos.</p>
+              <a href="#contato" class="btn btn-contorno">Agendar</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="secao" id="loja">
+      <div class="container">
+        <div class="titulo-secao">
+          <h2>Loja</h2>
           <p>Rações, petiscos, brinquedos e acessórios selecionados pelos nossos veterinários</p>
         </div>
-        <div class="produtos">
-        <article class="produto">
-          <span class="etiqueta">Promoção</span>
-          <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Caminha Pet Cinza Tamanho M" loading="lazy" width="400" height="400">
-          <h3>Caminha Pet Cinza Tamanho M</h3>
-          <div class="preco-antigo">R$ 159,90</div>
-          <div class="preco">R$ 129,90</div>
-          <div class="parcela">ou 3x de R$ 43,30 sem juros</div>
-          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
-        </article>
-        <article class="produto">
-          
-          <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Ração Premium Gatos Adultos 1kg" loading="lazy" width="400" height="400">
-          <h3>Ração Premium Gatos Adultos 1kg</h3>
-          <div class="preco-antigo"></div>
-          <div class="preco">R$ 42,90</div>
-          <div class="parcela">ou 3x de R$ 14,30 sem juros</div>
-          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
-        </article>
+        <div class="loja">
+        <aside class="filtros" aria-label="Filtros">
+          <h3>Categorias</h3>
+          <div class="filtros-bloco">
+            <label><input type="checkbox"> Rações</label>
+            <label><input type="checkbox"> Petiscos</label>
+            <label><input type="checkbox"> Brinquedos</label>
+            <label><input type="checkbox"> Roupas e acessórios</label>
+            <label><input type="checkbox"> Caminhas</label>
+          </div>
+          <h3>Preço</h3>
+          <div class="filtros-bloco">
+            <div class="faixa-preco">
+              <input type="number" min="0" placeholder="R$ mín" aria-label="Preço mínimo">
+              <input type="number" min="0" placeholder="R$ máx" aria-label="Preço máximo">
+            </div>
+            <button type="button" class="btn btn-ciano btn-bloco">Filtrar</button>
+          </div>
+        </aside>
+        <div>
+          <div class="loja-topo">
+            <span class="loja-total" aria-live="polite">Exibindo 12 produtos</span>
+            <select aria-label="Ordenar por">
+              <option>Mais vendidos</option>
+              <option>Menor preço</option>
+              <option>Maior preço</option>
+            </select>
+          </div>
+          <div class="produtos">
+            <p class="loja-vazia" hidden>Nenhum produto encontrado.</p>
         <article class="produto">
           <span class="etiqueta">Promoção</span>
           <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Biscoito Ossinho Sabor Carne 500g" loading="lazy" width="400" height="400">
@@ -189,7 +559,61 @@
           <div class="preco-antigo">R$ 29,90</div>
           <div class="preco">R$ 24,90</div>
           <div class="parcela">ou 3x de R$ 8,30 sem juros</div>
-          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Pelúcia Zebra com Apito" loading="lazy" width="400" height="400">
+          <h3>Pelúcia Zebra com Apito</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 34,90</div>
+          <div class="parcela">ou 3x de R$ 11,63 sem juros</div>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Caminha Pet Cinza Tamanho M" loading="lazy" width="400" height="400">
+          <h3>Caminha Pet Cinza Tamanho M</h3>
+          <div class="preco-antigo">R$ 159,90</div>
+          <div class="preco">R$ 129,90</div>
+          <div class="parcela">ou 3x de R$ 43,30 sem juros</div>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1583511666372-62fc211f8377?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Pijama Pet de Algodão" loading="lazy" width="400" height="400">
+          <h3>Pijama Pet de Algodão</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 59,90</div>
+          <div class="parcela">ou 3x de R$ 19,97 sem juros</div>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1530041539828-114de669390e?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Capa de Chuva Amarela" loading="lazy" width="400" height="400">
+          <h3>Capa de Chuva Amarela</h3>
+          <div class="preco-antigo">R$ 99,90</div>
+          <div class="preco">R$ 79,90</div>
+          <div class="parcela">ou 3x de R$ 26,63 sem juros</div>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Coleira Ajustável Vermelha" loading="lazy" width="400" height="400">
+          <h3>Coleira Ajustável Vermelha</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 39,90</div>
+          <div class="parcela">ou 3x de R$ 13,30 sem juros</div>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Peitoral com Guia Azul" loading="lazy" width="400" height="400">
+          <h3>Peitoral com Guia Azul</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 69,90</div>
+          <div class="parcela">ou 3x de R$ 23,30 sem juros</div>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
         </article>
         <article class="produto">
           <span class="etiqueta">Promoção</span>
@@ -198,14 +622,50 @@
           <div class="preco-antigo">R$ 109,90</div>
           <div class="preco">R$ 89,90</div>
           <div class="parcela">ou 3x de R$ 29,97 sem juros</div>
-          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
         </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Suéter Pet Cinza de Tricô" loading="lazy" width="400" height="400">
+          <h3>Suéter Pet Cinza de Tricô</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 74,90</div>
+          <div class="parcela">ou 3x de R$ 24,97 sem juros</div>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Ração Premium Gatos Adultos 1kg" loading="lazy" width="400" height="400">
+          <h3>Ração Premium Gatos Adultos 1kg</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 42,90</div>
+          <div class="parcela">ou 3x de R$ 14,30 sem juros</div>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Ração Premium Filhotes 10kg" loading="lazy" width="400" height="400">
+          <h3>Ração Premium Filhotes 10kg</h3>
+          <div class="preco-antigo">R$ 219,90</div>
+          <div class="preco">R$ 189,90</div>
+          <div class="parcela">ou 3x de R$ 63,30 sem juros</div>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Sachê para Gatos Sabor Frango" loading="lazy" width="400" height="400">
+          <h3>Sachê para Gatos Sabor Frango</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 4,90</div>
+          <div class="parcela">ou 3x de R$ 1,63 sem juros</div>
+          <a href="#loja" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+          </div>
         </div>
-        <div class="secao-rodape"><a href="loja.html" class="btn btn-contorno">Ver todos os produtos</a></div>
+      </div>
       </div>
     </section>
-
-    <section class="secao">
+    <section class="secao secao-alt" id="depoimentos">
       <div class="container">
         <div class="titulo-secao"><h2>Quem confia na gente</h2></div>
         <div class="depoimentos">
@@ -230,6 +690,50 @@
         </div>
       </div>
     </section>
+    <section class="secao" id="contato">
+      <div class="container">
+        <div class="titulo-secao"><h2>Contato</h2></div>
+        <div class="contato">
+        <div>
+          <h2>Envie uma mensagem</h2>
+          <form class="js-form" data-msg="Mensagem enviada! Retornaremos em breve.">
+            <div class="campos-2">
+              <div class="campo"><label for="nome">Seu nome</label><input id="nome" type="text" required></div>
+              <div class="campo"><label for="email">E-mail</label><input id="email" type="email" required></div>
+            </div>
+            <div class="campos-2">
+              <div class="campo"><label for="tel">Telefone</label><input id="tel" type="tel"></div>
+              <div class="campo"><label for="pet">Nome do pet</label><input id="pet" type="text"></div>
+            </div>
+            <div class="campo">
+              <label for="assunto">Assunto</label>
+              <select id="assunto">
+                <option>Agendar consulta</option>
+                <option>Banho e tosa</option>
+                <option>Dúvida sobre a loja</option>
+                <option>Outro assunto</option>
+              </select>
+            </div>
+            <div class="campo"><label for="msg">Mensagem</label><textarea id="msg" required></textarea></div>
+            <button type="submit" class="btn btn-laranja">Enviar mensagem</button>
+            <div class="form-msg" role="status"></div>
+          </form>
+        </div>
+        <div>
+          <h2>Fale com a gente</h2>
+          <ul class="info-contato">
+            <li><i class="fas fa-map-marker-alt"></i><div><strong>Endereço</strong>Rua das Flores, 123 – Centro<br>São Paulo/SP – CEP 00000-000</div></li>
+            <li><i class="fas fa-phone-alt"></i><div><strong>Telefone</strong>(11) 3000-0000</div></li>
+            <li><i class="fab fa-whatsapp"></i><div><strong>WhatsApp</strong><a href="https://wa.me/5511900000000">(11) 90000-0000</a></div></li>
+            <li><i class="far fa-clock"></i><div><strong>Horário</strong>Seg a Sex 8h às 19h<br>Sábado 8h às 14h</div></li>
+          </ul>
+          <div class="mapa">
+            <iframe title="Mapa da clínica" loading="lazy" src="https://www.google.com/maps?q=S%C3%A3o+Paulo+SP&amp;output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
   </main>
 
 
@@ -238,10 +742,10 @@
       <div>
         <h4>Institucional</h4>
         <ul>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="servicos.html">Serviços</a></li>
-          <li><a href="loja.html">Loja</a></li>
-          <li><a href="contato.html">Contato</a></li>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#loja">Loja</a></li>
+          <li><a href="#contato">Contato</a></li>
         </ul>
       </div>
       <div>
@@ -277,6 +781,146 @@
 
   <a href="https://wa.me/5511900000000" class="whatsapp" aria-label="Falar pelo WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
-  <script src="js/main.js"></script>
+  <script>
+    /* Clínica Veterinária Bicho Feliz */
+
+    (function () {
+      var reduzMovimentoGeral = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // menu do celular
+      var menuBotao = document.querySelector('.menu-botao');
+      var nav = document.querySelector('.nav');
+      if (menuBotao && nav) {
+        menuBotao.addEventListener('click', function () {
+          var aberto = nav.classList.toggle('aberto');
+          menuBotao.setAttribute('aria-expanded', aberto);
+        });
+      }
+
+      // carrossel
+      var carrossel = document.querySelector('.carrossel');
+      if (carrossel) {
+        var slides = carrossel.querySelectorAll('.slide');
+        var pontos = carrossel.querySelectorAll('.ponto');
+        var atual = 0;
+        var timer = null;
+        var reduzMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function ir(i) {
+          atual = (i + slides.length) % slides.length;
+          slides.forEach(function (s, n) {
+            s.classList.toggle('ativo', n === atual);
+            s.setAttribute('aria-hidden', n !== atual);
+          });
+          pontos.forEach(function (p, n) {
+            p.classList.toggle('ativo', n === atual);
+            p.setAttribute('aria-current', n === atual);
+          });
+        }
+
+        function iniciar() {
+          if (reduzMovimento) return;
+          parar();
+          timer = setInterval(function () { ir(atual + 1); }, 5000);
+        }
+
+        function parar() {
+          if (timer) { clearInterval(timer); timer = null; }
+        }
+
+        carrossel.querySelector('.ant').addEventListener('click', function () { ir(atual - 1); });
+        carrossel.querySelector('.prox').addEventListener('click', function () { ir(atual + 1); });
+        pontos.forEach(function (p, n) {
+          p.addEventListener('click', function () { ir(n); });
+        });
+
+        carrossel.addEventListener('mouseenter', parar);
+        carrossel.addEventListener('mouseleave', iniciar);
+        carrossel.addEventListener('focusin', parar);
+        carrossel.addEventListener('focusout', iniciar);
+
+        // deslizar com o dedo
+        var inicioX = null;
+        carrossel.addEventListener('touchstart', function (e) { inicioX = e.touches[0].clientX; }, { passive: true });
+        carrossel.addEventListener('touchend', function (e) {
+          if (inicioX === null) return;
+          var dx = e.changedTouches[0].clientX - inicioX;
+          if (Math.abs(dx) > 50) ir(atual + (dx < 0 ? 1 : -1));
+          inicioX = null;
+        });
+
+        ir(0);
+        iniciar();
+      }
+
+      // formulários só de demonstração
+      document.querySelectorAll('.js-form').forEach(function (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var msg = form.querySelector('.form-msg');
+          var irmao = form.nextElementSibling;
+          if (!msg && irmao && irmao.classList.contains('form-msg')) msg = irmao;
+          if (msg) {
+            msg.textContent = form.getAttribute('data-msg');
+            msg.classList.add('visivel');
+          }
+          form.reset();
+        });
+      });
+
+      // ---------- página única ----------
+
+      // menu do celular fecha ao escolher uma seção
+      if (menuBotao && nav) {
+        nav.addEventListener('click', function (e) {
+          if (e.target.closest('a') && nav.classList.contains('aberto')) {
+            nav.classList.remove('aberto');
+            menuBotao.setAttribute('aria-expanded', false);
+          }
+        });
+      }
+
+      // marca no menu a seção que está na tela
+      var linksMenu = Array.prototype.slice.call(document.querySelectorAll('.nav ul a[href^="#"]'));
+      if ('IntersectionObserver' in window) {
+        var observador = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) {
+            if (!entrada.isIntersecting) return;
+            linksMenu.forEach(function (a) {
+              var atual = a.getAttribute('href') === '#' + entrada.target.id;
+              a.classList.toggle('ativo', atual);
+              if (atual) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+            });
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        linksMenu.forEach(function (a) {
+          var secao = document.querySelector(a.getAttribute('href'));
+          if (secao) observador.observe(secao);
+        });
+      }
+
+      // busca do cabeçalho: filtra os produtos da loja pelo nome
+      var busca = document.querySelector('.busca');
+      var produtosLoja = Array.prototype.slice.call(document.querySelectorAll('#loja .produto'));
+      var total = document.querySelector('.loja-total');
+      var vazia = document.querySelector('.loja-vazia');
+      function semAcento(t) { return t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+      if (busca) {
+        busca.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var termo = semAcento(busca.querySelector('input').value.trim());
+          var achados = 0;
+          produtosLoja.forEach(function (p) {
+            var bate = !termo || semAcento(p.querySelector('h3').textContent).indexOf(termo) !== -1;
+            p.hidden = !bate;
+            if (bate) achados++;
+          });
+          if (total) total.textContent = 'Exibindo ' + achados + (achados === 1 ? ' produto' : ' produtos');
+          if (vazia) vazia.hidden = achados > 0;
+          document.getElementById('loja').scrollIntoView({ behavior: reduzMovimentoGeral ? 'auto' : 'smooth' });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
