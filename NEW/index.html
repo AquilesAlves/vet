@@ -435,14 +435,13 @@
     .rodape { background: var(--rodape-fundo); color: var(--rodape-texto); }
     /* três blocos numa linha, separados por linhas verticais */
     .rodape-grade { display: flex; justify-content: center; align-items: center; padding: 56px 20px 48px; }
-    .rodape-grade > * { padding: 4px 48px; }
-    .rodape-grade > :first-child { padding-left: 0; }
-    .rodape-grade > :last-child { padding-right: 0; }
+    .rodape-grade > * { padding: 4px 48px; text-align: center; }
     .rodape-grade > * + * { border-left: 1px solid rgb(255 255 255 / .14); }
-    .rodape-links ul { grid-template-columns: repeat(2, minmax(110px, auto)); column-gap: 32px; }
+    .rodape-links ul { grid-template-columns: 1fr; justify-items: center; }
     .rodape-marca .logo, .rodape-marca .logo-texto { color: #fff; }
     .rodape-marca .logo-icone { background: var(--acento); color: #0b2a22; }
-    .rodape-marca p { max-width: 24em; margin: 14px 0 0; font-size: 16px; line-height: 1.65; }
+    .rodape-marca .logo { justify-content: center; }
+    .rodape-marca p { max-width: 24em; margin: 14px auto 0; font-size: 16px; line-height: 1.65; }
     .rodape h4 { margin-bottom: 12px; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .rodape a { color: var(--rodape-texto); }
     .rodape a:hover { color: #fff; }
@@ -452,7 +451,6 @@
     .rodape-fim { padding: 22px 0; border-top: 1px solid rgb(255 255 255 / .14); font-size: 16px; color: var(--rodape-texto); text-align: center; }
     .rodape-fim p { margin: 0; }
     /* crédito, igual ao do Amigo Fiel */
-    .rodape-credito { text-align: left; }
     .credito-rotulo { display: block; margin-bottom: 12px; font-size: 15px; color: var(--rodape-texto); }
     .rodape .credito-link {
       display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px;
@@ -510,10 +508,8 @@
       .depoimentos { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
       /* tablet: marca em cima; Navegue e crédito lado a lado embaixo */
       .rodape-grade { flex-wrap: wrap; row-gap: 28px; }
-      .rodape-grade > .rodape-marca { flex-basis: 100%; padding: 0 0 28px; border-bottom: 1px solid rgb(255 255 255 / .14); text-align: center; }
-      .rodape-marca .logo { justify-content: center; }
-      .rodape-marca p { margin-inline: auto; }
-      .rodape-grade > .rodape-links { padding-left: 0; border-left: 0; }
+      .rodape-grade > .rodape-marca { flex-basis: 100%; padding: 0 0 28px; border-bottom: 1px solid rgb(255 255 255 / .14); }
+      .rodape-grade > .rodape-links { border-left: 0; }
       .slides { height: 460px; }
       .destaque .container { gap: 48px; }
       .contato { grid-template-columns: 1fr; }
@@ -569,11 +565,8 @@
       .rodape-grade { flex-direction: column; align-items: stretch; row-gap: 0; padding: 48px 16px 8px; }
       .rodape-grade > * { padding: 24px 0; border-left: 0; }
       .rodape-grade > * + * { border-left: 0; border-top: 1px solid rgb(255 255 255 / .14); }
-      .rodape-grade > .rodape-marca { padding: 0 0 24px; border-bottom: 0; text-align: left; }
-      .rodape-marca .logo { justify-content: flex-start; }
-      .rodape-marca p { margin-inline: 0; }
+      .rodape-grade > .rodape-marca { padding: 0 0 24px; border-bottom: 0; }
       .rodape-fim { padding-bottom: 96px; } /* o botão do WhatsApp não cobre o texto */
-      .rodape-links ul { grid-template-columns: 1fr 1fr; }
       .whatsapp { right: 16px; bottom: 16px; width: 56px; height: 56px; font-size: 28px; }
     }
 
