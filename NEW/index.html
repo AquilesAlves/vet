@@ -433,22 +433,26 @@
 
     /* ---------- rodapé ---------- */
     .rodape { background: var(--rodape-fundo); color: var(--rodape-texto); }
-    .rodape-grade { display: grid; grid-template-columns: 1fr auto 1fr; gap: 56px; padding: 72px 20px 56px; align-items: start; }
-    .rodape-links { justify-self: center; }
+    /* três blocos numa linha, separados por linhas verticais */
+    .rodape-grade { display: flex; justify-content: center; align-items: center; padding: 56px 20px 48px; }
+    .rodape-grade > * { padding: 4px 48px; }
+    .rodape-grade > :first-child { padding-left: 0; }
+    .rodape-grade > :last-child { padding-right: 0; }
+    .rodape-grade > * + * { border-left: 1px solid rgb(255 255 255 / .14); }
     .rodape-links ul { grid-template-columns: repeat(2, minmax(110px, auto)); column-gap: 32px; }
     .rodape-marca .logo, .rodape-marca .logo-texto { color: #fff; }
     .rodape-marca .logo-icone { background: var(--acento); color: #0b2a22; }
-    .rodape-marca p { max-width: 26em; margin: 18px 0 0; font-size: 16px; line-height: 1.7; }
-    .rodape h4 { margin-bottom: 16px; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .rodape-marca p { max-width: 24em; margin: 14px 0 0; font-size: 16px; line-height: 1.65; }
+    .rodape h4 { margin-bottom: 12px; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .rodape a { color: var(--rodape-texto); }
     .rodape a:hover { color: #fff; }
     .rodape-links ul { display: grid; gap: 4px; }
     .rodape-links a { display: inline-block; padding: 3px 0; font-size: 15px; border-bottom: 1px solid transparent; transition: color .2s ease, border-color .2s ease; }
     .rodape-links a:hover { border-bottom-color: var(--acento); }
-    .rodape-fim { padding: 22px 0; border-top: 1px solid rgb(255 255 255 / .1); font-size: 16px; color: var(--rodape-texto); text-align: center; }
+    .rodape-fim { padding: 22px 0; border-top: 1px solid rgb(255 255 255 / .14); font-size: 16px; color: var(--rodape-texto); text-align: center; }
     .rodape-fim p { margin: 0; }
     /* crédito, igual ao do Amigo Fiel */
-    .rodape-credito { justify-self: end; text-align: right; }
+    .rodape-credito { text-align: left; }
     .credito-rotulo { display: block; margin-bottom: 12px; font-size: 15px; color: var(--rodape-texto); }
     .rodape .credito-link {
       display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px;
@@ -504,9 +508,12 @@
       .numero { padding: 4px 18px; }
       .produtos-vitrine, .servicos { --por-linha: 2; }
       .depoimentos { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
-      .rodape-grade { grid-template-columns: 1fr 1fr; gap: 40px; }
-      .rodape-marca { grid-column: 1 / -1; }
-      .rodape-links { justify-self: start; }
+      /* tablet: marca em cima; Navegue e crédito lado a lado embaixo */
+      .rodape-grade { flex-wrap: wrap; row-gap: 28px; }
+      .rodape-grade > .rodape-marca { flex-basis: 100%; padding: 0 0 28px; border-bottom: 1px solid rgb(255 255 255 / .14); text-align: center; }
+      .rodape-marca .logo { justify-content: center; }
+      .rodape-marca p { margin-inline: auto; }
+      .rodape-grade > .rodape-links { padding-left: 0; border-left: 0; }
       .slides { height: 460px; }
       .destaque .container { gap: 48px; }
       .contato { grid-template-columns: 1fr; }
@@ -558,9 +565,13 @@
       .faixa-whats .atalho { justify-content: center; }
       .faixa-whats .btn-whats { order: 4; }
       .mapa, .mapa iframe { min-height: 240px; }
-      .rodape-grade { grid-template-columns: 1fr; gap: 36px; padding: 56px 16px 40px; }
-      .rodape-links { justify-self: stretch; }
-      .rodape-credito { justify-self: start; text-align: left; }
+      /* celular: um bloco embaixo do outro, separados por linhas */
+      .rodape-grade { flex-direction: column; align-items: stretch; row-gap: 0; padding: 48px 16px 8px; }
+      .rodape-grade > * { padding: 24px 0; border-left: 0; }
+      .rodape-grade > * + * { border-left: 0; border-top: 1px solid rgb(255 255 255 / .14); }
+      .rodape-grade > .rodape-marca { padding: 0 0 24px; border-bottom: 0; text-align: left; }
+      .rodape-marca .logo { justify-content: flex-start; }
+      .rodape-marca p { margin-inline: 0; }
       .rodape-fim { padding-bottom: 96px; } /* o botão do WhatsApp não cobre o texto */
       .rodape-links ul { grid-template-columns: 1fr 1fr; }
       .whatsapp { right: 16px; bottom: 16px; width: 56px; height: 56px; font-size: 28px; }
