@@ -155,8 +155,6 @@
       transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
     }
     .btn:hover { text-decoration: none; }
-    .btn-laranja { background: var(--quente); color: var(--tinta-quente); }
-    .btn-laranja:hover { background: var(--quente-esc); color: var(--tinta-quente); box-shadow: 0 0 0 4px color-mix(in srgb, var(--quente) 28%, transparent); }
     .btn-ciano { background: var(--botao-fundo); color: var(--botao-texto); }
     .btn-ciano:hover { background: var(--botao-hover); color: var(--botao-texto); box-shadow: 0 0 0 4px color-mix(in srgb, var(--botao-fundo) 25%, transparent); }
     .btn-contorno { border-color: var(--borda); color: var(--primaria-texto); background: var(--superficie); }
@@ -205,6 +203,7 @@
     .nav li a.ativo { background: var(--primaria-suave); color: var(--primaria-texto); }
     .nav li a.ativo::after { content: ''; position: absolute; left: 50%; bottom: 3px; width: 16px; height: 3px; margin-left: -8px; border-radius: 3px; background: var(--quente); }
     .nav .nav-cta { min-height: 44px; padding: 10px 20px; font-size: 14px; }
+    .nav .nav-cta .icone { font-size: 19px; }
 
     /* ---------- carrossel ---------- */
     .carrossel { position: relative; background: #12372c; }
@@ -303,7 +302,8 @@
     }
 
     /* ---------- loja (vitrine sem preços: cada card abre o WhatsApp) ---------- */
-    .produtos-vitrine { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .produtos-vitrine, .servicos { --por-linha: 4; --vao: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--vao); }
+    .produtos-vitrine > li, .servicos > .servico { flex: 0 0 calc((100% - (var(--por-linha) - 1) * var(--vao)) / var(--por-linha)); min-width: 0; }
     .produto-card {
       display: flex; flex-direction: column; height: 100%; overflow: hidden;
       background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g);
@@ -312,11 +312,12 @@
     .produto-card:hover { border-color: #25d366; box-shadow: 0 0 0 3px rgb(37 211 102 / .18); color: var(--texto); text-decoration: none; }
     .produto-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--fundo-alt); }
     :root[data-tema="escuro"] .produto-card img { filter: brightness(.9); }
-    .produto-corpo { display: flex; flex-direction: column; gap: 4px; flex: 1; padding: 20px 22px 22px; }
-    .produto-corpo strong { font-size: 18px; color: var(--titulo); }
-    .produto-corpo > span:not(.produto-acao) { font-size: 15px; color: var(--texto-suave); }
-    .produto-acao { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 12px; font-size: 15px; font-weight: 700; color: var(--primaria-texto); }
-    .produto-acao .icone { transition: color .2s ease; }
+    .produto-corpo { display: flex; flex-direction: column; gap: 4px; flex: 1; padding: 16px 18px 18px; }
+    .produto-corpo strong { font-size: 17px; color: var(--titulo); }
+    .produto-corpo > span:not(.produto-acao) { font-size: 14px; line-height: 1.5; color: var(--texto-suave); }
+    .produto-acao { display: inline-flex; align-items: center; gap: 0; margin-top: auto; padding-top: 10px; font-size: 14px; font-weight: 700; color: var(--primaria-texto); }
+    .produto-acao .icone { margin-left: 6px; transition: color .2s ease; }
+    .acao-extra { margin-left: .28em; }
     .produto-card:hover .produto-acao { color: #1a9a4c; }
     :root[data-tema="escuro"] .produto-card:hover .produto-acao { color: #4ade80; }
 
@@ -368,19 +369,18 @@
     .estrelas { margin-bottom: 14px; color: var(--quente); font-size: 17px; letter-spacing: 3px; }
 
     /* ---------- serviços, loja e contato ---------- */
-    .servicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .servico {
       display: flex; flex-direction: column; overflow: hidden;
       background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g);
       transition: border-color .25s ease, box-shadow .25s ease;
     }
     .servico:hover { border-color: var(--primaria); box-shadow: 0 0 0 3px var(--primaria-suave); }
-    .servico img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: var(--fundo-alt); }
-    .servico-corpo { padding: 24px 26px 26px; display: flex; flex-direction: column; flex: 1; }
-    .servico h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--titulo); transition: color .2s ease; }
+    .servico img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--fundo-alt); }
+    .servico-corpo { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+    .servico h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; color: var(--titulo); transition: color .2s ease; }
     .servico:hover h3 { color: var(--primaria-texto); }
-    .servico p { font-size: 15px; color: var(--texto-suave); }
-    .servico .btn { margin-top: auto; align-self: flex-start; min-height: 42px; padding: 9px 20px; font-size: 14px; }
+    .servico p { margin-bottom: 14px; font-size: 14px; line-height: 1.5; color: var(--texto-suave); }
+    .servico .btn { margin-top: auto; align-self: flex-start; min-height: 38px; padding: 7px 18px; font-size: 14px; }
 
     .contato { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
     .contato > div { padding: 34px; background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p); }
@@ -465,13 +465,12 @@
 
     @media (max-width: 991px) {
       .numero { padding: 4px 18px; }
-      .servicos { grid-template-columns: repeat(2, 1fr); }
+      .produtos-vitrine, .servicos { --por-linha: 3; }
       .depoimentos { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
       .rodape-grade { gap: 40px; }
       .slides { height: 460px; }
       .destaque .container { gap: 48px; }
       .contato { grid-template-columns: 1fr; }
-      .produtos-vitrine { grid-template-columns: repeat(2, 1fr); }
       .farmacia { flex-wrap: wrap; }
       .farmacia .btn { width: 100%; }
     }
@@ -513,7 +512,7 @@
       .destaque-texto p { font-size: 16px; }
       .marcas-lista li { font-size: 19px; }
 
-      .servicos { grid-template-columns: 1fr; }
+      .produtos-vitrine, .servicos { --por-linha: 2; --vao: 14px; }
       .contato > div { padding: 24px 20px; }
       .rodape-grade { grid-template-columns: 1fr; gap: 36px; padding: 56px 16px 40px; }
       .rodape-links { justify-self: stretch; }
@@ -523,10 +522,12 @@
     }
 
     @media (max-width: 479px) {
-      .produtos-vitrine { gap: 12px; }
+      .produtos-vitrine, .servicos { --vao: 12px; }
       .produto-card { border-radius: var(--raio); }
-      .produto-corpo { padding: 14px 14px 16px; }
-      .produto-corpo strong { font-size: 16px; }
+      .produto-corpo, .servico-corpo { padding: 12px 12px 14px; }
+      .produto-corpo strong, .servico h3 { font-size: 15px; }
+      .servico p { font-size: 13px; }
+      .servico { border-radius: var(--raio); }
       .produto-corpo > span:not(.produto-acao) { font-size: 13px; }
       .produto-acao { font-size: 14px; }
       .acao-extra { display: none; }
@@ -588,7 +589,7 @@
           <li><a href="#loja">Loja</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
-        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta." class="btn btn-laranja nav-cta" target="_blank" rel="noopener">Agende uma consulta</a>
+        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats nav-cta" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
       </nav>
       <div class="acoes">
         <button class="botao-tema" type="button" aria-label="Ativar modo escuro"><svg class="icone" aria-hidden="true"><use href="#i-lua"/></svg></button>
@@ -610,7 +611,7 @@
           <div class="legenda">
             <h2>Cuidamos de quem você ama</h2>
             <p>Atendimento veterinário completo para cães e gatos, com carinho e tecnologia.</p>
-            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta." class="btn btn-laranja" target="_blank" rel="noopener">Agende uma consulta</a>
+            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
           </div>
         </div>
       </div>
@@ -623,7 +624,7 @@
           <div class="legenda">
             <h2>Vacinas e check-up de filhotes</h2>
             <p>Calendário de vacinação e primeiras consultas para a vida toda do seu amigo.</p>
-            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20a%20vacina%C3%A7%C3%A3o%20do%20meu%20pet." class="btn btn-laranja" target="_blank" rel="noopener">Agende uma consulta</a>
+            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
           </div>
         </div>
       </div>
@@ -636,7 +637,7 @@
           <div class="legenda">
             <h2>Atendimento especializado para gatos</h2>
             <p>Ambiente calmo e profissionais que entendem o jeito de cada felino.</p>
-            <a href="#servicos" class="btn btn-laranja">Conheça os serviços</a>
+            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
           </div>
         </div>
       </div>
@@ -649,7 +650,7 @@
           <div class="legenda">
             <h2>Banho, tosa e loja completa</h2>
             <p>Tudo para o seu pet em um só lugar: banho e tosa, rações e acessórios.</p>
-            <a href="#loja" class="btn btn-laranja">Ver a loja</a>
+            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp</a>
           </div>
         </div>
       </div>
@@ -745,7 +746,7 @@
         </div>
         <div class="servicos">
           <article class="servico">
-            <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=250&amp;q=70 400w, https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70 640w, https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=900&amp;h=563&amp;q=70 900w" sizes="(max-width: 767px) 92vw, (max-width: 991px) 46vw, 370px" alt="Mulher acariciando um gato durante o atendimento" loading="lazy" width="640" height="400" decoding="async">
+            <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="Mulher acariciando um gato durante o atendimento" loading="lazy" width="560" height="420" decoding="async">
             <div class="servico-corpo">
               <h3>Consultas</h3>
               <p>Clínica geral para cães e gatos, com acompanhamento de rotina e consultas de retorno.</p>
@@ -753,7 +754,7 @@
             </div>
           </article>
           <article class="servico">
-            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=250&amp;q=70 400w, https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70 640w, https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=900&amp;h=563&amp;q=70 900w" sizes="(max-width: 767px) 92vw, (max-width: 991px) 46vw, 370px" alt="Filhote de cachorro correndo no gramado" loading="lazy" width="640" height="400" decoding="async">
+            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="Filhote de cachorro correndo no gramado" loading="lazy" width="560" height="420" decoding="async">
             <div class="servico-corpo">
               <h3>Vacinas</h3>
               <p>Vacinas para filhotes e adultos, com carteirinha digital e lembrete da próxima dose.</p>
@@ -761,7 +762,7 @@
             </div>
           </article>
           <article class="servico">
-            <img src="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=250&amp;q=70 400w, https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70 640w, https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=900&amp;h=563&amp;q=70 900w" sizes="(max-width: 767px) 92vw, (max-width: 991px) 46vw, 370px" alt="Cachorro preto usando colar elizabetano depois da cirurgia" loading="lazy" width="640" height="400" decoding="async">
+            <img src="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="Cachorro preto usando colar elizabetano depois da cirurgia" loading="lazy" width="560" height="420" decoding="async">
             <div class="servico-corpo">
               <h3>Cirurgias</h3>
               <p>Centro cirúrgico equipado, anestesia monitorada e acompanhamento no pós-operatório.</p>
@@ -769,7 +770,7 @@
             </div>
           </article>
           <article class="servico">
-            <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=250&amp;q=70 400w, https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70 640w, https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=900&amp;h=563&amp;q=70 900w" sizes="(max-width: 767px) 92vw, (max-width: 991px) 46vw, 370px" alt="Husky siberiano de olhos azuis" loading="lazy" width="640" height="400" decoding="async">
+            <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="Husky siberiano de olhos azuis" loading="lazy" width="560" height="420" decoding="async">
             <div class="servico-corpo">
               <h3>Exames</h3>
               <p>Exames de sangue, ultrassom e raio-x com resultado rápido e laudo explicado.</p>
@@ -777,7 +778,7 @@
             </div>
           </article>
           <article class="servico">
-            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=250&amp;q=70 400w, https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70 640w, https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=900&amp;h=563&amp;q=70 900w" sizes="(max-width: 767px) 92vw, (max-width: 991px) 46vw, 370px" alt="Cachorro golden retriever sendo lavado" loading="lazy" width="640" height="400" decoding="async">
+            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="Cachorro golden retriever sendo lavado" loading="lazy" width="560" height="420" decoding="async">
             <div class="servico-corpo">
               <h3>Banho e tosa</h3>
               <p>Banho, tosa higiênica, hidratação e corte de unhas, com serviço de leva e traz.</p>
@@ -785,7 +786,7 @@
             </div>
           </article>
           <article class="servico">
-            <img src="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=250&amp;q=70 400w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70 640w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=900&amp;h=563&amp;q=70 900w" sizes="(max-width: 767px) 92vw, (max-width: 991px) 46vw, 370px" alt="Gato branco de olhos claros descansando numa manta" loading="lazy" width="640" height="400" decoding="async">
+            <img src="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="Gato branco de olhos claros descansando numa manta" loading="lazy" width="560" height="420" decoding="async">
             <div class="servico-corpo">
               <h3>Internação</h3>
               <p>Espaço tranquilo e monitorado para os pets que precisam de cuidados contínuos.</p>
@@ -803,28 +804,28 @@
         </div>
         <ul class="produtos-vitrine">
           <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20ra%C3%A7%C3%B5es." target="_blank" rel="noopener">
-            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
-            <span class="produto-corpo"><strong>Rações</strong><span>Secas, úmidas e linhas terapêuticas para cães e gatos.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Rações</strong><span>Secas, úmidas e linhas terapêuticas para cães e gatos.</span><span class="produto-acao">Perguntar<span class="acao-extra">no WhatsApp</span><svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
           </a></li>
           <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20petiscos." target="_blank" rel="noopener">
-            <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
-            <span class="produto-corpo"><strong>Petiscos</strong><span>Biscoitos, ossinhos e petiscos naturais.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+            <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Petiscos</strong><span>Biscoitos, ossinhos e petiscos naturais.</span><span class="produto-acao">Perguntar<span class="acao-extra">no WhatsApp</span><svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
           </a></li>
           <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20brinquedos." target="_blank" rel="noopener">
-            <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
-            <span class="produto-corpo"><strong>Brinquedos</strong><span>Pelúcias, mordedores, bolinhas e arranhadores.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+            <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Brinquedos</strong><span>Pelúcias, mordedores, bolinhas e arranhadores.</span><span class="produto-acao">Perguntar<span class="acao-extra">no WhatsApp</span><svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
           </a></li>
           <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20camas%20e%20caminhas." target="_blank" rel="noopener">
-            <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
-            <span class="produto-corpo"><strong>Camas e caminhas</strong><span>Caminhas, almofadas e caixas de transporte.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+            <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Camas e caminhas</strong><span>Caminhas, almofadas e caixas de transporte.</span><span class="produto-acao">Perguntar<span class="acao-extra">no WhatsApp</span><svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
           </a></li>
           <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20coleiras%20e%20guias." target="_blank" rel="noopener">
-            <img src="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
-            <span class="produto-corpo"><strong>Coleiras e guias</strong><span>Coleiras, peitorais e guias de todos os tamanhos.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+            <img src="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Coleiras e guias</strong><span>Coleiras, peitorais e guias de todos os tamanhos.</span><span class="produto-acao">Perguntar<span class="acao-extra">no WhatsApp</span><svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
           </a></li>
           <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20roupinhas." target="_blank" rel="noopener">
-            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
-            <span class="produto-corpo"><strong>Roupinhas</strong><span>Moletons, capas de chuva e pijamas.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 31vw, 280px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Roupinhas</strong><span>Moletons, capas de chuva e pijamas.</span><span class="produto-acao">Perguntar<span class="acao-extra">no WhatsApp</span><svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
           </a></li>
         </ul>
         <div class="farmacia">
