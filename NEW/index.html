@@ -276,7 +276,23 @@
     .ponto.ativo { width: 28px; background: var(--primaria); }
 
     /* ---------- selos ---------- */
-    .selos { padding: 72px 0 40px; background: var(--fundo); }
+    /* ---------- números ---------- */
+    .numeros { padding: 76px 0 28px; background: var(--fundo); }
+    .numeros-lista { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .numero { display: flex; flex-direction: column; padding: 4px 28px; border-left: 1px solid var(--borda); }
+    .numero:first-child { padding-left: 0; border-left: 0; }
+    .numero-destaque {
+      display: flex; align-items: center; gap: 2px; margin-bottom: 6px;
+      font-family: var(--fonte-titulo); font-size: clamp(38px, 2.4vw + 20px, 54px); font-weight: 700;
+      line-height: 1; letter-spacing: -.02em; color: var(--primaria-texto);
+      font-variant-numeric: tabular-nums;
+    }
+    .numero-sufixo { font-size: .6em; margin-left: 4px; align-self: flex-end; padding-bottom: .12em; }
+    .numero-estrela { width: .62em; height: .62em; margin-left: 8px; color: var(--quente); }
+    .numero-titulo { font-size: 17px; font-weight: 700; color: var(--titulo); }
+    .numero-detalhe { font-size: 15px; color: var(--texto-suave); }
+
+    .selos { padding: 28px 0 40px; background: var(--fundo); }
     .selos .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .selo { display: flex; align-items: center; gap: 16px; padding: 20px 22px; border: 1px solid var(--borda); border-radius: var(--raio); background: var(--superficie); transition: border-color .25s ease, box-shadow .25s ease; }
     .selo:hover { border-color: var(--primaria); box-shadow: 0 0 0 3px var(--primaria-suave); }
@@ -431,20 +447,17 @@
 
     /* ---------- rodapé ---------- */
     .rodape { background: var(--rodape-fundo); color: var(--rodape-texto); }
-    .rodape-marca { display: flex; align-items: center; gap: 24px; padding: 48px 20px 0; }
-    .rodape-marca .logo { color: #fff; }
-    .rodape-marca .logo-texto { color: #fff; }
+    .rodape-grade { display: grid; grid-template-columns: 1.5fr .7fr 1.2fr; gap: 56px; padding: 72px 20px 56px; }
+    .rodape-marca .logo, .rodape-marca .logo-texto { color: #fff; }
     .rodape-marca .logo-icone { background: var(--acento); color: #0b2a22; }
-    .rodape-marca p { max-width: 34em; margin: 0; padding-left: 24px; border-left: 1px solid rgb(255 255 255 / .18); }
-    .rodape-colunas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px; padding: 64px 20px 48px; }
-    .rodape h4 { margin-bottom: 18px; color: #fff; font-size: 16px; font-weight: 700; }
+    .rodape-marca p { max-width: 26em; margin: 18px 0 0; font-size: 16px; line-height: 1.7; }
+    .rodape h4 { margin-bottom: 16px; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .rodape a { color: var(--rodape-texto); }
-    .rodape a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
-    .rodape li { display: flex; align-items: baseline; gap: 8px; padding: 4px 0; font-size: 15px; }
-    .rodape li .icone { width: 16px; height: 16px; color: var(--acento); align-self: center; }
-    .rodape p { font-size: 15px; }
-    .pagamentos { display: flex; flex-wrap: wrap; gap: 8px; }
-    .pagamentos span { padding: 6px 12px; border: 1px solid rgb(255 255 255 / .18); border-radius: 8px; background: rgb(255 255 255 / .06); color: #fff; font-size: 13px; font-weight: 700; }
+    .rodape a:hover { color: #fff; }
+    .rodape-links ul { display: grid; gap: 4px; }
+    .rodape-links a { display: inline-block; padding: 3px 0; font-size: 15px; border-bottom: 1px solid transparent; transition: color .2s ease, border-color .2s ease; }
+    .rodape-links a:hover { border-bottom-color: var(--acento); }
+    .rodape-news p { margin-bottom: 4px; font-size: 15px; }
     .news { display: flex; margin-top: 12px; padding: 5px; border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; background: rgb(255 255 255 / .08); transition: border-color .2s ease; }
     .news:focus-within { border-color: var(--acento); }
     .news input { flex: 1; min-width: 0; height: 40px; padding: 0 14px; border: 0; background: transparent; color: #fff; font: inherit; font-size: 15px; }
@@ -455,6 +468,8 @@
     .rodape .form-msg { background: rgb(79 209 165 / .16); color: #fff; }
     .rodape-fim { padding: 20px 0; border-top: 1px solid rgb(255 255 255 / .1); font-size: 13px; color: var(--rodape-fraco); }
     .rodape-fim .container { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    /* até onde o conteúdo encosta no canto, abre espaço para o botão do WhatsApp não cobrir o texto */
+    @media (max-width: 1407px) { .rodape-fim { padding-bottom: 100px; } }
 
     .whatsapp {
       position: fixed; right: 22px; bottom: 22px; z-index: 50;
@@ -472,11 +487,13 @@
     }
 
     @media (max-width: 991px) {
+      .numero { padding: 4px 18px; }
       .produtos { grid-template-columns: repeat(2, 1fr); }
       .loja .produtos { grid-template-columns: repeat(2, 1fr); }
       .servicos { grid-template-columns: repeat(2, 1fr); }
       .depoimentos { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
-      .rodape-colunas { grid-template-columns: repeat(2, 1fr); }
+      .rodape-grade { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .rodape-marca { grid-column: 1 / -1; }
       .slides { height: 460px; }
       .nav li a { padding: 9px 14px; }
       .destaque .container { gap: 48px; }
@@ -514,7 +531,13 @@
       .controles { width: 240px; height: 54px; bottom: -27px; }
       .seta { width: 40px; height: 40px; }
 
-      .selos { padding: 56px 0 8px; }
+      .numeros { padding: 60px 0 12px; }
+      .numeros-lista { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+      .numero { padding: 0 0 0 18px; }
+      .numero:nth-child(odd) { padding-left: 0; border-left: 0; }
+      .numero-titulo { font-size: 16px; }
+      .numero-detalhe { font-size: 14px; }
+      .selos { padding: 24px 0 8px; }
       .selos .container { grid-template-columns: 1fr; gap: 10px; }
       .selo { padding: 16px 18px; }
       .secao { padding: 64px 0; scroll-margin-top: 0; }
@@ -530,9 +553,8 @@
       .servicos { grid-template-columns: 1fr; }
       .loja { grid-template-columns: 1fr; }
       .contato > div { padding: 24px 20px; }
-      .rodape-colunas { grid-template-columns: 1fr; gap: 32px; padding: 36px 16px 96px; }
-      .rodape-marca { flex-direction: column; align-items: flex-start; gap: 14px; padding: 48px 16px 0; }
-      .rodape-marca p { padding-left: 0; border-left: 0; }
+      .rodape-grade { grid-template-columns: 1fr; gap: 36px; padding: 56px 16px 40px; }
+      .rodape-links ul { grid-template-columns: 1fr 1fr; }
       .contato-whats .btn-whats { width: 100%; }
       .whatsapp { right: 16px; bottom: 16px; width: 56px; height: 56px; font-size: 28px; }
     }
@@ -581,6 +603,7 @@
       <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M3.5 20.5 4.8 16A8.5 8.5 0 1 1 8 19.3z"/><path d="M9.2 8.2c-.4 2.9 3.4 6.8 6.4 6.5l.9-1.6-2-1.1-.9.9c-1.1-.5-2.2-1.6-2.7-2.7l.9-.9-1-2.1z"/></symbol>
       <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 7 8.5-7"/></symbol>
       <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-estrela" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3-4.6-4.4 6.3-.9z"/></symbol>
       <symbol id="i-aspas" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M3.5 18.5v-6c0-4.3 2.4-7.2 6.3-7.9l.8 1.9C8.1 7.3 7 9 6.9 11H10v7.5zm10 0v-6c0-4.3 2.4-7.2 6.3-7.9l.8 1.9c-2.5.8-3.6 2.5-3.7 4.5H20v7.5z"/></symbol>
     </defs>
   </svg>
@@ -687,6 +710,33 @@
       </div>
     </section>
 
+    <section class="numeros" aria-label="O Amigo Fiel em números">
+      <div class="container">
+        <ul class="numeros-lista">
+          <li class="numero">
+            <strong class="numero-destaque"><span class="numero-valor" data-alvo="4.5" data-casas="1">4,5</span><svg class="icone numero-estrela" aria-hidden="true"><use href="#i-estrela"/></svg></strong>
+            <span class="numero-titulo">Nota no Google</span>
+            <span class="numero-detalhe">535 avaliações de tutores</span>
+          </li>
+          <li class="numero">
+            <strong class="numero-destaque"><span class="numero-prefixo">+</span><span class="numero-valor" data-alvo="10" data-casas="0">10</span></strong>
+            <span class="numero-titulo">Anos de cuidado</span>
+            <span class="numero-detalhe">com cães e gatos da região</span>
+          </li>
+          <li class="numero">
+            <strong class="numero-destaque"><span class="numero-prefixo">+</span><span class="numero-valor" data-alvo="5" data-casas="0">5</span><span class="numero-sufixo"> mil</span></strong>
+            <span class="numero-titulo">Pets atendidos</span>
+            <span class="numero-detalhe">em consultas, vacinas e exames</span>
+          </li>
+          <li class="numero">
+            <strong class="numero-destaque"><span class="numero-prefixo">+</span><span class="numero-valor" data-alvo="100" data-casas="0">100</span></strong>
+            <span class="numero-titulo">Banhos por mês</span>
+            <span class="numero-detalhe">com produtos hipoalergênicos</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <section class="selos" aria-label="Vantagens da loja">
       <div class="container">
         <div class="selo"><svg class="icone" aria-hidden="true"><use href="#i-caminhao"/></svg><div><strong>Frete grátis</strong><span>Em compras acima de R$ 99</span></div></div>
@@ -698,7 +748,7 @@
     <section class="secao secao-alt destaque" id="sobre">
       <div class="container">
         <div class="destaque-foto">
-          <img src="https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70" srcset="https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=450&amp;q=70 600w, https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w, https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1200&amp;h=900&amp;q=70 1200w" sizes="(max-width: 767px) 92vw, (max-width: 1200px) 46vw, 560px" alt="Veterinário de jaleco com estetoscópio no pescoço" loading="lazy" width="800" height="600" decoding="async">
+          <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70" srcset="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=450&amp;q=70 600w, https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w, https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1200&amp;h=900&amp;q=70 1200w" sizes="(max-width: 767px) 92vw, (max-width: 1200px) 46vw, 560px" alt="Dois cachorros pequenos correndo juntos numa trilha" loading="lazy" width="800" height="600" decoding="async">
         </div>
         <div class="destaque-texto">
           <h2>Sobre a clínica</h2>
@@ -755,7 +805,7 @@
             </div>
           </article>
           <article class="servico">
-            <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=250&amp;q=70 400w, https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70 640w, https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=900&amp;h=563&amp;q=70 900w" sizes="(max-width: 767px) 92vw, (max-width: 991px) 46vw, 370px" alt="Equipe de jaleco numa sala de cirurgia" loading="lazy" width="640" height="400" decoding="async">
+            <img src="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=250&amp;q=70 400w, https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70 640w, https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=900&amp;h=563&amp;q=70 900w" sizes="(max-width: 767px) 92vw, (max-width: 991px) 46vw, 370px" alt="Cachorro preto usando colar elizabetano depois da cirurgia" loading="lazy" width="640" height="400" decoding="async">
             <div class="servico-corpo">
               <h3>Cirurgias</h3>
               <p>Centro cirúrgico equipado, anestesia monitorada e acompanhamento no pós-operatório.</p>
@@ -779,7 +829,7 @@
             </div>
           </article>
           <article class="servico">
-            <img src="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=250&amp;q=70 400w, https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70 640w, https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=900&amp;h=563&amp;q=70 900w" sizes="(max-width: 767px) 92vw, (max-width: 991px) 46vw, 370px" alt="Cachorro preto usando colar elizabetano" loading="lazy" width="640" height="400" decoding="async">
+            <img src="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=250&amp;q=70 400w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=400&amp;q=70 640w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=900&amp;h=563&amp;q=70 900w" sizes="(max-width: 767px) 92vw, (max-width: 991px) 46vw, 370px" alt="Gato branco de olhos claros descansando numa manta" loading="lazy" width="640" height="400" decoding="async">
             <div class="servico-corpo">
               <h3>Internação</h3>
               <p>Espaço tranquilo e monitorado para os pets que precisam de cuidados contínuos.</p>
@@ -1018,34 +1068,21 @@
 
 
   <footer class="rodape">
-    <div class="container rodape-marca">
-      <a href="#inicio" class="logo" aria-label="Amigo Fiel, voltar ao início"><span class="logo-icone"><svg class="icone" aria-hidden="true"><use href="#i-pata"/></svg></span><span class="logo-texto">Amigo Fiel</span></a>
-      <p>Pet shop e clínica veterinária na Vila Mariana. Cuidamos do seu pet como se fosse nosso.</p>
-    </div>
-    <div class="container rodape-colunas">
-      <div>
-        <h4>Institucional</h4>
+    <div class="container rodape-grade">
+      <div class="rodape-marca">
+        <a href="#inicio" class="logo" aria-label="Amigo Fiel, voltar ao início"><span class="logo-icone"><svg class="icone" aria-hidden="true"><use href="#i-pata"/></svg></span><span class="logo-texto">Amigo Fiel</span></a>
+        <p>Pet shop e clínica veterinária na Vila Mariana. Cuidamos do seu pet como se fosse nosso.</p>
+      </div>
+      <nav class="rodape-links" aria-label="Rodapé">
+        <h4>Navegue</h4>
         <ul>
           <li><a href="#inicio">Início</a></li>
           <li><a href="#servicos">Serviços</a></li>
           <li><a href="#loja">Loja</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
-      </div>
-      <div>
-        <h4>Atendimento</h4>
-        <ul>
-          <li><svg class="icone" aria-hidden="true"><use href="#i-telefone"/></svg> (11) 3000-0000</li>
-          <li><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> (11) 90000-0000</li>
-          <li><svg class="icone" aria-hidden="true"><use href="#i-email"/></svg> contato@amigofiel.com.br</li>
-          <li><svg class="icone" aria-hidden="true"><use href="#i-relogio"/></svg> <span>Seg a Sex 8h às 19h<br>Sáb 8h às 14h</span></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Formas de pagamento</h4>
-        <div class="pagamentos"><span>Visa</span><span>Mastercard</span><span>Elo</span><span>Pix</span><span>Boleto</span></div>
-      </div>
-      <div>
+      </nav>
+      <div class="rodape-news">
         <h4>Newsletter</h4>
         <p>Receba ofertas e dicas de cuidados com o seu pet.</p>
         <form class="news js-form" data-msg="Cadastro feito! Obrigado.">
@@ -1251,6 +1288,33 @@
           if (!salvo) aplicarTema(e.matches ? 'escuro' : 'claro', false);
         });
         refletirTema();
+      }
+
+      // ---------- números: contam até o valor quando aparecem na tela ----------
+      var numeros = document.querySelectorAll('.numero-valor[data-alvo]');
+      if (numeros.length && !reduzMovimentoGeral && 'IntersectionObserver' in window) {
+        var observaNumeros = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) {
+            if (!entrada.isIntersecting) return;
+            observaNumeros.unobserve(entrada.target);
+            var el = entrada.target;
+            var alvo = parseFloat(el.getAttribute('data-alvo'));
+            var casas = parseInt(el.getAttribute('data-casas') || '0', 10);
+            // trava a largura final para o resto da linha não pular enquanto conta
+            el.style.display = 'inline-block';
+            el.style.minWidth = el.offsetWidth + 'px';
+            var inicio = null;
+            function passo(agora) {
+              if (inicio === null) inicio = agora;
+              var progresso = Math.min((agora - inicio) / 1400, 1);
+              var valor = alvo * (1 - Math.pow(1 - progresso, 3));
+              el.textContent = valor.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
+              if (progresso < 1) requestAnimationFrame(passo);
+            }
+            requestAnimationFrame(passo);
+          });
+        }, { threshold: 0.6 });
+        numeros.forEach(function (el) { observaNumeros.observe(el); });
       }
 
       // ---------- marcas que trabalhamos ----------
