@@ -164,8 +164,8 @@
     .btn-bloco { display: flex; width: 100%; }
 
     /* ---------- cabeçalho ---------- */
-    .cabecalho { background: var(--superficie); }
-    .cabecalho .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 16px; padding-bottom: 16px; }
+    .cabecalho { position: sticky; top: 0; z-index: 40; background: var(--superficie); border-bottom: 1px solid var(--borda); box-shadow: 0 10px 30px -22px rgb(10 40 30 / .45); }
+    .cabecalho .container { display: flex; align-items: center; gap: 24px; min-height: 76px; }
 
     /* logo igual à do Amigo Fiel */
     .logo { display: flex; align-items: center; gap: 10px; color: var(--titulo); }
@@ -181,33 +181,7 @@
     .logo:hover .logo-icone { box-shadow: 0 0 0 4px var(--primaria-suave); }
     .logo-texto { font-size: 24px; line-height: 1; letter-spacing: -.01em; color: var(--titulo); white-space: nowrap; }
 
-    .busca { flex: 1; max-width: 460px; display: flex; position: relative; }
-    .busca input {
-      flex: 1; min-width: 0; height: 48px; padding: 0 60px 0 20px;
-      border: 1.5px solid var(--borda); border-radius: 999px;
-      background: var(--campo); color: var(--texto); font: inherit; font-size: 15px;
-      transition: border-color .2s ease, box-shadow .2s ease;
-    }
-    .busca input::placeholder { color: var(--texto-fraco); }
-    .busca input:focus { outline: none; border-color: var(--primaria); box-shadow: 0 0 0 4px var(--primaria-suave); }
-    .busca button {
-      position: absolute; right: 5px; top: 5px; bottom: 5px; width: 46px;
-      display: grid; place-items: center;
-      border: 0; border-radius: 999px; background: var(--botao-fundo); color: var(--botao-texto);
-      font-size: 18px; cursor: pointer; transition: background-color .2s ease;
-    }
-    .busca button:hover { background: var(--botao-hover); }
-
-    .acoes { display: flex; align-items: center; gap: 6px; }
-    .conta { display: flex; gap: 4px; font-size: 14px; font-weight: 600; }
-    .conta a {
-      display: flex; align-items: center; gap: 8px; padding: 8px 14px;
-      border: 1.5px solid transparent; border-radius: 999px; color: var(--texto);
-      transition: border-color .2s ease;
-    }
-    .conta a:hover { border-color: var(--borda); color: var(--texto); }
-    .conta .icone { font-size: 20px; color: var(--primaria-texto); }
-    .conta .carrinho-qtd { min-width: 22px; height: 22px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: 999px; background: var(--quente); color: var(--tinta-quente); font-weight: 800; font-size: 12px; }
+    .acoes { display: flex; align-items: center; gap: 8px; }
 
     .botao-tema, .menu-botao {
       width: 44px; height: 44px; flex: none; display: grid; place-items: center;
@@ -218,20 +192,19 @@
     .botao-tema:hover, .menu-botao:hover { border-color: var(--primaria); color: var(--primaria-texto); }
     .menu-botao { display: none; }
 
-    /* ---------- navegação ---------- */
-    .nav { position: sticky; top: 0; z-index: 40; background: var(--faixa); box-shadow: 0 10px 30px -18px rgb(10 40 30 / .6); }
-    .nav .container { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 60px; }
-    .nav ul { display: flex; gap: 4px; }
+    /* ---------- navegação (dentro do cabeçalho) ---------- */
+    .nav { flex: 1; display: flex; align-items: center; gap: 16px; }
+    .nav ul { display: flex; gap: 4px; margin: 0 auto; }
     .nav li a {
-      display: block; position: relative; padding: 9px 18px;
+      display: block; position: relative; padding: 9px 16px;
       border: 1.5px solid transparent; border-radius: 999px;
-      color: color-mix(in srgb, var(--faixa-texto) 86%, transparent); font: 600 15px/1 var(--fonte);
+      color: var(--texto); font: 600 15px/1 var(--fonte);
       transition: border-color .2s ease, background-color .2s ease, color .2s ease;
     }
-    .nav li a:hover { border-color: rgb(255 255 255 / .35); color: var(--faixa-texto); text-decoration: none; }
-    .nav li a.ativo { background: rgb(255 255 255 / .16); color: var(--faixa-texto); }
+    .nav li a:hover { border-color: var(--borda); color: var(--titulo); text-decoration: none; }
+    .nav li a.ativo { background: var(--primaria-suave); color: var(--primaria-texto); }
     .nav li a.ativo::after { content: ''; position: absolute; left: 50%; bottom: 3px; width: 16px; height: 3px; margin-left: -8px; border-radius: 3px; background: var(--quente); }
-    .nav .nav-cta { min-height: 42px; padding: 9px 20px; font-size: 14px; }
+    .nav .nav-cta { min-height: 44px; padding: 10px 20px; font-size: 14px; }
 
     /* ---------- carrossel ---------- */
     .carrossel { position: relative; background: #12372c; }
@@ -301,7 +274,7 @@
     .selo span { font-size: 14px; color: var(--texto-suave); }
 
     /* ---------- seções ---------- */
-    .secao { padding: 96px 0; scroll-margin-top: 60px; background: var(--fundo); }
+    .secao { padding: 96px 0; scroll-margin-top: 76px; background: var(--fundo); }
     .secao-alt { background: var(--fundo-alt); }
 
     .titulo-secao { text-align: center; max-width: 640px; margin: 0 auto 48px; }
@@ -329,22 +302,34 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237fdcb8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E");
     }
 
-    /* ---------- produtos ---------- */
-    .produtos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-    .produto {
-      position: relative; display: flex; flex-direction: column; padding: 12px 12px 16px;
-      background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio);
-      transition: border-color .25s ease, box-shadow .25s ease;
+    /* ---------- loja (vitrine sem preços: cada card abre o WhatsApp) ---------- */
+    .produtos-vitrine { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .produto-card {
+      display: flex; flex-direction: column; height: 100%; overflow: hidden;
+      background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g);
+      color: var(--texto); transition: border-color .25s ease, box-shadow .25s ease;
     }
-    .produto:hover { border-color: var(--primaria); box-shadow: 0 0 0 3px var(--primaria-suave); }
-    .produto img { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 14px; border-radius: 12px; background: var(--fundo-alt); }
-    .produto h3 { font-size: 15px; font-weight: 600; line-height: 1.4; min-height: 42px; margin: 0 4px 10px; color: var(--texto); transition: color .2s ease; }
-    .produto:hover h3 { color: var(--primaria-texto); }
-    .preco-antigo { min-height: 20px; margin: 0 4px; font-size: 13px; color: var(--texto-fraco); text-decoration: line-through; }
-    .preco { margin: 0 4px; font-size: 24px; font-weight: 800; letter-spacing: -.02em; color: var(--titulo); }
-    .parcela { margin: 0 4px 16px; font-size: 13px; color: var(--texto-suave); }
-    .produto .btn { margin-top: auto; min-height: 44px; font-size: 14px; }
-    .etiqueta { position: absolute; z-index: 1; top: 22px; left: 22px; padding: 5px 11px; border-radius: 999px; background: var(--quente); color: var(--tinta-quente); font-size: 12px; font-weight: 800; }
+    .produto-card:hover { border-color: #25d366; box-shadow: 0 0 0 3px rgb(37 211 102 / .18); color: var(--texto); text-decoration: none; }
+    .produto-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--fundo-alt); }
+    :root[data-tema="escuro"] .produto-card img { filter: brightness(.9); }
+    .produto-corpo { display: flex; flex-direction: column; gap: 4px; flex: 1; padding: 20px 22px 22px; }
+    .produto-corpo strong { font-size: 18px; color: var(--titulo); }
+    .produto-corpo > span:not(.produto-acao) { font-size: 15px; color: var(--texto-suave); }
+    .produto-acao { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 12px; font-size: 15px; font-weight: 700; color: var(--primaria-texto); }
+    .produto-acao .icone { transition: color .2s ease; }
+    .produto-card:hover .produto-acao { color: #1a9a4c; }
+    :root[data-tema="escuro"] .produto-card:hover .produto-acao { color: #4ade80; }
+
+    .farmacia {
+      display: flex; align-items: center; gap: 24px; margin-top: 22px; padding: 24px 28px;
+      background: var(--acento-suave); border: 1px solid color-mix(in srgb, var(--acento) 35%, var(--borda)); border-radius: var(--raio-g);
+    }
+    .farmacia-icones { display: flex; gap: 8px; flex: none; }
+    .farmacia-icones .icone { width: 52px; height: 52px; padding: 13px; border-radius: 14px; background: var(--superficie); color: var(--acento-esc); }
+    .farmacia-texto { flex: 1; }
+    .farmacia-texto strong { display: block; font-size: 18px; color: var(--titulo); }
+    .farmacia-texto span { color: var(--texto-suave); font-size: 15px; }
+    .farmacia .btn { flex: none; }
     .secao-rodape { text-align: center; margin-top: 40px; }
 
     /* ---------- marcas que trabalhamos ---------- */
@@ -396,22 +381,6 @@
     .servico:hover h3 { color: var(--primaria-texto); }
     .servico p { font-size: 15px; color: var(--texto-suave); }
     .servico .btn { margin-top: auto; align-self: flex-start; min-height: 42px; padding: 9px 20px; font-size: 14px; }
-
-    .loja { display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: start; }
-    .filtros { position: sticky; top: 84px; overflow: hidden; background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); box-shadow: var(--sombra-p); }
-    .filtros h3 { padding: 18px 20px 4px; font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--texto-suave); }
-    .filtros-bloco { padding: 8px 20px 18px; border-bottom: 1px solid var(--borda); }
-    .filtros-bloco:last-child { border-bottom: 0; }
-    .filtros label { display: flex; align-items: center; gap: 10px; margin: 0 -8px; padding: 7px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; transition: background-color .2s ease; }
-    .filtros label:hover { background: var(--fundo-alt); }
-    .filtros input[type="checkbox"] { accent-color: var(--primaria); width: 18px; height: 18px; }
-    .faixa-preco { display: flex; gap: 8px; margin: 6px 0 12px; }
-    .faixa-preco input { width: 100%; min-width: 0; height: 42px; padding: 0 12px; border: 1.5px solid var(--borda); border-radius: var(--raio-p); background: var(--campo); color: var(--texto); font: inherit; font-size: 14px; }
-    .faixa-preco input:focus { outline: none; border-color: var(--primaria); }
-    .loja .produtos { grid-template-columns: repeat(3, 1fr); }
-    .loja-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; font-size: 15px; color: var(--texto-suave); }
-    .loja-topo select { height: 42px; padding: 0 36px 0 14px; border: 1.5px solid var(--borda); border-radius: 999px; background: var(--superficie); color: var(--texto); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
-    .loja-vazia { grid-column: 1 / -1; margin: 0; padding: 32px; border: 1.5px dashed var(--borda); border-radius: var(--raio); text-align: center; color: var(--texto-suave); }
 
     .contato { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
     .contato > div { padding: 34px; background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p); }
@@ -483,42 +452,46 @@
     /* ---------- responsivo ---------- */
     @media (max-width: 1100px) {
       .cabecalho .container { gap: 16px; }
-      .conta span.rotulo { display: none; }
+      .nav li a { padding: 9px 12px; }
+    }
+
+    /* menu vira botão quando os links e o "Agende" não cabem mais na linha */
+    @media (max-width: 920px) {
+      .menu-botao { display: grid; }
+      .cabecalho .container { justify-content: space-between; min-height: 68px; }
+      .nav {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 16px 18px;
+        background: var(--superficie); border-bottom: 1px solid var(--borda); box-shadow: var(--sombra-g);
+      }
+      .nav.aberto { display: flex; }
+      .nav ul { flex-direction: column; gap: 2px; margin: 0; }
+      .nav li a { padding: 15px 16px; border-radius: 12px; font-size: 16px; }
+      .nav li a.ativo::after { left: auto; right: 16px; top: 50%; bottom: auto; width: 8px; height: 8px; margin: -4px 0 0; border-radius: 50%; }
+      .nav .nav-cta { min-height: 50px; font-size: 15px; }
+      .secao { scroll-margin-top: 68px; }
     }
 
     @media (max-width: 991px) {
       .numero { padding: 4px 18px; }
-      .produtos { grid-template-columns: repeat(2, 1fr); }
-      .loja .produtos { grid-template-columns: repeat(2, 1fr); }
       .servicos { grid-template-columns: repeat(2, 1fr); }
       .depoimentos { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
       .rodape-grade { grid-template-columns: 1fr 1fr; gap: 40px; }
       .rodape-marca { grid-column: 1 / -1; }
       .slides { height: 460px; }
-      .nav li a { padding: 9px 14px; }
       .destaque .container { gap: 48px; }
       .contato { grid-template-columns: 1fr; }
-      .filtros { position: static; }
+      .produtos-vitrine { grid-template-columns: repeat(2, 1fr); }
+      .farmacia { flex-wrap: wrap; }
+      .farmacia .btn { width: 100%; }
     }
 
     @media (max-width: 767px) {
       .container { padding: 0 16px; }
 
-      .cabecalho .container { flex-wrap: wrap; gap: 12px; padding-top: 12px; padding-bottom: 14px; }
+      .cabecalho .container { min-height: 64px; }
       .logo-texto { font-size: 22px; }
       .logo-icone { width: 40px; height: 40px; font-size: 22px; }
-      .busca { order: 3; max-width: none; flex-basis: 100%; }
-      .busca input { height: 46px; }
-      .conta { display: none; }
-      .menu-botao { display: grid; }
-
-      .nav { display: none; position: static; box-shadow: none; }
-      .nav.aberto { display: block; }
-      .nav .container { flex-direction: column; align-items: stretch; gap: 6px; padding: 10px 12px 16px; }
-      .nav ul { flex-direction: column; gap: 2px; }
-      .nav li a { padding: 15px 16px; border-radius: 12px; font-size: 16px; }
-      .nav li a.ativo::after { left: auto; right: 16px; top: 50%; bottom: auto; width: 8px; height: 8px; margin: -4px 0 0; border-radius: 50%; }
-      .nav .nav-cta { margin-top: 8px; min-height: 50px; font-size: 15px; }
 
       .slides { height: 420px; }
       .slide img { object-position: center; }
@@ -540,7 +513,7 @@
       .selos { padding: 24px 0 8px; }
       .selos .container { grid-template-columns: 1fr; gap: 10px; }
       .selo { padding: 16px 18px; }
-      .secao { padding: 64px 0; scroll-margin-top: 0; }
+      .secao { padding: 64px 0; scroll-margin-top: 64px; }
       .titulo-secao { margin-bottom: 36px; }
       .titulo-secao p { font-size: 16px; }
       .destaque .container { grid-template-columns: 1fr; gap: 40px; }
@@ -551,7 +524,6 @@
       .marcas-lista li { font-size: 19px; }
 
       .servicos { grid-template-columns: 1fr; }
-      .loja { grid-template-columns: 1fr; }
       .contato > div { padding: 24px 20px; }
       .rodape-grade { grid-template-columns: 1fr; gap: 36px; padding: 56px 16px 40px; }
       .rodape-links ul { grid-template-columns: 1fr 1fr; }
@@ -560,14 +532,15 @@
     }
 
     @media (max-width: 479px) {
-      .produtos, .loja .produtos { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .produto { padding: 8px 8px 12px; border-radius: 14px; }
-      .produto img { margin-bottom: 10px; border-radius: 10px; }
-      .produto h3 { min-height: 40px; margin: 0 2px 6px; font-size: 14px; }
-      .preco-antigo, .parcela { margin-left: 2px; margin-right: 2px; font-size: 12px; }
-      .preco { margin: 0 2px; font-size: 19px; }
-      .etiqueta { top: 14px; left: 14px; padding: 4px 9px; font-size: 11px; }
-      .produto .btn { min-height: 40px; padding: 8px 10px; font-size: 13px; }
+      .produtos-vitrine { gap: 12px; }
+      .produto-card { border-radius: var(--raio); }
+      .produto-corpo { padding: 14px 14px 16px; }
+      .produto-corpo strong { font-size: 16px; }
+      .produto-corpo > span:not(.produto-acao) { font-size: 13px; }
+      .produto-acao { font-size: 14px; }
+      .acao-extra { display: none; }
+      .farmacia { padding: 20px; gap: 16px; }
+      .farmacia-icones { display: none; }
       .legenda h2 { font-size: 23px; }
     }
 
@@ -586,24 +559,27 @@
   <svg class="sprite" aria-hidden="true" focusable="false">
     <defs>
       <symbol id="i-pata" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="5.5" cy="10" r="2.3"/><circle cx="9.5" cy="5.3" r="2.3"/><circle cx="14.5" cy="5.3" r="2.3"/><circle cx="18.5" cy="10" r="2.3"/><path d="M12 11.5c-2.8 0-6 3.6-6 6.4 0 1.7 1.3 2.6 2.7 2.6 1.3 0 2.1-.7 3.3-.7s2 .7 3.3.7c1.4 0 2.7-.9 2.7-2.6 0-2.8-3.2-6.4-6-6.4z"/></g></symbol>
-      <symbol id="i-lupa" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
-      <symbol id="i-usuario" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
-      <symbol id="i-carrinho" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h3l2.4 11.2a1.5 1.5 0 0 0 1.5 1.2h8.3a1.5 1.5 0 0 0 1.5-1.1L21 7.5H6.4"/></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
       <symbol id="i-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
       <symbol id="i-lua" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
       <symbol id="i-esquerda" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
       <symbol id="i-direita" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
       <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-      <symbol id="i-caminhao" viewBox="0 0 24 24"><path d="M2.5 5.5h11v10h-11z"/><path d="M13.5 9h4l3 3.5v3h-7"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></symbol>
-      <symbol id="i-cartao" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/></symbol>
-      <symbol id="i-cadeado" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></symbol>
       <symbol id="i-local" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
       <symbol id="i-telefone" viewBox="0 0 24 24"><path d="M5 3h3.5L10 7.5 7.8 8.9a11 11 0 0 0 7.3 7.3l1.4-2.2L21 15.5V19a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
       <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M3.5 20.5 4.8 16A8.5 8.5 0 1 1 8 19.3z"/><path d="M9.2 8.2c-.4 2.9 3.4 6.8 6.4 6.5l.9-1.6-2-1.1-.9.9c-1.1-.5-2.2-1.6-2.7-2.7l.9-.9-1-2.1z"/></symbol>
       <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 7 8.5-7"/></symbol>
       <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
       <symbol id="i-estrela" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3-4.6-4.4 6.3-.9z"/></symbol>
+      <symbol id="i-racao" viewBox="0 0 24 24"><path d="M6.5 6.5h11L19 21H5z"/><path d="M8 6.5 7 3h10l-1 3.5"/><circle cx="12" cy="14.5" r="2.5"/></symbol>
+      <symbol id="i-osso" viewBox="0 0 24 24"><path d="M15.6 5.2a2.6 2.6 0 0 1 4.4-.8 2.6 2.6 0 0 1-.4 5.4l-9.8 9.8a2.6 2.6 0 0 1-5.4.4 2.6 2.6 0 0 1-.8-4.4 2.6 2.6 0 0 1 2.2-.8l9.8-9.8a2.6 2.6 0 0 1 0-.2z"/></symbol>
+      <symbol id="i-bola" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6c3.2 2.8 3.2 10 0 12.8M18.4 5.6c-3.2 2.8-3.2 10 0 12.8"/></symbol>
+      <symbol id="i-coleira" viewBox="0 0 24 24"><path d="M3 9.5C3 7.6 7 6 12 6s9 1.6 9 3.5v2c0 1.9-4 3.5-9 3.5s-9-1.6-9-3.5z"/><path d="M3 9.5C3 11.4 7 13 12 13s9-1.6 9-3.5"/><path d="M12 15v2"/><circle cx="12" cy="19.2" r="2"/></symbol>
+      <symbol id="i-higiene" viewBox="0 0 24 24"><path d="M8 9h8v10.5a2.5 2.5 0 0 1-2.5 2.5h-3A2.5 2.5 0 0 1 8 19.5z"/><path d="M10 9V6h4v3"/><path d="M12 6V3h4"/><path d="M8 14h8"/></symbol>
+      <symbol id="i-remedio" viewBox="0 0 24 24"><rect x="2" y="8.5" width="20" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="m9.5 9.5 5 5"/></symbol>
+      <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 4.6-3.4 8.2-8 9-4.6-.8-8-4.4-8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="i-seringa" viewBox="0 0 24 24"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3a1 1 0 0 1-1.4 0l-2.6-2.6a1 1 0 0 1 0-1.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></symbol>
+      <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
       <symbol id="i-aspas" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M3.5 18.5v-6c0-4.3 2.4-7.2 6.3-7.9l.8 1.9C8.1 7.3 7 9 6.9 11H10v7.5zm10 0v-6c0-4.3 2.4-7.2 6.3-7.9l.8 1.9c-2.5.8-3.6 2.5-3.7 4.5H20v7.5z"/></symbol>
     </defs>
   </svg>
@@ -614,32 +590,21 @@
         <span class="logo-icone"><svg class="icone" aria-hidden="true"><use href="#i-pata"/></svg></span>
         <span class="logo-texto">Amigo Fiel</span>
       </a>
-      <form class="busca" action="#loja" method="get" role="search">
-        <input type="search" name="q" placeholder="Buscar produtos..." aria-label="Buscar produtos">
-        <button type="submit" aria-label="Buscar"><svg class="icone" aria-hidden="true"><use href="#i-lupa"/></svg></button>
-      </form>
+      <nav class="nav" id="menu" aria-label="Principal">
+        <ul>
+          <li><a href="#inicio" class="ativo" aria-current="true">Início</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#loja">Loja</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta." class="btn btn-laranja nav-cta" target="_blank" rel="noopener">Agende uma consulta</a>
+      </nav>
       <div class="acoes">
-      <div class="conta">
-        <a href="#contato"><svg class="icone" aria-hidden="true"><use href="#i-usuario"/></svg><span class="rotulo">Minha conta</span></a>
-        <a href="#loja"><svg class="icone" aria-hidden="true"><use href="#i-carrinho"/></svg><span class="rotulo">Carrinho</span> <span class="carrinho-qtd">0</span></a>
-      </div>
-      <button class="botao-tema" type="button" aria-label="Ativar modo escuro"><svg class="icone" aria-hidden="true"><use href="#i-lua"/></svg></button>
-      <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false"><svg class="icone" aria-hidden="true"><use href="#i-menu"/></svg></button>
+        <button class="botao-tema" type="button" aria-label="Ativar modo escuro"><svg class="icone" aria-hidden="true"><use href="#i-lua"/></svg></button>
+        <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><svg class="icone" aria-hidden="true"><use href="#i-menu"/></svg></button>
       </div>
     </div>
   </header>
-
-  <nav class="nav" aria-label="Principal">
-    <div class="container">
-      <ul>
-        <li><a href="#inicio" class="ativo" aria-current="true">Início</a></li>
-        <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#loja">Loja</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-      <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta." class="btn btn-laranja nav-cta" target="_blank" rel="noopener">Agende uma consulta</a>
-    </div>
-  </nav>
 
 
   <main>
@@ -692,7 +657,7 @@
         <div class="container">
           <div class="legenda">
             <h2>Banho, tosa e loja completa</h2>
-            <p>Tudo para o seu pet em um só lugar, com frete grátis acima de R$ 99.</p>
+            <p>Tudo para o seu pet em um só lugar: banho e tosa, rações e acessórios.</p>
             <a href="#loja" class="btn btn-laranja">Ver a loja</a>
           </div>
         </div>
@@ -737,11 +702,11 @@
       </div>
     </section>
 
-    <section class="selos" aria-label="Vantagens da loja">
+    <section class="selos" aria-label="Diferenciais da clínica">
       <div class="container">
-        <div class="selo"><svg class="icone" aria-hidden="true"><use href="#i-caminhao"/></svg><div><strong>Frete grátis</strong><span>Em compras acima de R$ 99</span></div></div>
-        <div class="selo"><svg class="icone" aria-hidden="true"><use href="#i-cartao"/></svg><div><strong>Parcele em até 3x</strong><span>Sem juros no cartão</span></div></div>
-        <div class="selo"><svg class="icone" aria-hidden="true"><use href="#i-cadeado"/></svg><div><strong>Compra segura</strong><span>Seus dados protegidos</span></div></div>
+        <div class="selo"><svg class="icone" aria-hidden="true"><use href="#i-escudo"/></svg><div><strong>Veterinários com CRMV</strong><span>Equipe registrada no CRMV-SP</span></div></div>
+        <div class="selo"><svg class="icone" aria-hidden="true"><use href="#i-seringa"/></svg><div><strong>Vacinas com lembrete</strong><span>Avisamos a data da próxima dose</span></div></div>
+        <div class="selo"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg><div><strong>Agende pelo WhatsApp</strong><span>Rápido, sem sair de casa</span></div></div>
       </div>
     </section>
 
@@ -843,151 +808,45 @@
       <div class="container">
         <div class="titulo-secao">
           <h2>Loja</h2>
-          <p>Rações, petiscos, brinquedos e acessórios selecionados pelos nossos veterinários</p>
+          <p>Tudo o que seu pet precisa no mesmo lugar. Toque num produto e pergunte pelo WhatsApp: separamos para você.</p>
         </div>
-        <div class="loja">
-        <aside class="filtros" aria-label="Filtros">
-          <h3>Categorias</h3>
-          <div class="filtros-bloco">
-            <label><input type="checkbox"> Rações</label>
-            <label><input type="checkbox"> Petiscos</label>
-            <label><input type="checkbox"> Brinquedos</label>
-            <label><input type="checkbox"> Roupas e acessórios</label>
-            <label><input type="checkbox"> Caminhas</label>
+        <ul class="produtos-vitrine">
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20ra%C3%A7%C3%B5es." target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Rações</strong><span>Secas, úmidas e linhas terapêuticas para cães e gatos.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20petiscos." target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Petiscos</strong><span>Biscoitos, ossinhos e petiscos naturais.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20brinquedos." target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Brinquedos</strong><span>Pelúcias, mordedores, bolinhas e arranhadores.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20camas%20e%20caminhas." target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Camas e caminhas</strong><span>Caminhas, almofadas e caixas de transporte.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20coleiras%20e%20guias." target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Coleiras e guias</strong><span>Coleiras, peitorais e guias de todos os tamanhos.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20roupinhas." target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 767px) 46vw, (max-width: 991px) 46vw, 370px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Roupinhas</strong><span>Moletons, capas de chuva e pijamas.</span><span class="produto-acao">Perguntar<span class="acao-extra"> no WhatsApp</span> <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></span></span>
+          </a></li>
+        </ul>
+        <div class="farmacia">
+          <div class="farmacia-icones"><svg class="icone" aria-hidden="true"><use href="#i-remedio"/></svg><svg class="icone" aria-hidden="true"><use href="#i-higiene"/></svg></div>
+          <div class="farmacia-texto">
+            <strong>Farmácia veterinária e higiene</strong>
+            <span>Antipulgas, vermífugos, medicamentos com receita, areias, tapetes higiênicos e shampoos.</span>
           </div>
-          <h3>Preço</h3>
-          <div class="filtros-bloco">
-            <div class="faixa-preco">
-              <input type="number" min="0" placeholder="R$ mín" aria-label="Preço mínimo">
-              <input type="number" min="0" placeholder="R$ máx" aria-label="Preço máximo">
-            </div>
-            <button type="button" class="btn btn-ciano btn-bloco">Filtrar</button>
-          </div>
-        </aside>
-        <div>
-          <div class="loja-topo">
-            <span class="loja-total" aria-live="polite">Exibindo 12 produtos</span>
-            <select aria-label="Ordenar por">
-              <option>Mais vendidos</option>
-              <option>Menor preço</option>
-              <option>Maior preço</option>
-            </select>
-          </div>
-          <div class="produtos">
-            <p class="loja-vazia" hidden>Nenhum produto encontrado.</p>
-        <article class="produto">
-          <span class="etiqueta">Promoção</span>
-          <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Biscoito Ossinho Sabor Carne 500g" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Biscoito Ossinho Sabor Carne 500g</h3>
-          <div class="preco-antigo">R$ 29,90</div>
-          <div class="preco">R$ 24,90</div>
-          <div class="parcela">ou 3x de R$ 8,30 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Categorias." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          
-          <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Pelúcia Zebra com Apito" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Pelúcia Zebra com Apito</h3>
-          <div class="preco-antigo"></div>
-          <div class="preco">R$ 34,90</div>
-          <div class="parcela">ou 3x de R$ 11,63 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Pel%C3%BAcia%20Zebra%20com%20Apito." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          <span class="etiqueta">Promoção</span>
-          <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Caminha Pet Cinza Tamanho M" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Caminha Pet Cinza Tamanho M</h3>
-          <div class="preco-antigo">R$ 159,90</div>
-          <div class="preco">R$ 129,90</div>
-          <div class="parcela">ou 3x de R$ 43,30 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Caminha%20Pet%20Cinza%20Tamanho%20M." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          
-          <img src="https://images.unsplash.com/photo-1583511666372-62fc211f8377?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1583511666372-62fc211f8377?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1583511666372-62fc211f8377?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1583511666372-62fc211f8377?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Pijama Pet de Algodão" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Pijama Pet de Algodão</h3>
-          <div class="preco-antigo"></div>
-          <div class="preco">R$ 59,90</div>
-          <div class="parcela">ou 3x de R$ 19,97 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Pijama%20Pet%20de%20Algod%C3%A3o." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          <span class="etiqueta">Promoção</span>
-          <img src="https://images.unsplash.com/photo-1530041539828-114de669390e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1530041539828-114de669390e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1530041539828-114de669390e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1530041539828-114de669390e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Capa de Chuva Amarela" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Capa de Chuva Amarela</h3>
-          <div class="preco-antigo">R$ 99,90</div>
-          <div class="preco">R$ 79,90</div>
-          <div class="parcela">ou 3x de R$ 26,63 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Capa%20de%20Chuva%20Amarela." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          
-          <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Coleira Ajustável Vermelha" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Coleira Ajustável Vermelha</h3>
-          <div class="preco-antigo"></div>
-          <div class="preco">R$ 39,90</div>
-          <div class="parcela">ou 3x de R$ 13,30 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Coleira%20Ajust%C3%A1vel%20Vermelha." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          
-          <img src="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Peitoral com Guia Azul" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Peitoral com Guia Azul</h3>
-          <div class="preco-antigo"></div>
-          <div class="preco">R$ 69,90</div>
-          <div class="parcela">ou 3x de R$ 23,30 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Peitoral%20com%20Guia%20Azul." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          <span class="etiqueta">Promoção</span>
-          <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Moletom Pet Amarelo" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Moletom Pet Amarelo</h3>
-          <div class="preco-antigo">R$ 109,90</div>
-          <div class="preco">R$ 89,90</div>
-          <div class="parcela">ou 3x de R$ 29,97 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Moletom%20Pet%20Amarelo." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          
-          <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Suéter Pet Cinza de Tricô" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Suéter Pet Cinza de Tricô</h3>
-          <div class="preco-antigo"></div>
-          <div class="preco">R$ 74,90</div>
-          <div class="parcela">ou 3x de R$ 24,97 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Su%C3%A9ter%20Pet%20Cinza%20de%20Tric%C3%B4." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          
-          <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Ração Premium Gatos Adultos 1kg" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Ração Premium Gatos Adultos 1kg</h3>
-          <div class="preco-antigo"></div>
-          <div class="preco">R$ 42,90</div>
-          <div class="parcela">ou 3x de R$ 14,30 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Ra%C3%A7%C3%A3o%20Premium%20Gatos%20Adultos%201kg." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          <span class="etiqueta">Promoção</span>
-          <img src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Ração Premium Filhotes 10kg" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Ração Premium Filhotes 10kg</h3>
-          <div class="preco-antigo">R$ 219,90</div>
-          <div class="preco">R$ 189,90</div>
-          <div class="parcela">ou 3x de R$ 63,30 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Ra%C3%A7%C3%A3o%20Premium%20Filhotes%2010kg." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-        <article class="produto">
-          
-          <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70" srcset="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=300&amp;h=300&amp;q=70 300w, https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=400&amp;h=400&amp;q=70 400w, https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=600&amp;q=70 600w" sizes="(max-width: 991px) 46vw, 260px" alt="Sachê para Gatos Sabor Frango" loading="lazy" width="400" height="400" decoding="async">
-          <h3>Sachê para Gatos Sabor Frango</h3>
-          <div class="preco-antigo"></div>
-          <div class="preco">R$ 4,90</div>
-          <div class="parcela">ou 3x de R$ 1,63 sem juros</div>
-          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20interesse%20em%3A%20Sach%C3%AA%20para%20Gatos%20Sabor%20Frango." class="btn btn-laranja btn-bloco" target="_blank" rel="noopener">Comprar</a>
-        </article>
-          </div>
+          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20a%20farm%C3%A1cia%20veterin%C3%A1ria." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Perguntar no WhatsApp</a>
         </div>
-      </div>
       </div>
     </section>
+
     <section class="marcas" aria-label="Marcas que trabalhamos">
       <div class="marcas-janela">
         <div class="marcas-trilho">
@@ -1112,9 +971,22 @@
       var menuBotao = document.querySelector('.menu-botao');
       var nav = document.querySelector('.nav');
       if (menuBotao && nav) {
-        menuBotao.addEventListener('click', function () {
-          var aberto = nav.classList.toggle('aberto');
-          menuBotao.setAttribute('aria-expanded', aberto);
+        var abrirMenu = function (abrir) {
+          nav.classList.toggle('aberto', abrir);
+          menuBotao.setAttribute('aria-expanded', abrir);
+          menuBotao.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
+          menuBotao.querySelector('use').setAttribute('href', abrir ? '#i-fechar' : '#i-menu');
+        };
+        menuBotao.addEventListener('click', function (e) {
+          e.stopPropagation();
+          abrirMenu(!nav.classList.contains('aberto'));
+        });
+        // fecha ao tocar fora do menu ou apertar Esc
+        document.addEventListener('click', function (e) {
+          if (nav.classList.contains('aberto') && !nav.contains(e.target)) abrirMenu(false);
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && nav.classList.contains('aberto')) { abrirMenu(false); menuBotao.focus(); }
         });
       }
 
@@ -1212,10 +1084,7 @@
       // menu do celular fecha ao escolher uma seção
       if (menuBotao && nav) {
         nav.addEventListener('click', function (e) {
-          if (e.target.closest('a') && nav.classList.contains('aberto')) {
-            nav.classList.remove('aberto');
-            menuBotao.setAttribute('aria-expanded', false);
-          }
+          if (e.target.closest('a') && nav.classList.contains('aberto')) abrirMenu(false);
         });
       }
 
@@ -1238,27 +1107,6 @@
         });
       }
 
-      // busca do cabeçalho: filtra os produtos da loja pelo nome
-      var busca = document.querySelector('.busca');
-      var produtosLoja = Array.prototype.slice.call(document.querySelectorAll('#loja .produto'));
-      var total = document.querySelector('.loja-total');
-      var vazia = document.querySelector('.loja-vazia');
-      function semAcento(t) { return t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
-      if (busca) {
-        busca.addEventListener('submit', function (e) {
-          e.preventDefault();
-          var termo = semAcento(busca.querySelector('input').value.trim());
-          var achados = 0;
-          produtosLoja.forEach(function (p) {
-            var bate = !termo || semAcento(p.querySelector('h3').textContent).indexOf(termo) !== -1;
-            p.hidden = !bate;
-            if (bate) achados++;
-          });
-          if (total) total.textContent = 'Exibindo ' + achados + (achados === 1 ? ' produto' : ' produtos');
-          if (vazia) vazia.hidden = achados > 0;
-          document.getElementById('loja').scrollIntoView({ behavior: reduzMovimentoGeral ? 'auto' : 'smooth' });
-        });
-      }
 
       // ---------- modo claro e escuro ----------
       var raiz = document.documentElement;
