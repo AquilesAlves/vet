@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clínica Veterinária Bicho Feliz | Consultas, banho e tosa e loja pet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="topo">
+    <div class="container">
+      <ul>
+        <li><i class="fas fa-phone-alt"></i>(11) 3000-0000</li>
+        <li><i class="far fa-clock"></i>Seg a Sex 8h às 19h · Sáb 8h às 14h</li>
+      </ul>
+      <ul class="redes">
+        <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" style="margin:0"></i></a></li>
+        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram" style="margin:0"></i></a></li>
+        <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube" style="margin:0"></i></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <header class="cabecalho">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="Clínica Veterinária Bicho Feliz, página inicial">
+        <span class="logo-icone"><i class="fas fa-paw"></i></span>
+        <span class="logo-texto">Bicho Feliz<small>Clínica Veterinária</small></span>
+      </a>
+      <form class="busca" action="loja.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Buscar produtos..." aria-label="Buscar produtos">
+        <button type="submit" aria-label="Buscar"><i class="fas fa-search"></i></button>
+      </form>
+      <div class="conta">
+        <a href="contato.html"><i class="far fa-user"></i><span class="rotulo">Minha conta</span></a>
+        <a href="loja.html"><i class="fas fa-shopping-cart"></i><span class="rotulo">Carrinho</span> <span class="carrinho-qtd">0</span></a>
+      </div>
+      <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Principal">
+    <div class="container">
+      <ul>
+        <li><a href="index.html" class="ativo" aria-current="page">Início</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="loja.html">Loja</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+      <a href="contato.html" class="btn btn-laranja nav-cta">Agende uma consulta</a>
+    </div>
+  </nav>
+
+
+  <main>
+    <section class="carrossel" aria-roledescription="carrossel" aria-label="Destaques">
+      <div class="slides">
+      <div class="slide ativo" role="group" aria-roledescription="slide" aria-label="1 de 4">
+        <img src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&fit=crop&crop=faces,entropy&w=1600&h=560&q=75" alt="Cachorro marrom correndo feliz na beira do mar">
+        <div class="container">
+          <div class="legenda">
+            <h2>Cuidamos de quem você ama</h2>
+            <p>Atendimento veterinário completo para cães e gatos, com carinho e tecnologia.</p>
+            <a href="contato.html" class="btn btn-laranja">Agende uma consulta</a>
+          </div>
+        </div>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="2 de 4">
+        <img src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&fit=crop&crop=faces,entropy&w=1600&h=560&q=75" alt="Quatro filhotes de cachorro sentados juntos na porta" loading="lazy">
+        <div class="container">
+          <div class="legenda">
+            <h2>Vacinas e check-up de filhotes</h2>
+            <p>Calendário de vacinação e primeiras consultas para a vida toda do seu amigo.</p>
+            <a href="contato.html" class="btn btn-laranja">Agende uma consulta</a>
+          </div>
+        </div>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="3 de 4">
+        <img src="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&fit=crop&crop=faces,entropy&w=1600&h=560&q=75" alt="Gato branco de olhos claros deitado numa manta" loading="lazy">
+        <div class="container">
+          <div class="legenda">
+            <h2>Atendimento especializado para gatos</h2>
+            <p>Ambiente calmo e profissionais que entendem o jeito de cada felino.</p>
+            <a href="servicos.html" class="btn btn-laranja">Conheça os serviços</a>
+          </div>
+        </div>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="4 de 4">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&crop=faces,entropy&w=1600&h=560&q=75" alt="Dois cachorros pequenos correndo juntos numa trilha" loading="lazy">
+        <div class="container">
+          <div class="legenda">
+            <h2>Banho, tosa e loja completa</h2>
+            <p>Tudo para o seu pet em um só lugar, com frete grátis acima de R$ 99.</p>
+            <a href="loja.html" class="btn btn-laranja">Ver a loja</a>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="controles">
+        <button class="seta ant" type="button" aria-label="Slide anterior"><i class="fas fa-chevron-left"></i></button>
+        <div class="pontos">
+          <button class="ponto" type="button" aria-label="Ir para o slide 1"></button>
+          <button class="ponto" type="button" aria-label="Ir para o slide 2"></button>
+          <button class="ponto" type="button" aria-label="Ir para o slide 3"></button>
+          <button class="ponto" type="button" aria-label="Ir para o slide 4"></button>
+        </div>
+        <button class="seta prox" type="button" aria-label="Próximo slide"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <section class="selos" aria-label="Vantagens da loja">
+      <div class="container">
+        <div class="selo"><i class="fas fa-truck"></i><div><strong>Frete grátis</strong><span>Em compras acima de R$ 99</span></div></div>
+        <div class="selo"><i class="far fa-credit-card"></i><div><strong>Parcele em até 3x</strong><span>Sem juros no cartão</span></div></div>
+        <div class="selo"><i class="fas fa-lock"></i><div><strong>Compra segura</strong><span>Seus dados protegidos</span></div></div>
+      </div>
+    </section>
+
+    <section class="secao secao-alt destaque">
+      <div class="container">
+        <div class="destaque-foto">
+          <img src="https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&fit=crop&crop=faces,entropy&w=800&h=600&q=75" alt="Veterinário de jaleco com estetoscópio no pescoço" loading="lazy" width="800" height="600">
+        </div>
+        <div class="destaque-texto">
+          <h2>Sobre a clínica</h2>
+          <p>Há mais de 10 anos cuidando da saúde de cães e gatos da nossa região. Nossa equipe de veterinários atende com hora marcada, sem pressa, e explica cada passo do tratamento para você.</p>
+          <ul>
+            <li>Consultas, vacinas e exames no mesmo lugar</li>
+            <li>Centro cirúrgico e internação</li>
+            <li>Atendimento de emergência em horário comercial</li>
+          </ul>
+          <a href="servicos.html" class="btn btn-ciano">Saiba mais</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao destaque invertido">
+      <div class="container">
+        <div class="destaque-foto">
+          <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&crop=faces,entropy&w=800&h=600&q=75" alt="Cachorro golden retriever sendo lavado no banho" loading="lazy" width="800" height="600">
+        </div>
+        <div class="destaque-texto">
+          <h2>Banho e tosa</h2>
+          <p>Seu pet limpo, cheiroso e confortável. Usamos produtos hipoalergênicos, secagem em temperatura segura e profissionais treinados para lidar com os bichinhos mais agitados ou mais tímidos.</p>
+          <ul>
+            <li>Banho, tosa higiênica e tosa na máquina ou na tesoura</li>
+            <li>Hidratação e corte de unhas</li>
+            <li>Busca e entrega (leva e traz)</li>
+          </ul>
+          <a href="contato.html" class="btn btn-ciano">Agende um horário</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-alt">
+      <div class="container">
+        <div class="titulo-secao">
+          <h2>Produtos em destaque</h2>
+          <p>Rações, petiscos, brinquedos e acessórios selecionados pelos nossos veterinários</p>
+        </div>
+        <div class="produtos">
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Caminha Pet Cinza Tamanho M" loading="lazy" width="400" height="400">
+          <h3>Caminha Pet Cinza Tamanho M</h3>
+          <div class="preco-antigo">R$ 159,90</div>
+          <div class="preco">R$ 129,90</div>
+          <div class="parcela">ou 3x de R$ 43,30 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Ração Premium Gatos Adultos 1kg" loading="lazy" width="400" height="400">
+          <h3>Ração Premium Gatos Adultos 1kg</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 42,90</div>
+          <div class="parcela">ou 3x de R$ 14,30 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Biscoito Ossinho Sabor Carne 500g" loading="lazy" width="400" height="400">
+          <h3>Biscoito Ossinho Sabor Carne 500g</h3>
+          <div class="preco-antigo">R$ 29,90</div>
+          <div class="preco">R$ 24,90</div>
+          <div class="parcela">ou 3x de R$ 8,30 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Moletom Pet Amarelo" loading="lazy" width="400" height="400">
+          <h3>Moletom Pet Amarelo</h3>
+          <div class="preco-antigo">R$ 109,90</div>
+          <div class="preco">R$ 89,90</div>
+          <div class="parcela">ou 3x de R$ 29,97 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        </div>
+        <div class="secao-rodape"><a href="loja.html" class="btn btn-contorno">Ver todos os produtos</a></div>
+      </div>
+    </section>
+
+    <section class="secao">
+      <div class="container">
+        <div class="titulo-secao"><h2>Quem confia na gente</h2></div>
+        <div class="depoimentos">
+          <blockquote class="depoimento" style="margin:0">
+            <i class="fas fa-quote-left"></i>
+            <div class="estrelas" aria-label="5 estrelas">★★★★★</div>
+            <p>A Thaís atendeu a Mel com muito cuidado. Explicou tudo com calma e ainda mandou lembrete da próxima vacina.</p>
+            <footer><strong>Ana Paula</strong> · tutora da Mel</footer>
+          </blockquote>
+          <blockquote class="depoimento" style="margin:0">
+            <i class="fas fa-quote-left"></i>
+            <div class="estrelas" aria-label="5 estrelas">★★★★★</div>
+            <p>Meu gato morre de medo de veterinário e aqui ele ficou tranquilo. Já virou a nossa clínica de confiança.</p>
+            <footer><strong>Ricardo</strong> · tutor do Tom</footer>
+          </blockquote>
+          <blockquote class="depoimento" style="margin:0">
+            <i class="fas fa-quote-left"></i>
+            <div class="estrelas" aria-label="5 estrelas">★★★★★</div>
+            <p>O banho e tosa ficou impecável e o leva e traz ajuda muito na correria da semana. Recomendo!</p>
+            <footer><strong>Juliana</strong> · tutora do Thor</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="rodape">
+    <div class="container rodape-colunas">
+      <div>
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="loja.html">Loja</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <ul>
+          <li><i class="fas fa-phone-alt"></i> (11) 3000-0000</li>
+          <li><i class="fab fa-whatsapp"></i> (11) 90000-0000</li>
+          <li><i class="far fa-envelope"></i> contato@bichofeliz.example</li>
+          <li><i class="far fa-clock"></i> Seg a Sex 8h às 19h<br>&nbsp;&nbsp;&nbsp;&nbsp;Sáb 8h às 14h</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Formas de pagamento</h4>
+        <div class="pagamentos"><span>Visa</span><span>Mastercard</span><span>Elo</span><span>Pix</span><span>Boleto</span></div>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <p>Receba ofertas e dicas de cuidados com o seu pet.</p>
+        <form class="news js-form" data-msg="Cadastro feito! Obrigado.">
+          <input type="email" placeholder="Seu e-mail" aria-label="Seu e-mail" required>
+          <button type="submit" aria-label="Cadastrar"><i class="fas fa-arrow-right"></i></button>
+        </form>
+        <div class="form-msg" role="status"></div>
+      </div>
+    </div>
+    <div class="rodape-fim">
+      <div class="container">
+        <span>© 2026 Clínica Veterinária Bicho Feliz. Todos os direitos reservados.</span>
+        <span>CNPJ 00.000.000/0001-00 · Responsável técnico: CRMV-SP 00000</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5511900000000" class="whatsapp" aria-label="Falar pelo WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

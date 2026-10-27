@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loja | Clínica Veterinária Bicho Feliz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="topo">
+    <div class="container">
+      <ul>
+        <li><i class="fas fa-phone-alt"></i>(11) 3000-0000</li>
+        <li><i class="far fa-clock"></i>Seg a Sex 8h às 19h · Sáb 8h às 14h</li>
+      </ul>
+      <ul class="redes">
+        <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" style="margin:0"></i></a></li>
+        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram" style="margin:0"></i></a></li>
+        <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube" style="margin:0"></i></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <header class="cabecalho">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="Clínica Veterinária Bicho Feliz, página inicial">
+        <span class="logo-icone"><i class="fas fa-paw"></i></span>
+        <span class="logo-texto">Bicho Feliz<small>Clínica Veterinária</small></span>
+      </a>
+      <form class="busca" action="loja.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Buscar produtos..." aria-label="Buscar produtos">
+        <button type="submit" aria-label="Buscar"><i class="fas fa-search"></i></button>
+      </form>
+      <div class="conta">
+        <a href="contato.html"><i class="far fa-user"></i><span class="rotulo">Minha conta</span></a>
+        <a href="loja.html"><i class="fas fa-shopping-cart"></i><span class="rotulo">Carrinho</span> <span class="carrinho-qtd">0</span></a>
+      </div>
+      <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Principal">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="loja.html" class="ativo" aria-current="page">Loja</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+      <a href="contato.html" class="btn btn-laranja nav-cta">Agende uma consulta</a>
+    </div>
+  </nav>
+
+
+  <section class="banner-pagina">
+    <div class="container">
+      <h1>Loja</h1>
+      <div class="trilha"><a href="index.html">Início</a><span>›</span>Loja</div>
+    </div>
+  </section>
+  <main>
+    <section class="secao">
+      <div class="container loja">
+        <aside class="filtros" aria-label="Filtros">
+          <h3>Categorias</h3>
+          <div class="filtros-bloco">
+            <label><input type="checkbox"> Rações</label>
+            <label><input type="checkbox"> Petiscos</label>
+            <label><input type="checkbox"> Brinquedos</label>
+            <label><input type="checkbox"> Roupas e acessórios</label>
+            <label><input type="checkbox"> Caminhas</label>
+          </div>
+          <h3>Preço</h3>
+          <div class="filtros-bloco">
+            <div class="faixa-preco">
+              <input type="number" min="0" placeholder="R$ mín" aria-label="Preço mínimo">
+              <input type="number" min="0" placeholder="R$ máx" aria-label="Preço máximo">
+            </div>
+            <button type="button" class="btn btn-ciano btn-bloco">Filtrar</button>
+          </div>
+        </aside>
+        <div>
+          <div class="loja-topo">
+            <span>Exibindo 12 produtos</span>
+            <select aria-label="Ordenar por">
+              <option>Mais vendidos</option>
+              <option>Menor preço</option>
+              <option>Maior preço</option>
+            </select>
+          </div>
+          <div class="produtos">
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Biscoito Ossinho Sabor Carne 500g" loading="lazy" width="400" height="400">
+          <h3>Biscoito Ossinho Sabor Carne 500g</h3>
+          <div class="preco-antigo">R$ 29,90</div>
+          <div class="preco">R$ 24,90</div>
+          <div class="parcela">ou 3x de R$ 8,30 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Pelúcia Zebra com Apito" loading="lazy" width="400" height="400">
+          <h3>Pelúcia Zebra com Apito</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 34,90</div>
+          <div class="parcela">ou 3x de R$ 11,63 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Caminha Pet Cinza Tamanho M" loading="lazy" width="400" height="400">
+          <h3>Caminha Pet Cinza Tamanho M</h3>
+          <div class="preco-antigo">R$ 159,90</div>
+          <div class="preco">R$ 129,90</div>
+          <div class="parcela">ou 3x de R$ 43,30 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1583511666372-62fc211f8377?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Pijama Pet de Algodão" loading="lazy" width="400" height="400">
+          <h3>Pijama Pet de Algodão</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 59,90</div>
+          <div class="parcela">ou 3x de R$ 19,97 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1530041539828-114de669390e?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Capa de Chuva Amarela" loading="lazy" width="400" height="400">
+          <h3>Capa de Chuva Amarela</h3>
+          <div class="preco-antigo">R$ 99,90</div>
+          <div class="preco">R$ 79,90</div>
+          <div class="parcela">ou 3x de R$ 26,63 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Coleira Ajustável Vermelha" loading="lazy" width="400" height="400">
+          <h3>Coleira Ajustável Vermelha</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 39,90</div>
+          <div class="parcela">ou 3x de R$ 13,30 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Peitoral com Guia Azul" loading="lazy" width="400" height="400">
+          <h3>Peitoral com Guia Azul</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 69,90</div>
+          <div class="parcela">ou 3x de R$ 23,30 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Moletom Pet Amarelo" loading="lazy" width="400" height="400">
+          <h3>Moletom Pet Amarelo</h3>
+          <div class="preco-antigo">R$ 109,90</div>
+          <div class="preco">R$ 89,90</div>
+          <div class="parcela">ou 3x de R$ 29,97 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Suéter Pet Cinza de Tricô" loading="lazy" width="400" height="400">
+          <h3>Suéter Pet Cinza de Tricô</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 74,90</div>
+          <div class="parcela">ou 3x de R$ 24,97 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Ração Premium Gatos Adultos 1kg" loading="lazy" width="400" height="400">
+          <h3>Ração Premium Gatos Adultos 1kg</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 42,90</div>
+          <div class="parcela">ou 3x de R$ 14,30 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          <span class="etiqueta">Promoção</span>
+          <img src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Ração Premium Filhotes 10kg" loading="lazy" width="400" height="400">
+          <h3>Ração Premium Filhotes 10kg</h3>
+          <div class="preco-antigo">R$ 219,90</div>
+          <div class="preco">R$ 189,90</div>
+          <div class="parcela">ou 3x de R$ 63,30 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+        <article class="produto">
+          
+          <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&crop=faces,entropy&w=400&h=400&q=75" alt="Sachê para Gatos Sabor Frango" loading="lazy" width="400" height="400">
+          <h3>Sachê para Gatos Sabor Frango</h3>
+          <div class="preco-antigo"></div>
+          <div class="preco">R$ 4,90</div>
+          <div class="parcela">ou 3x de R$ 1,63 sem juros</div>
+          <a href="loja.html" class="btn btn-laranja btn-bloco">Comprar</a>
+        </article>
+          </div>
+          <nav class="paginacao" aria-label="Paginação">
+            <a href="#" class="ativo" aria-current="page">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#" aria-label="Próxima página">»</a>
+          </nav>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="rodape">
+    <div class="container rodape-colunas">
+      <div>
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="loja.html">Loja</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <ul>
+          <li><i class="fas fa-phone-alt"></i> (11) 3000-0000</li>
+          <li><i class="fab fa-whatsapp"></i> (11) 90000-0000</li>
+          <li><i class="far fa-envelope"></i> contato@bichofeliz.example</li>
+          <li><i class="far fa-clock"></i> Seg a Sex 8h às 19h<br>&nbsp;&nbsp;&nbsp;&nbsp;Sáb 8h às 14h</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Formas de pagamento</h4>
+        <div class="pagamentos"><span>Visa</span><span>Mastercard</span><span>Elo</span><span>Pix</span><span>Boleto</span></div>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <p>Receba ofertas e dicas de cuidados com o seu pet.</p>
+        <form class="news js-form" data-msg="Cadastro feito! Obrigado.">
+          <input type="email" placeholder="Seu e-mail" aria-label="Seu e-mail" required>
+          <button type="submit" aria-label="Cadastrar"><i class="fas fa-arrow-right"></i></button>
+        </form>
+        <div class="form-msg" role="status"></div>
+      </div>
+    </div>
+    <div class="rodape-fim">
+      <div class="container">
+        <span>© 2026 Clínica Veterinária Bicho Feliz. Todos os direitos reservados.</span>
+        <span>CNPJ 00.000.000/0001-00 · Responsável técnico: CRMV-SP 00000</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5511900000000" class="whatsapp" aria-label="Falar pelo WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
