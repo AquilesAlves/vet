@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amigo Fiel · Clínica veterinária, banho e tosa e loja pet</title>
+  <meta name="theme-color" content="#e2ebe3">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%230b7a5c%22/%3E%3Cg%20fill%3D%22%23fff%22%20transform%3D%22translate%288%208%29%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2220%22%20r%3D%224.6%22/%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%2210.6%22%20r%3D%224.6%22/%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%2210.6%22%20r%3D%224.6%22/%3E%3Ccircle%20cx%3D%2237%22%20cy%3D%2220%22%20r%3D%224.6%22/%3E%3Cpath%20d%3D%22M24%2023c-5.6%200-12%207.2-12%2012.8%200%203.4%202.6%205.2%205.4%205.2%202.6%200%204.2-1.4%206.6-1.4s4%201.4%206.6%201.4c2.8%200%205.4-1.8%205.4-5.2C36%2030.2%2029.6%2023%2024%2023z%22/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
+  <script>
+    // aplica o tema salvo antes de desenhar a página, para não piscar
+    (function () {
+      var tema = null;
+      try { tema = localStorage.getItem('tema'); } catch (e) {}
+      if (tema !== 'claro' && tema !== 'escuro') tema = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
+      document.documentElement.setAttribute('data-tema', tema);
+    })();
+  </script>
+  <style>
+    /* Amigo Fiel */
+
+    /* ---------- cores (as mesmas do site Amigo Fiel) ---------- */
+    :root {
+      --primaria: #0b7a5c;
+      --primaria-esc: #075c45;
+      --primaria-texto: #0b6b51;
+      --primaria-suave: #cbe5d7;
+      --acento: #4fd1a5;
+      --acento-esc: #0e8f69;
+      --acento-suave: #c6e7d6;
+      --quente: #f2b73b;
+      --quente-esc: #e3a21c;
+      --tinta-quente: #2b1d00;
+      --botao-fundo: var(--primaria);
+      --botao-hover: var(--primaria-esc);
+      --botao-texto: #ffffff;
+      --faixa: var(--primaria);
+      --faixa-texto: #ffffff;
+
+      --fundo: #e2ebe3;
+      --fundo-alt: #d7e3d9;
+      --superficie: #eef4ef;
+      --campo: #e6eee7;
+      --borda: #c4d4c8;
+      --titulo: #0d3a2d;
+      --texto: #1c2420;
+      --texto-suave: #435049;
+      --texto-fraco: #58645d;
+      --rodape-fundo: linear-gradient(180deg, #0f3b2f 0%, #0b2a22 100%);
+      --rodape-texto: #cfe3da;
+      --rodape-fraco: #9dbcaf;
+
+      --sombra-p: 0 1px 2px rgb(20 40 32 / .05), 0 2px 8px -2px rgb(20 40 32 / .08);
+      --sombra: 0 2px 4px rgb(20 40 32 / .04), 0 12px 32px -12px rgb(20 40 32 / .18);
+      --sombra-g: 0 4px 8px rgb(20 40 32 / .05), 0 28px 56px -20px rgb(20 40 32 / .30);
+
+      --fonte: 'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --fonte-titulo: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --raio-p: 10px;
+      --raio: 16px;
+      --raio-g: 24px;
+      /* distância da borda da tela até a logo e até o card do carrossel */
+      --respiro-lateral: clamp(20px, 3.5vw, 56px);
+      --suave: cubic-bezier(.2, .7, .2, 1);
+
+      color-scheme: light;
+    }
+
+    /* Modo escuro suave: verde-floresta, sem chegar ao preto. */
+    :root[data-tema="escuro"] {
+      --primaria: #5fd3a8;
+      --primaria-esc: #7fdfba;
+      --primaria-texto: #7fdcb8;
+      --primaria-suave: #285246;
+      --acento: #5fd3a8;
+      --acento-esc: #7fdcb8;
+      --acento-suave: #285246;
+      --quente: #f5c45e;
+      --quente-esc: #f8d27f;
+      --botao-fundo: #5fd3a8;
+      --botao-hover: #7fdfba;
+      --botao-texto: #10241c;
+      --faixa: #1f4a3c;
+      --faixa-texto: #f0f6f2;
+
+      --fundo: #192e27;
+      --fundo-alt: #213b32;
+      --superficie: #243d35;
+      --campo: #2b4840;
+      --borda: #38574d;
+      --titulo: #f0f7f2;
+      --texto: #e8f2ec;
+      --texto-suave: #b3cbc0;
+      --texto-fraco: #8aa79a;
+      --rodape-fundo: linear-gradient(180deg, #13261f 0%, #0f1f19 100%);
+      --rodape-texto: #c9d6cf;
+      --rodape-fraco: #93a39b;
+
+      --sombra-p: 0 1px 2px rgb(0 0 0 / .18), 0 2px 8px -2px rgb(0 0 0 / .22);
+      --sombra: 0 2px 4px rgb(0 0 0 / .15), 0 12px 32px -12px rgb(0 0 0 / .45);
+      --sombra-g: 0 4px 8px rgb(0 0 0 / .15), 0 28px 56px -20px rgb(0 0 0 / .55);
+
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--fonte);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--texto);
+      background: var(--fundo);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* troca de tema: só as cores mudam, rapidinho */
+    /* troca de tema: o navegador funde a tela antiga na nova (sem animar cada elemento) */
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .45s; animation-timing-function: ease; }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--primaria-texto); text-decoration: none; transition: color .2s ease; }
+    a:hover { color: var(--primaria-esc); }
+    ul { margin: 0; padding: 0; list-style: none; }
+    h1, h2, h3, h4 { font-family: var(--fonte); margin: 0; line-height: 1.2; letter-spacing: -.01em; color: var(--titulo); }
+    /* títulos grandes em Fraunces; títulos de card e textos em Figtree */
+    h1, h2, .logo-texto { font-family: var(--fonte-titulo); font-weight: 700; }
+    p { margin: 0 0 1em; }
+
+    :focus-visible { outline: 3px solid var(--quente); outline-offset: 3px; border-radius: 6px; }
+    ::selection { background: var(--acento-suave); color: var(--titulo); }
+
+    .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+    .icone {
+      width: 1em; height: 1em; flex: none;
+      fill: none; stroke: currentColor; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+      vertical-align: -.125em;
+    }
+
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---------- botões ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 46px; padding: 12px 24px;
+      border: 1.5px solid transparent; border-radius: 999px;
+      font: 700 15px/1.2 var(--fonte);
+      text-align: center; cursor: pointer;
+      transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover { text-decoration: none; }
+    .btn-ciano { background: var(--botao-fundo); color: var(--botao-texto); }
+    .btn-ciano:hover { background: var(--botao-hover); color: var(--botao-texto); box-shadow: 0 0 0 4px color-mix(in srgb, var(--botao-fundo) 25%, transparent); }
+    .btn-contorno { border-color: var(--borda); color: var(--primaria-texto); background: var(--superficie); }
+    .btn-contorno:hover { border-color: var(--primaria); color: var(--primaria-texto); box-shadow: 0 0 0 3px var(--primaria-suave); }
+    .btn-bloco { display: flex; width: 100%; }
+
+    /* ---------- cabeçalho ---------- */
+    .cabecalho { position: sticky; top: 0; z-index: 40; background: var(--superficie); border-bottom: 1px solid var(--borda); box-shadow: 0 10px 30px -22px rgb(10 40 30 / .45); }
+    .cabecalho .container { display: flex; align-items: center; gap: 24px; min-height: 76px; max-width: none; padding-inline: var(--respiro-lateral); }
+
+    /* logo igual à do Amigo Fiel */
+    .logo { display: flex; align-items: center; gap: 10px; color: var(--titulo); }
+    .logo:hover { text-decoration: none; color: var(--titulo); }
+    .logo-icone {
+      width: 44px; height: 44px; flex: none;
+      display: grid; place-items: center;
+      border-radius: 14px 14px 14px 4px;
+      background: var(--primaria); color: #fff; font-size: 24px;
+      transition: box-shadow .25s ease;
+    }
+    :root[data-tema="escuro"] .logo-icone { color: #10241c; }
+    .logo:hover .logo-icone { box-shadow: 0 0 0 4px var(--primaria-suave); }
+    .logo-texto { font-size: 24px; line-height: 1; letter-spacing: -.01em; color: var(--titulo); white-space: nowrap; }
+
+    .acoes { display: flex; align-items: center; gap: 10px; }
+
+    .botao-tema, .menu-botao {
+      width: 44px; height: 44px; flex: none; display: grid; place-items: center;
+      border: 1.5px solid var(--borda); border-radius: 50%;
+      background: var(--superficie); color: var(--texto); font-size: 20px; cursor: pointer;
+      transition: border-color .2s ease, color .2s ease;
+    }
+    .botao-tema:hover, .menu-botao:hover { border-color: var(--primaria); color: var(--primaria-texto); }
+    .menu-botao { display: none; }
+
+    /* ---------- navegação (dentro do cabeçalho) ---------- */
+    .nav { flex: 1; display: flex; align-items: center; gap: 16px; }
+    /* mais espaço entre os links em telas grandes; em telas médias o cabeçalho fica justo */
+    .nav ul { display: flex; gap: clamp(4px, 7vw - 56px, 56px); margin: 0 auto; }
+    .nav li a {
+      display: block; position: relative; padding: 9px 16px;
+      border: 1.5px solid transparent; border-radius: 999px;
+      color: var(--texto); font: 600 15px/1 var(--fonte);
+      transition: border-color .2s ease, background-color .2s ease, color .2s ease;
+    }
+    .nav li a:hover { border-color: var(--borda); color: var(--titulo); text-decoration: none; }
+    .nav li a.ativo { background: var(--primaria-suave); color: var(--primaria-texto); }
+    .nav li a.ativo::after { content: ''; position: absolute; left: 50%; bottom: 3px; width: 16px; height: 3px; margin-left: -8px; border-radius: 3px; background: var(--quente); }
+    .cabecalho .cabecalho-cta { min-height: 44px; padding: 10px 20px; font-size: 14px; }
+    .cabecalho .cabecalho-cta .icone { font-size: 19px; }
+    .nav .nav-cta { display: none; }
+
+    /* ---------- carrossel ---------- */
+    .carrossel { position: relative; background: #12372c; }
+    .slides { position: relative; height: 540px; overflow: hidden; }
+    .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .9s ease, visibility 0s .9s; }
+    .slide.ativo { opacity: 1; visibility: visible; z-index: 2; transition: opacity .9s ease; }
+    /* a foto que sai fica inteira por baixo enquanto a nova aparece: a troca não escurece no meio */
+    .slide.saindo { opacity: 1; visibility: visible; z-index: 1; transition: none; }
+    .slide picture, .slide > img { position: absolute; inset: 0; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+    :root[data-tema="escuro"] .slide img { filter: brightness(.9); }
+    /* escurece o lado da legenda para o texto sempre ter contraste */
+    .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(8 30 24 / .55) 0%, rgb(8 30 24 / .15) 55%, transparent 80%); }
+    /* card único por cima das fotos: só o texto troca, o card e o botão ficam parados */
+    .legenda-area { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+    .legenda {
+      position: absolute; left: var(--respiro-lateral); top: 50%; transform: translateY(-56%);
+      width: min(480px, calc(100% - 48px)); padding: 34px 36px 36px; pointer-events: auto;
+      background: color-mix(in srgb, var(--superficie) 95%, transparent);
+      border-radius: var(--raio-g); box-shadow: var(--sombra-g);
+    }
+    .legenda::before { content: ''; display: block; width: 44px; height: 5px; margin-bottom: 18px; border-radius: 5px; background: var(--quente); }
+    .legenda h2 { font-size: 38px; letter-spacing: -.02em; line-height: 1.08; margin-bottom: 12px; text-wrap: balance; }
+    .legenda p { color: var(--texto-suave); font-size: 17px; margin-bottom: 22px; }
+    .legenda-textos { display: grid; }
+    .sem-quebra { white-space: nowrap; }
+    .legenda-texto { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s .35s; }
+    .legenda-texto.ativo { opacity: 1; visibility: visible; transition: opacity .45s ease .3s; }
+
+    /* bloco de setas e pontos: metade dentro, metade fora do carrossel */
+    .controles {
+      position: absolute; z-index: 5; left: 50%; bottom: -30px; transform: translateX(-50%);
+      width: 280px; height: 60px; padding: 0 8px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--superficie); border-radius: 999px; box-shadow: var(--sombra-g);
+    }
+    .seta {
+      width: 44px; height: 44px; display: grid; place-items: center;
+      border: 1.5px solid var(--borda); border-radius: 50%;
+      background: var(--superficie); color: var(--primaria-texto); font-size: 18px; cursor: pointer;
+      transition: border-color .2s ease, background-color .2s ease;
+    }
+    .seta:hover { border-color: var(--primaria); background: var(--primaria-suave); }
+    .pontos { display: flex; gap: 8px; align-items: center; }
+    .ponto { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 999px; background: var(--borda); cursor: pointer; transition: width .3s var(--suave), background-color .3s ease; }
+    .ponto:hover { background: var(--acento); }
+    .ponto.ativo { width: 28px; background: var(--primaria); }
+
+    /* ---------- números ---------- */
+    .numeros { padding: 50px 0 30px; background: var(--fundo); }
+    .numeros-lista { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .numero { display: flex; flex-direction: column; padding: 2px 24px; border-left: 1px solid var(--borda); }
+    .numero:first-child { padding-left: 0; border-left: 0; }
+    .numero-destaque {
+      display: flex; align-items: center; gap: 2px; margin-bottom: 4px;
+      font-family: var(--fonte-titulo); font-size: clamp(28px, 1.2vw + 18px, 38px); font-weight: 700;
+      line-height: 1; letter-spacing: -.02em; color: var(--primaria-texto);
+      font-variant-numeric: tabular-nums;
+    }
+    .numero-sufixo { font-size: .6em; margin-left: 4px; align-self: flex-end; padding-bottom: .12em; }
+    .numero-estrela { width: .62em; height: .62em; margin-left: 8px; color: var(--quente); }
+    .numero-titulo { font-size: 15px; font-weight: 700; color: var(--titulo); }
+    .numero-detalhe { font-size: 13.5px; line-height: 1.5; color: var(--texto-suave); }
+
+
+    /* ---------- seções ---------- */
+    .secao { padding: 96px 0; scroll-margin-top: 76px; background: var(--fundo); }
+    .secao-alt { background: var(--fundo-alt); }
+
+    .titulo-secao { text-align: center; max-width: 820px; margin: 0 auto 48px; }
+    .titulo-secao h2 { font-size: clamp(30px, 2.2vw + 20px, 44px); letter-spacing: -.02em; text-wrap: balance; }
+    @media (min-width: 620px) { .titulo-secao h2 { white-space: nowrap; } }
+    .titulo-secao::before { content: ''; display: block; width: 44px; height: 5px; margin: 0 auto 18px; border-radius: 5px; background: var(--quente); }
+    .titulo-secao p { margin: 14px 0 0; color: var(--texto-suave); font-size: 17px; }
+    .titulo-secao p a { font-weight: 700; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--primaria) 40%, transparent); text-underline-offset: 4px; }
+
+    .destaque .container { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .destaque.invertido .destaque-foto { order: 2; }
+    .destaque-foto { position: relative; }
+    .destaque-foto::before { content: ''; position: absolute; inset: 24px -24px -24px 24px; border-radius: var(--raio-g); background: var(--acento-suave); }
+    .destaque.invertido .destaque-foto::before { inset: 24px 24px -24px -24px; background: color-mix(in srgb, var(--quente) 22%, var(--fundo)); }
+    .destaque-foto img { position: relative; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--raio-g); box-shadow: var(--sombra-g); background: var(--fundo-alt); }
+    .destaque-texto h2 { font-size: clamp(30px, 2vw + 20px, 44px); letter-spacing: -.02em; margin-bottom: 20px; }
+    .destaque-texto h2::before { content: ''; display: block; width: 44px; height: 5px; margin-bottom: 18px; border-radius: 5px; background: var(--quente); }
+    .destaque-texto p { font-size: 17px; line-height: 1.75; color: var(--texto-suave); }
+    .destaque-texto ul { margin: 0 0 30px; display: grid; gap: 10px; }
+    .destaque-texto li { position: relative; padding-left: 36px; font-weight: 600; }
+    .destaque-texto li::before {
+      content: ''; position: absolute; left: 0; top: 2px; width: 24px; height: 24px; border-radius: 50%;
+      background: var(--acento-suave) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e8f69' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center / 14px no-repeat;
+    }
+    :root[data-tema="escuro"] .destaque-texto li::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237fdcb8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E");
+    }
+
+    /* ---------- loja (vitrine sem preços: cada card abre o WhatsApp) ---------- */
+    .produtos-vitrine, .servicos { --por-linha: 4; --vao: 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--vao); }
+    /* serviços e loja usam uma faixa mais larga, para os 4 cards por linha não ficarem pequenos */
+    #servicos .container, #loja .container { max-width: 1320px; }
+    .produtos-vitrine > li, .servicos > .servico { flex: 0 0 calc((100% - (var(--por-linha) - 1) * var(--vao)) / var(--por-linha)); min-width: 0; }
+    .produto-card {
+      display: flex; flex-direction: column; height: 100%; overflow: hidden;
+      background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g);
+      color: var(--texto); transition: border-color .25s ease, box-shadow .25s ease;
+    }
+    .produto-card:hover { border-color: #25d366; box-shadow: 0 0 0 3px rgb(37 211 102 / .18); color: var(--texto); text-decoration: none; }
+    .produto-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--fundo-alt); }
+    :root[data-tema="escuro"] .produto-card img { filter: brightness(.9); }
+    .produto-corpo { display: flex; flex-direction: column; gap: 6px; flex: 1; padding: 20px 22px 24px; }
+    .produto-corpo strong { font-size: 19px; color: var(--titulo); }
+    .produto-corpo > span { font-size: 15px; line-height: 1.55; color: var(--texto-suave); }
+
+    .farmacia {
+      display: flex; align-items: center; gap: 24px; margin-top: 22px; padding: 24px 28px;
+      background: var(--acento-suave); border: 1px solid color-mix(in srgb, var(--acento) 35%, var(--borda)); border-radius: var(--raio-g);
+    }
+    .farmacia-icones { display: flex; gap: 8px; flex: none; }
+    .farmacia-icones .icone { width: 52px; height: 52px; padding: 13px; border-radius: 14px; background: var(--superficie); color: var(--acento-esc); }
+    .farmacia-texto { flex: 1; }
+    .farmacia-texto strong { display: block; font-size: 18px; color: var(--titulo); }
+    .farmacia-texto span { color: var(--texto-suave); font-size: 15px; }
+    .farmacia .btn { flex: none; }
+    .secao-rodape { text-align: center; margin-top: 40px; }
+
+    /* ---------- marcas que trabalhamos ---------- */
+    .marcas { padding: 24px 0; background: var(--fundo); }
+    .marcas-janela {
+      overflow: hidden;
+      -webkit-mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+    .marcas-trilho { display: flex; justify-content: center; }
+    .marcas-trilho.animada { justify-content: flex-start; width: max-content; animation: deslizar 40s linear infinite; }
+    .marcas-lista { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; row-gap: 8px; }
+    .marcas-trilho.animada .marcas-lista { flex-wrap: nowrap; }
+    .marcas-lista li {
+      display: inline-flex; align-items: center; gap: 28px; padding-right: 28px;
+      font-family: var(--fonte-titulo); font-size: 21px; font-weight: 700; white-space: nowrap;
+      color: var(--texto-suave);
+    }
+    .marcas-lista li::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--quente); }
+    @keyframes deslizar { to { transform: translateX(-50%); } }
+
+    /* ---------- depoimentos ---------- */
+    .depoimentos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .depoimento {
+      position: relative; display: flex; flex-direction: column; padding: 30px 30px 28px;
+      background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p);
+      transition: border-color .25s ease, box-shadow .25s ease;
+    }
+    .depoimento:hover { border-color: var(--acento); box-shadow: 0 0 0 3px var(--acento-suave); }
+    .depoimento > .icone { position: absolute; top: 26px; right: 28px; width: 40px; height: 40px; color: var(--acento-suave); transition: color .25s ease; }
+    .depoimento:hover > .icone { color: var(--acento); }
+    .depoimento p { flex: 1; font-size: 16px; line-height: 1.7; color: var(--texto); }
+    .depoimento footer { padding-top: 18px; border-top: 1px solid var(--borda); font-size: 14px; color: var(--texto-suave); }
+    .depoimento footer strong { color: var(--texto); font-weight: 700; }
+    .estrelas { margin-bottom: 14px; color: var(--quente); font-size: 17px; letter-spacing: 3px; }
+
+    /* ---------- serviços, loja e contato ---------- */
+    .servico {
+      display: flex; flex-direction: column; overflow: hidden;
+      background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g);
+      transition: border-color .25s ease, box-shadow .25s ease;
+    }
+    .servico:hover { border-color: var(--primaria); box-shadow: 0 0 0 3px var(--primaria-suave); }
+    .servico img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--fundo-alt); }
+    .servico-corpo { padding: 20px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+    .servico h3 { font-size: 19px; font-weight: 700; margin-bottom: 6px; color: var(--titulo); transition: color .2s ease; }
+    .servico:hover h3 { color: var(--primaria-texto); }
+    .servico p { margin-bottom: 18px; font-size: 15px; line-height: 1.55; color: var(--texto-suave); }
+    .servico .btn { margin-top: auto; align-self: flex-start; min-height: 42px; padding: 9px 20px; font-size: 14px; }
+
+    .contato { display: grid; grid-template-columns: 1.75fr 1fr; gap: 28px; align-items: stretch; }
+    .contato-info { padding: 30px; background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p); }
+    .contato h2 { font-size: 26px; letter-spacing: -.015em; margin-bottom: 22px; }
+
+    .info-contato > li { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--borda); }
+    .info-contato > li:first-child { padding-top: 0; }
+    .info-contato > li:last-child { padding-bottom: 0; border-bottom: 0; }
+    .info-contato > li > .icone { width: 44px; height: 44px; padding: 12px; border-radius: 12px; background: var(--acento-suave); color: var(--acento-esc); }
+    .info-contato > li > div > strong { display: block; font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--texto-suave); }
+    .info-contato > li > div { min-width: 0; color: var(--texto); overflow-wrap: break-word; }
+    .contato-info { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .contato-bloco { display: flex; flex-direction: column; justify-content: space-between; }
+    .contato-bloco:first-child > .info-contato { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .horarios { padding-left: 32px; border-left: 1px solid var(--borda); }
+    .info-contato > li.horarios-cabeca { align-items: center; }
+    .horarios-cabeca strong { margin: 0; }
+    .horarios-lista { margin: 12px 0 -8px; }
+    .horarios-lista li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; border-radius: 10px; font-size: 15px; white-space: nowrap; }
+    .horarios-lista li + li { margin-top: 2px; }
+    .horario-dia { font-weight: 600; color: var(--texto); }
+    .horario-hora { color: var(--texto-suave); font-variant-numeric: tabular-nums; }
+    .horarios-lista li.fechado .horario-hora { color: var(--texto-fraco); }
+    .horarios-lista li.hoje { background: var(--primaria-suave); }
+    .horarios-lista li.hoje .horario-dia, .horarios-lista li.hoje .horario-hora { color: var(--primaria-texto); font-weight: 700; }
+    .mapa { min-height: 300px; overflow: hidden; border: 1px solid var(--borda); border-radius: var(--raio-g); background: var(--fundo-alt); box-shadow: var(--sombra-p); }
+    .mapa iframe { display: block; width: 100%; height: 100%; min-height: 300px; border: 0; }
+    :root[data-tema="escuro"] .mapa iframe { filter: brightness(.85); }
+
+    .btn-whats { background: #25d366; color: #fff; min-height: 54px; padding-inline: 28px; font-size: 16px; }
+    .btn-whats .icone { font-size: 22px; }
+    .btn-whats:hover { background: #1ebe5b; color: #fff; box-shadow: 0 0 0 4px rgb(37 211 102 / .25); }
+    /* ---------- faixa do WhatsApp (depois dos números) ---------- */
+    .faixa-whats-secao { padding: 0 0 56px; background: var(--fundo); }
+    .faixa-whats {
+      display: flex; align-items: center; gap: 16px; padding: 18px 18px 18px 20px;
+      background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p);
+    }
+    .faixa-whats-texto { display: flex; align-items: center; gap: 14px; flex: none; }
+    .faixa-whats-icone { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border-radius: 50%; background: #25d366; color: #fff; font-size: 24px; }
+    .faixa-whats-texto strong { display: block; font-size: 17px; color: var(--titulo); line-height: 1.3; }
+    .faixa-whats-texto span span { display: block; font-size: 14px; color: var(--texto-suave); line-height: 1.4; }
+    .faixa-whats .atalhos { flex: 1; justify-content: center; gap: 8px; }
+    .faixa-whats .atalho { padding: 8px 14px; }
+    .faixa-whats .btn-whats { flex: none; min-height: 48px; padding: 10px 20px; font-size: 15px; }
+    .faixa-whats .btn-whats .icone { font-size: 20px; }
+    .atalhos { display: flex; flex-wrap: wrap; gap: 10px; }
+    .atalho {
+      display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px;
+      border: 1.5px solid var(--borda); border-radius: 999px; background: var(--campo);
+      color: var(--texto); font-size: 15px; font-weight: 600;
+      transition: border-color .2s ease, box-shadow .2s ease, color .2s ease;
+    }
+    .atalho .icone { color: #1fa855; font-size: 18px; }
+    .atalho:hover { border-color: #25d366; color: var(--texto); box-shadow: 0 0 0 3px rgb(37 211 102 / .18); text-decoration: none; }
+
+    /* ---------- rodapé ---------- */
+    .rodape { background: var(--rodape-fundo); color: var(--rodape-texto); }
+    /* três blocos numa linha, separados por linhas verticais */
+    /* três colunas iguais na largura toda; todas com a mesma altura, então as linhas que dividem ficam iguais */
+    .rodape-grade { display: grid; grid-template-columns: repeat(3, 1fr); align-items: stretch; padding: 56px 20px 48px; }
+    .rodape-grade > * { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 32px; text-align: center; }
+    .rodape-grade > * + * { border-left: 1px solid rgb(255 255 255 / .14); }
+    .rodape-links ul { grid-template-columns: 1fr; justify-items: center; }
+    .rodape-marca .logo, .rodape-marca .logo-texto { color: #fff; }
+    .rodape-marca .logo-icone { background: var(--acento); color: #0b2a22; }
+    .rodape-marca .logo { justify-content: center; }
+    .rodape-marca p { max-width: 24em; margin: 14px auto 0; font-size: 16px; line-height: 1.65; }
+    .rodape h4 { margin-bottom: 12px; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .rodape a { color: var(--rodape-texto); }
+    .rodape a:hover { color: #fff; }
+    .rodape-links ul { display: grid; gap: 4px; }
+    .rodape-links a { display: inline-block; padding: 3px 0; font-size: 15px; border-bottom: 1px solid transparent; transition: color .2s ease, border-color .2s ease; }
+    .rodape-links a:hover { border-bottom-color: var(--acento); }
+    .rodape-fim { padding: 22px 0; border-top: 1px solid rgb(255 255 255 / .14); font-size: 16px; color: var(--rodape-texto); text-align: center; }
+    .rodape-fim p { margin: 0; }
+    /* crédito, igual ao do Amigo Fiel */
+    .credito-rotulo { display: block; margin-bottom: 12px; font-size: 15px; color: var(--rodape-texto); }
+    .rodape .credito-link {
+      display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px;
+      border: 1.5px solid rgb(255 255 255 / .22); border-radius: 12px;
+      color: #fff; font-size: 20px; font-weight: 700; letter-spacing: .06em;
+      transition: border-color .2s ease, background-color .2s ease;
+    }
+    .rodape .credito-link:hover { border-color: #fff; background: rgb(255 255 255 / .06); color: #fff; }
+    .credito-link .icone { width: 18px; height: 18px; }
+
+    .whatsapp {
+      position: fixed; right: 22px; bottom: 22px; z-index: 50;
+      width: 60px; height: 60px; display: grid; place-items: center;
+      border-radius: 50%; background: #25d366; color: #fff; font-size: 30px;
+      box-shadow: 0 12px 28px -10px rgb(37 211 102 / .9);
+      transition: background-color .2s ease, box-shadow .2s ease;
+    }
+    .whatsapp:hover { background: #1ebe5b; color: #fff; text-decoration: none; box-shadow: 0 0 0 5px rgb(37 211 102 / .25), 0 12px 28px -10px rgb(37 211 102 / .9); }
+
+    /* ---------- responsivo ---------- */
+    /* a faixa do WhatsApp só cabe numa linha a partir de 1200px; abaixo, os atalhos descem */
+    @media (max-width: 1199px) {
+      .faixa-whats { flex-wrap: wrap; row-gap: 16px; }
+      .faixa-whats-texto { flex: 1; }
+      .faixa-whats .atalhos { order: 3; flex-basis: 100%; justify-content: flex-start; }
+    }
+
+    @media (max-width: 1100px) {
+      .cabecalho .container { gap: 16px; }
+      .nav li a { padding: 9px 12px; }
+    }
+
+    /* menu vira botão quando os links e o "Agende" não cabem mais na linha */
+    @media (max-width: 920px) {
+      .menu-botao { display: grid; }
+      .cabecalho .container { justify-content: space-between; min-height: 68px; }
+      .nav {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 16px 18px;
+        background: var(--superficie); border-bottom: 1px solid var(--borda); box-shadow: var(--sombra-g);
+      }
+      .nav.aberto { display: flex; }
+      .nav ul { flex-direction: column; gap: 2px; margin: 0; }
+      .nav li a { padding: 15px 16px; border-radius: 12px; font-size: 16px; }
+      .nav li a.ativo::after { left: auto; right: 16px; top: 50%; bottom: auto; width: 8px; height: 8px; margin: -4px 0 0; border-radius: 50%; }
+      .cabecalho .cabecalho-cta { display: none; }
+      .nav .nav-cta { display: inline-flex; min-height: 50px; font-size: 15px; }
+      .nav .nav-cta .icone { font-size: 19px; }
+      .secao { scroll-margin-top: 68px; }
+    }
+
+    @media (max-width: 991px) {
+      .numero { padding: 4px 18px; }
+      .produtos-vitrine, .servicos { --por-linha: 2; }
+      .depoimentos { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
+      /* tablet: marca em cima; Navegue e crédito lado a lado embaixo */
+      .rodape-grade { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+      .rodape-grade > .rodape-marca { grid-column: 1 / -1; padding: 0 0 28px; border-bottom: 1px solid rgb(255 255 255 / .14); }
+      .rodape-grade > .rodape-links { border-left: 0; }
+      .slides { height: 460px; }
+      .destaque .container { gap: 48px; }
+      .contato { grid-template-columns: 1fr; }
+      .farmacia { flex-wrap: wrap; }
+      .farmacia .btn { width: 100%; }
+    }
+
+    @media (max-width: 767px) {
+      .container { padding: 0 16px; }
+
+      .cabecalho .container { min-height: 64px; }
+      .logo-texto { font-size: 22px; }
+      .logo-icone { width: 40px; height: 40px; font-size: 22px; }
+
+      .slides { height: 420px; }
+      .slide img { object-position: center; }
+      .slide::after { background: linear-gradient(0deg, rgb(8 30 24 / .6) 0%, rgb(8 30 24 / .1) 60%, transparent 100%); }
+      .legenda { left: var(--respiro-lateral); right: var(--respiro-lateral); top: auto; bottom: 50px; transform: none; width: auto; padding: 20px 20px 22px; border-radius: 20px; }
+      .legenda::before { width: 36px; height: 4px; margin-bottom: 12px; }
+      .legenda h2 { font-size: 25px; margin-bottom: 14px; }
+      .legenda p { display: none; }
+      .legenda .btn { min-height: 42px; padding: 9px 18px; font-size: 14px; }
+      .controles { width: 240px; height: 54px; bottom: -27px; }
+      .seta { width: 40px; height: 40px; }
+
+      .numeros { padding: 44px 0 26px; }
+      .numeros-lista { grid-template-columns: 1fr 1fr; row-gap: 22px; }
+      .numero { padding: 0 0 0 16px; }
+      .numero:nth-child(odd) { padding-left: 0; border-left: 0; }
+      .numero-titulo { font-size: 14px; }
+      .numero-detalhe { font-size: 13px; }
+      .secao { padding: 64px 0; scroll-margin-top: 64px; }
+      .titulo-secao { margin-bottom: 36px; }
+      .titulo-secao p { font-size: 16px; }
+      .destaque .container { grid-template-columns: 1fr; gap: 40px; }
+      .destaque.invertido .destaque-foto { order: 0; }
+      .destaque-foto::before { inset: 16px -10px -16px 16px; }
+      .destaque.invertido .destaque-foto::before { inset: 16px 16px -16px -10px; }
+      .destaque-texto p { font-size: 16px; }
+      .marcas-lista li { font-size: 19px; }
+
+      .produtos-vitrine, .servicos { --vao: 14px; }
+      .contato-info { padding: 24px 20px; grid-template-columns: 1fr; gap: 28px; }
+      .horarios { padding: 24px 0 0; border-left: 0; border-top: 1px solid var(--borda); }
+      .horarios-lista li { padding: 9px 12px; font-size: 15px; }
+      .faixa-whats-secao { padding-bottom: 40px; }
+      .faixa-whats { flex-direction: column; align-items: stretch; padding: 20px; }
+      .faixa-whats .atalhos { display: grid; grid-template-columns: 1fr 1fr; }
+      .faixa-whats .atalho { justify-content: center; }
+      .faixa-whats .btn-whats { order: 4; }
+      .mapa, .mapa iframe { min-height: 240px; }
+      /* celular: um bloco embaixo do outro, separados por linhas */
+      .rodape-grade { grid-template-columns: 1fr; row-gap: 0; padding: 48px 16px 8px; }
+      .rodape-grade > * { padding: 24px 0; border-left: 0; }
+      .rodape-grade > * + * { border-left: 0; border-top: 1px solid rgb(255 255 255 / .14); }
+      .rodape-grade > .rodape-marca { padding: 0 0 24px; border-bottom: 0; }
+      .rodape-fim { padding-bottom: 96px; } /* o botão do WhatsApp não cobre o texto */
+      .whatsapp { right: 16px; bottom: 16px; width: 56px; height: 56px; font-size: 28px; }
+    }
+
+    @media (max-width: 479px) {
+      .produtos-vitrine, .servicos { --vao: 12px; }
+      .produto-card { border-radius: var(--raio); }
+      .produto-corpo, .servico-corpo { padding: 12px 12px 14px; }
+      .produto-corpo strong, .servico h3 { font-size: 15px; }
+      .servico p { font-size: 13px; }
+      .servico { border-radius: var(--raio); }
+      .produto-corpo > span { font-size: 13px; }
+      .farmacia { padding: 20px; gap: 16px; }
+      .farmacia-icones { display: none; }
+      .legenda h2 { font-size: 23px; }
+    }
+
+    @media (max-width: 359px) {
+      .logo-texto { font-size: 20px; }
+      .botao-tema, .menu-botao { width: 40px; height: 40px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-pata" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="5.5" cy="10" r="2.3"/><circle cx="9.5" cy="5.3" r="2.3"/><circle cx="14.5" cy="5.3" r="2.3"/><circle cx="18.5" cy="10" r="2.3"/><path d="M12 11.5c-2.8 0-6 3.6-6 6.4 0 1.7 1.3 2.6 2.7 2.6 1.3 0 2.1-.7 3.3-.7s2 .7 3.3.7c1.4 0 2.7-.9 2.7-2.6 0-2.8-3.2-6.4-6-6.4z"/></g></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+      <symbol id="i-lua" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+      <symbol id="i-esquerda" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+      <symbol id="i-direita" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+      <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-local" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"/></symbol>
+      <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 7 8.5-7"/></symbol>
+      <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-estrela" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3-4.6-4.4 6.3-.9z"/></symbol>
+      <symbol id="i-racao" viewBox="0 0 24 24"><path d="M6.5 6.5h11L19 21H5z"/><path d="M8 6.5 7 3h10l-1 3.5"/><circle cx="12" cy="14.5" r="2.5"/></symbol>
+      <symbol id="i-osso" viewBox="0 0 24 24"><path d="M15.6 5.2a2.6 2.6 0 0 1 4.4-.8 2.6 2.6 0 0 1-.4 5.4l-9.8 9.8a2.6 2.6 0 0 1-5.4.4 2.6 2.6 0 0 1-.8-4.4 2.6 2.6 0 0 1 2.2-.8l9.8-9.8a2.6 2.6 0 0 1 0-.2z"/></symbol>
+      <symbol id="i-bola" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6c3.2 2.8 3.2 10 0 12.8M18.4 5.6c-3.2 2.8-3.2 10 0 12.8"/></symbol>
+      <symbol id="i-coleira" viewBox="0 0 24 24"><path d="M3 9.5C3 7.6 7 6 12 6s9 1.6 9 3.5v2c0 1.9-4 3.5-9 3.5s-9-1.6-9-3.5z"/><path d="M3 9.5C3 11.4 7 13 12 13s9-1.6 9-3.5"/><path d="M12 15v2"/><circle cx="12" cy="19.2" r="2"/></symbol>
+      <symbol id="i-higiene" viewBox="0 0 24 24"><path d="M8 9h8v10.5a2.5 2.5 0 0 1-2.5 2.5h-3A2.5 2.5 0 0 1 8 19.5z"/><path d="M10 9V6h4v3"/><path d="M12 6V3h4"/><path d="M8 14h8"/></symbol>
+      <symbol id="i-remedio" viewBox="0 0 24 24"><rect x="2" y="8.5" width="20" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="m9.5 9.5 5 5"/></symbol>
+      <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+      <symbol id="i-seta-diagonal" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+      <symbol id="i-aspas" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M3.5 18.5v-6c0-4.3 2.4-7.2 6.3-7.9l.8 1.9C8.1 7.3 7 9 6.9 11H10v7.5zm10 0v-6c0-4.3 2.4-7.2 6.3-7.9l.8 1.9c-2.5.8-3.6 2.5-3.7 4.5H20v7.5z"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="cabecalho">
+    <div class="container">
+      <a href="#inicio" class="logo" aria-label="Amigo Fiel, página inicial">
+        <span class="logo-icone"><svg class="icone" aria-hidden="true"><use href="#i-pata"/></svg></span>
+        <span class="logo-texto">Amigo Fiel</span>
+      </a>
+      <nav class="nav" id="menu" aria-label="Principal">
+        <ul>
+          <li><a href="#inicio" class="ativo" aria-current="true">Início</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#loja">Loja</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats nav-cta" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
+      </nav>
+      <div class="acoes">
+        <button class="botao-tema" type="button" aria-label="Ativar modo escuro"><svg class="icone" aria-hidden="true"><use href="#i-lua"/></svg></button>
+        <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><svg class="icone" aria-hidden="true"><use href="#i-menu"/></svg></button>
+        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats cabecalho-cta" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main>
+    <section class="carrossel" id="inicio" aria-roledescription="carrossel" aria-label="Destaques">
+      <div class="slides">
+      <div class="slide ativo" role="group" aria-roledescription="slide" aria-label="1 de 4">
+        <picture>
+          <source media="(max-width: 767px)" srcset="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=600&amp;q=70 640w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=960&amp;h=900&amp;q=70 960w" sizes="100vw">
+          <img src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70" srcset="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1024&amp;h=400&amp;q=70 1024w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70 1440w, https://images.unsplash.com/photo-1525253013412-55c1a69a5738?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1920&amp;h=750&amp;q=70 1920w" sizes="100vw" alt="Quatro filhotes de cachorro sentados juntos na porta" fetchpriority="high">
+        </picture>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="2 de 4">
+        <picture>
+          <source media="(max-width: 767px)" data-srcset="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=600&amp;q=70 640w, https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=960&amp;h=900&amp;q=70 960w" sizes="100vw">
+          <img data-src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70" data-srcset="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1024&amp;h=400&amp;q=70 1024w, https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70 1440w, https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1920&amp;h=750&amp;q=70 1920w" sizes="100vw" alt="Cachorro marrom correndo feliz na beira do mar" decoding="async">
+        </picture>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="3 de 4">
+        <picture>
+          <source media="(max-width: 767px)" data-srcset="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=600&amp;q=70 640w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=960&amp;h=900&amp;q=70 960w" sizes="100vw">
+          <img data-src="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70" data-srcset="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1024&amp;h=400&amp;q=70 1024w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70 1440w, https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1920&amp;h=750&amp;q=70 1920w" sizes="100vw" alt="Gato branco de olhos claros deitado numa manta" decoding="async">
+        </picture>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="4 de 4">
+        <picture>
+          <source media="(max-width: 767px)" data-srcset="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=640&amp;h=600&amp;q=70 640w, https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=960&amp;h=900&amp;q=70 960w" sizes="100vw">
+          <img data-src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70" data-srcset="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1024&amp;h=400&amp;q=70 1024w, https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1440&amp;h=560&amp;q=70 1440w, https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1920&amp;h=750&amp;q=70 1920w" sizes="100vw" alt="Dois cachorros pequenos correndo juntos numa trilha" decoding="async">
+        </picture>
+      </div>
+      </div>
+      <div class="legenda-area">
+        <div class="legenda">
+          <div class="legenda-textos">
+            <div class="legenda-texto ativo">
+              <h2>Cuidamos de quem você ama</h2>
+              <p>Atendimento veterinário completo para cães e gatos, com carinho e tecnologia.</p>
+            </div>
+            <div class="legenda-texto" aria-hidden="true">
+              <h2>Vacinas e <span class="sem-quebra">check-up</span> de filhotes</h2>
+              <p>Calendário de vacinação e primeiras consultas para a vida toda do seu amigo.</p>
+            </div>
+            <div class="legenda-texto" aria-hidden="true">
+              <h2>Atendimento especializado para gatos</h2>
+              <p>Ambiente calmo e profissionais que entendem o jeito de cada felino.</p>
+            </div>
+            <div class="legenda-texto" aria-hidden="true">
+              <h2>Banho, tosa e loja completa</h2>
+              <p>Tudo para o seu pet em um só lugar: banho e tosa, rações e acessórios.</p>
+            </div>
+          </div>
+          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="controles">
+        <button class="seta ant" type="button" aria-label="Slide anterior"><svg class="icone" aria-hidden="true"><use href="#i-esquerda"/></svg></button>
+        <div class="pontos">
+          <button class="ponto" type="button" aria-label="Ir para o slide 1"></button>
+          <button class="ponto" type="button" aria-label="Ir para o slide 2"></button>
+          <button class="ponto" type="button" aria-label="Ir para o slide 3"></button>
+          <button class="ponto" type="button" aria-label="Ir para o slide 4"></button>
+        </div>
+        <button class="seta prox" type="button" aria-label="Próximo slide"><svg class="icone" aria-hidden="true"><use href="#i-direita"/></svg></button>
+      </div>
+    </section>
+
+    <section class="numeros" aria-label="O Amigo Fiel em números">
+      <div class="container">
+        <ul class="numeros-lista">
+          <li class="numero">
+            <strong class="numero-destaque"><span class="numero-valor" data-alvo="4.5" data-casas="1">4,5</span><svg class="icone numero-estrela" aria-hidden="true"><use href="#i-estrela"/></svg></strong>
+            <span class="numero-titulo">Nota no Google</span>
+            <span class="numero-detalhe">535 avaliações de tutores</span>
+          </li>
+          <li class="numero">
+            <strong class="numero-destaque"><span class="numero-prefixo">+</span><span class="numero-valor" data-alvo="10" data-casas="0">10</span></strong>
+            <span class="numero-titulo">Anos de cuidado</span>
+            <span class="numero-detalhe">com cães e gatos da região</span>
+          </li>
+          <li class="numero">
+            <strong class="numero-destaque"><span class="numero-prefixo">+</span><span class="numero-valor" data-alvo="5" data-casas="0">5</span><span class="numero-sufixo"> mil</span></strong>
+            <span class="numero-titulo">Pets atendidos</span>
+            <span class="numero-detalhe">em consultas, vacinas e exames</span>
+          </li>
+          <li class="numero">
+            <strong class="numero-destaque"><span class="numero-prefixo">+</span><span class="numero-valor" data-alvo="100" data-casas="0">100</span></strong>
+            <span class="numero-titulo">Banhos por mês</span>
+            <span class="numero-detalhe">com produtos hipoalergênicos</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="faixa-whats-secao" aria-label="Agende pelo WhatsApp">
+      <div class="container">
+        <div class="faixa-whats">
+          <div class="faixa-whats-texto">
+            <span class="faixa-whats-icone"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg></span>
+            <span><strong>Agende pelo WhatsApp</strong><span>Escolha o assunto e a mensagem já vai pronta</span></span>
+          </div>
+          <div class="atalhos">
+            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consulta</a>
+            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20a%20vacina%C3%A7%C3%A3o%20do%20meu%20pet." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Vacinação</a>
+            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20banho%20e%20tosa." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Banho e tosa</a>
+            <a class="atalho" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20loja." target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Loja</a>
+          </div>
+          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-alt destaque" id="sobre">
+      <div class="container">
+        <div class="destaque-foto">
+          <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70" srcset="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=450&amp;q=70 600w, https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w, https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1200&amp;h=900&amp;q=70 1200w" sizes="(max-width: 767px) 92vw, (max-width: 1200px) 46vw, 560px" alt="Dois cachorros pequenos correndo juntos numa trilha" loading="lazy" width="800" height="600" decoding="async">
+        </div>
+        <div class="destaque-texto">
+          <h2>Sobre a clínica</h2>
+          <p>Há mais de 10 anos cuidando da saúde de cães e gatos da nossa região. Nossa equipe de veterinários atende com hora marcada, sem pressa, e explica cada passo do tratamento para você.</p>
+          <ul>
+            <li>Consultas, vacinas e exames no mesmo lugar</li>
+            <li>Centro cirúrgico e internação</li>
+            <li>Atendimento de emergência em horário comercial</li>
+          </ul>
+          <a href="#servicos" class="btn btn-ciano">Saiba mais</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao destaque invertido" id="banho-e-tosa">
+      <div class="container">
+        <div class="destaque-foto">
+          <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70" srcset="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=600&amp;h=450&amp;q=70 600w, https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w, https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=1200&amp;h=900&amp;q=70 1200w" sizes="(max-width: 767px) 92vw, (max-width: 1200px) 46vw, 560px" alt="Cachorro golden retriever sendo lavado no banho" loading="lazy" width="800" height="600" decoding="async">
+        </div>
+        <div class="destaque-texto">
+          <h2>Banho e tosa</h2>
+          <p>Seu pet limpo, cheiroso e confortável. Usamos produtos hipoalergênicos, secagem em temperatura segura e profissionais treinados para lidar com os bichinhos mais agitados ou mais tímidos.</p>
+          <ul>
+            <li>Banho, tosa higiênica e tosa na máquina ou na tesoura</li>
+            <li>Hidratação e corte de unhas</li>
+            <li>Busca e entrega (leva e traz)</li>
+          </ul>
+          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20banho%20e%20tosa." class="btn btn-ciano" target="_blank" rel="noopener">Agende um horário</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-alt" id="servicos">
+      <div class="container">
+        <div class="titulo-secao">
+          <h2>Cuidado completo para o seu pet</h2>
+        </div>
+        <div class="servicos">
+          <article class="servico">
+            <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="Mulher acariciando um gato durante o atendimento" loading="lazy" width="560" height="420" decoding="async">
+            <div class="servico-corpo">
+              <h3>Consultas</h3>
+              <p>Clínica geral para cães e gatos, com acompanhamento de rotina e consultas de retorno.</p>
+              <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%3A%20consultas." class="btn btn-contorno" target="_blank" rel="noopener">Agendar</a>
+            </div>
+          </article>
+          <article class="servico">
+            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="Filhote de cachorro correndo no gramado" loading="lazy" width="560" height="420" decoding="async">
+            <div class="servico-corpo">
+              <h3>Vacinas</h3>
+              <p>Vacinas para filhotes e adultos, com carteirinha digital e lembrete da próxima dose.</p>
+              <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%3A%20vacinas." class="btn btn-contorno" target="_blank" rel="noopener">Agendar</a>
+            </div>
+          </article>
+          <article class="servico">
+            <img src="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="Cachorro preto usando colar elizabetano depois da cirurgia" loading="lazy" width="560" height="420" decoding="async">
+            <div class="servico-corpo">
+              <h3>Cirurgias e internação</h3>
+              <p>Centro cirúrgico equipado, anestesia monitorada e internação com acompanhamento contínuo.</p>
+              <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%3A%20cirurgias%20e%20interna%C3%A7%C3%A3o." class="btn btn-contorno" target="_blank" rel="noopener">Agendar</a>
+            </div>
+          </article>
+          <article class="servico">
+            <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="Husky siberiano de olhos azuis" loading="lazy" width="560" height="420" decoding="async">
+            <div class="servico-corpo">
+              <h3>Exames</h3>
+              <p>Exames de sangue, ultrassom e raio-x com resultado rápido e laudo explicado.</p>
+              <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%3A%20exames." class="btn btn-contorno" target="_blank" rel="noopener">Agendar</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="marcas" aria-label="Marcas que trabalhamos">
+      <div class="marcas-janela">
+        <div class="marcas-trilho">
+          <ul class="marcas-lista">
+            <li>Royal Canin</li>
+            <li>Premier</li>
+            <li>Golden</li>
+            <li>Hill's</li>
+            <li>Pedigree</li>
+            <li>Whiskas</li>
+            <li>Bravecto</li>
+            <li>NexGard</li>
+            <li>Simparic</li>
+            <li>Pipicat</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-alt" id="loja">
+      <div class="container">
+        <div class="titulo-secao">
+          <h2>Loja</h2>
+        </div>
+        <ul class="produtos-vitrine">
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20ra%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Rações: perguntar no WhatsApp">
+            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Rações</strong><span>Secas e linhas terapêuticas para cães e gatos.</span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20sach%C3%AAs%20e%20alimentos%20%C3%BAmidos." target="_blank" rel="noopener" aria-label="Sachês e úmidos: perguntar no WhatsApp">
+            <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Sachês e úmidos</strong><span>Sachês e patês para cães e gatos.</span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20petiscos." target="_blank" rel="noopener" aria-label="Petiscos: perguntar no WhatsApp">
+            <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Petiscos</strong><span>Biscoitos, ossinhos e petiscos naturais.</span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20brinquedos." target="_blank" rel="noopener" aria-label="Brinquedos: perguntar no WhatsApp">
+            <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Brinquedos</strong><span>Pelúcias, mordedores, bolinhas e arranhadores.</span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20camas%20e%20caminhas." target="_blank" rel="noopener" aria-label="Camas e caminhas: perguntar no WhatsApp">
+            <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Camas e caminhas</strong><span>Caminhas, almofadas e caixas de transporte.</span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20coleiras." target="_blank" rel="noopener" aria-label="Coleiras: perguntar no WhatsApp">
+            <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Coleiras</strong><span>Coleiras ajustáveis de vários tamanhos e cores.</span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20peitorais%20e%20guias." target="_blank" rel="noopener" aria-label="Peitorais e guias: perguntar no WhatsApp">
+            <img src="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1558929996-da64ba858215?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Peitorais e guias</strong><span>Peitorais e guias para passeios mais seguros.</span></span>
+          </a></li>
+          <li><a class="produto-card" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20roupinhas." target="_blank" rel="noopener" aria-label="Roupinhas: perguntar no WhatsApp">
+            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70" srcset="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=360&amp;h=270&amp;q=70 360w, https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=560&amp;h=420&amp;q=70 560w, https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;crop=faces,entropy&amp;w=800&amp;h=600&amp;q=70 800w" sizes="(max-width: 991px) 46vw, 310px" alt="" loading="lazy" decoding="async" width="560" height="420">
+            <span class="produto-corpo"><strong>Roupinhas</strong><span>Moletons, capas de chuva e pijamas.</span></span>
+          </a></li>
+        </ul>
+        <div class="farmacia">
+          <div class="farmacia-icones"><svg class="icone" aria-hidden="true"><use href="#i-remedio"/></svg><svg class="icone" aria-hidden="true"><use href="#i-higiene"/></svg></div>
+          <div class="farmacia-texto">
+            <strong>Farmácia veterinária e higiene</strong>
+            <span>Antipulgas, vermífugos, medicamentos com receita, areias, tapetes higiênicos e shampoos.</span>
+          </div>
+          <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Queria%20saber%20sobre%20a%20farm%C3%A1cia%20veterin%C3%A1ria." class="btn btn-whats" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Perguntar no WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="depoimentos">
+      <div class="container">
+        <div class="titulo-secao"><h2>Quem confia na gente</h2></div>
+        <div class="depoimentos">
+          <blockquote class="depoimento" style="margin:0">
+            <svg class="icone" aria-hidden="true"><use href="#i-aspas"/></svg>
+            <div class="estrelas" aria-label="5 estrelas">★★★★★</div>
+            <p>A Thaís atendeu a Mel com muito cuidado. Explicou tudo com calma e ainda mandou lembrete da próxima vacina.</p>
+            <footer><strong>Ana Paula</strong> · tutora da Mel</footer>
+          </blockquote>
+          <blockquote class="depoimento" style="margin:0">
+            <svg class="icone" aria-hidden="true"><use href="#i-aspas"/></svg>
+            <div class="estrelas" aria-label="5 estrelas">★★★★★</div>
+            <p>Meu gato morre de medo de veterinário e aqui ele ficou tranquilo. Já virou a nossa clínica de confiança.</p>
+            <footer><strong>Ricardo</strong> · tutor do Tom</footer>
+          </blockquote>
+          <blockquote class="depoimento" style="margin:0">
+            <svg class="icone" aria-hidden="true"><use href="#i-aspas"/></svg>
+            <div class="estrelas" aria-label="5 estrelas">★★★★★</div>
+            <p>O banho e tosa ficou impecável e o leva e traz ajuda muito na correria da semana. Recomendo!</p>
+            <footer><strong>Juliana</strong> · tutora do Thor</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+    <section class="secao secao-alt" id="contato">
+      <div class="container">
+        <div class="titulo-secao"><h2>Contato</h2></div>
+        <div class="contato">
+        <div class="contato-info">
+          <div class="contato-bloco">
+            <ul class="info-contato">
+              <li><svg class="icone" aria-hidden="true"><use href="#i-local"/></svg><div><strong>Endereço</strong>Rua das Flores, 123 – Centro<br>São Paulo/SP – CEP 00000-000</div></li>
+              <li><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg><div><strong>WhatsApp</strong><a href="https://wa.me/5511900000000" target="_blank" rel="noopener">(11) 90000-0000</a></div></li>
+              <li><svg class="icone" aria-hidden="true"><use href="#i-email"/></svg><div><strong>E-mail</strong><a href="mailto:contato@amigofiel.com.br">contato@amigofiel.com.br</a></div></li>
+              <li><svg class="icone" aria-hidden="true"><use href="#i-instagram"/></svg><div><strong>Instagram</strong><a href="https://instagram.com/amigofiel" target="_blank" rel="noopener">@amigofiel</a></div></li>
+            </ul>
+          </div>
+          <div class="contato-bloco horarios">
+            <ul class="info-contato">
+              <li class="horarios-cabeca"><svg class="icone" aria-hidden="true"><use href="#i-relogio"/></svg><div><strong>Horário de funcionamento</strong></div></li>
+            </ul>
+            <ul class="horarios-lista">
+              <li data-dia="1"><span class="horario-dia">Segunda</span><span class="horario-hora">08:00 – 19:00</span></li>
+              <li data-dia="2"><span class="horario-dia">Terça</span><span class="horario-hora">08:00 – 19:00</span></li>
+              <li data-dia="3"><span class="horario-dia">Quarta</span><span class="horario-hora">08:00 – 19:00</span></li>
+              <li data-dia="4"><span class="horario-dia">Quinta</span><span class="horario-hora">08:00 – 19:00</span></li>
+              <li data-dia="5"><span class="horario-dia">Sexta</span><span class="horario-hora">08:00 – 19:00</span></li>
+              <li data-dia="6"><span class="horario-dia">Sábado</span><span class="horario-hora">08:00 – 14:00</span></li>
+              <li data-dia="0" class="fechado"><span class="horario-dia">Domingo</span><span class="horario-hora">Fechado</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mapa">
+          <iframe title="Mapa da clínica" loading="lazy" src="https://www.google.com/maps?q=S%C3%A3o+Paulo+SP&amp;output=embed"></iframe>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="rodape">
+    <div class="container rodape-grade">
+      <div class="rodape-marca">
+        <a href="#inicio" class="logo" aria-label="Amigo Fiel, voltar ao início"><span class="logo-icone"><svg class="icone" aria-hidden="true"><use href="#i-pata"/></svg></span><span class="logo-texto">Amigo Fiel</span></a>
+        <p>Pet shop e clínica veterinária na Vila Mariana. Cuidamos do seu pet como se fosse nosso.</p>
+      </div>
+      <nav class="rodape-links" aria-label="Rodapé">
+        <h4>Navegue</h4>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#loja">Loja</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="rodape-credito">
+        <span class="credito-rotulo">Desenvolvido por</span>
+        <a class="credito-link" href="https://aquilesalves.github.io/SHIFT/" target="_blank" rel="noopener">SHIFT <svg class="icone" aria-hidden="true"><use href="#i-seta-diagonal"/></svg></a>
+      </div>
+    </div>
+    <div class="rodape-fim">
+      <div class="container">
+        <p>© 2026 Amigo Fiel. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5511900000000" class="whatsapp" aria-label="Falar pelo WhatsApp" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
+
+  <script>
+    /* Amigo Fiel */
+
+    (function () {
+      var reduzMovimentoGeral = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // menu do celular
+      var menuBotao = document.querySelector('.menu-botao');
+      var nav = document.querySelector('.nav');
+      if (menuBotao && nav) {
+        var abrirMenu = function (abrir) {
+          nav.classList.toggle('aberto', abrir);
+          menuBotao.setAttribute('aria-expanded', abrir);
+          menuBotao.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
+          menuBotao.querySelector('use').setAttribute('href', abrir ? '#i-fechar' : '#i-menu');
+        };
+        menuBotao.addEventListener('click', function (e) {
+          e.stopPropagation();
+          abrirMenu(!nav.classList.contains('aberto'));
+        });
+        // fecha ao tocar fora do menu ou apertar Esc
+        document.addEventListener('click', function (e) {
+          if (nav.classList.contains('aberto') && !nav.contains(e.target)) abrirMenu(false);
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && nav.classList.contains('aberto')) { abrirMenu(false); menuBotao.focus(); }
+        });
+      }
+
+      // carrossel
+      var carrossel = document.querySelector('.carrossel');
+      if (carrossel) {
+        var slides = carrossel.querySelectorAll('.slide');
+        var pontos = carrossel.querySelectorAll('.ponto');
+        var atual = 0;
+        var timer = null;
+        var reduzMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        var textos = carrossel.querySelectorAll('.legenda-texto');
+        var timerSaida = null;
+
+        function ir(i) {
+          var anterior = atual;
+          atual = (i + slides.length) % slides.length;
+          // baixa a foto do slide atual, se ainda não baixou
+          carregarSlide(slides[atual]);
+          slides.forEach(function (s, n) {
+            s.classList.remove('saindo');
+            s.classList.toggle('ativo', n === atual);
+            s.setAttribute('aria-hidden', n !== atual);
+          });
+          // a foto anterior fica inteira por baixo até a nova terminar de aparecer
+          if (anterior !== atual) {
+            var saindo = slides[anterior];
+            saindo.classList.add('saindo');
+            clearTimeout(timerSaida);
+            timerSaida = setTimeout(function () { saindo.classList.remove('saindo'); }, 950);
+          }
+          textos.forEach(function (t, n) {
+            t.classList.toggle('ativo', n === atual);
+            if (n === atual) t.removeAttribute('aria-hidden'); else t.setAttribute('aria-hidden', 'true');
+          });
+          pontos.forEach(function (p, n) {
+            p.classList.toggle('ativo', n === atual);
+            p.setAttribute('aria-current', n === atual);
+          });
+        }
+
+        function carregarSlide(slide) {
+          slide.querySelectorAll('[data-srcset]').forEach(function (el) {
+            el.srcset = el.getAttribute('data-srcset');
+            el.removeAttribute('data-srcset');
+          });
+          slide.querySelectorAll('img[data-src]').forEach(function (img) {
+            img.src = img.getAttribute('data-src');
+            img.removeAttribute('data-src');
+          });
+        }
+
+        // com a página já aberta, adianta as fotos dos outros slides
+        window.addEventListener('load', function () {
+          setTimeout(function () { slides.forEach(carregarSlide); }, 1500);
+        });
+
+        function iniciar() {
+          if (reduzMovimento) return;
+          parar();
+          timer = setInterval(function () { ir(atual + 1); }, 5000);
+        }
+
+        function parar() {
+          if (timer) { clearInterval(timer); timer = null; }
+        }
+
+        carrossel.querySelector('.ant').addEventListener('click', function () { ir(atual - 1); });
+        carrossel.querySelector('.prox').addEventListener('click', function () { ir(atual + 1); });
+        pontos.forEach(function (p, n) {
+          p.addEventListener('click', function () { ir(n); });
+        });
+
+        carrossel.addEventListener('mouseenter', parar);
+        carrossel.addEventListener('mouseleave', iniciar);
+        carrossel.addEventListener('focusin', parar);
+        carrossel.addEventListener('focusout', iniciar);
+
+        // deslizar com o dedo
+        var inicioX = null;
+        carrossel.addEventListener('touchstart', function (e) { inicioX = e.touches[0].clientX; }, { passive: true });
+        carrossel.addEventListener('touchend', function (e) {
+          if (inicioX === null) return;
+          var dx = e.changedTouches[0].clientX - inicioX;
+          if (Math.abs(dx) > 50) ir(atual + (dx < 0 ? 1 : -1));
+          inicioX = null;
+        });
+
+        ir(0);
+        iniciar();
+      }
+
+      // ---------- página única ----------
+
+      // menu do celular fecha ao escolher uma seção
+      if (menuBotao && nav) {
+        nav.addEventListener('click', function (e) {
+          if (e.target.closest('a') && nav.classList.contains('aberto')) abrirMenu(false);
+        });
+      }
+
+      // marca no menu a seção que está na tela
+      var linksMenu = Array.prototype.slice.call(document.querySelectorAll('.nav ul a[href^="#"]'));
+      if ('IntersectionObserver' in window) {
+        var observador = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) {
+            if (!entrada.isIntersecting) return;
+            linksMenu.forEach(function (a) {
+              var atual = a.getAttribute('href') === '#' + entrada.target.id;
+              a.classList.toggle('ativo', atual);
+              if (atual) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+            });
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        linksMenu.forEach(function (a) {
+          var secao = document.querySelector(a.getAttribute('href'));
+          if (secao) observador.observe(secao);
+        });
+      }
+
+
+      // ---------- modo claro e escuro ----------
+      var raiz = document.documentElement;
+      var botaoTema = document.querySelector('.botao-tema');
+      var metaCor = document.querySelector('meta[name="theme-color"]');
+      function refletirTema() {
+        var escuro = raiz.getAttribute('data-tema') === 'escuro';
+        botaoTema.setAttribute('aria-label', escuro ? 'Ativar modo claro' : 'Ativar modo escuro');
+        botaoTema.querySelector('use').setAttribute('href', escuro ? '#i-sol' : '#i-lua');
+        metaCor.setAttribute('content', getComputedStyle(raiz).getPropertyValue('--fundo').trim());
+      }
+      function aplicarTema(tema, salvar) {
+        var trocar = function () {
+          raiz.setAttribute('data-tema', tema);
+          refletirTema();
+        };
+        // navegadores sem View Transitions (ou quem desativou animações) trocam na hora
+        if (document.startViewTransition && !reduzMovimentoGeral) document.startViewTransition(trocar);
+        else trocar();
+        if (salvar) { try { localStorage.setItem('tema', tema); } catch (e) {} }
+      }
+      if (botaoTema) {
+        botaoTema.addEventListener('click', function () {
+          aplicarTema(raiz.getAttribute('data-tema') === 'escuro' ? 'claro' : 'escuro', true);
+        });
+        // sem escolha salva, acompanha o sistema
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          var salvo = null;
+          try { salvo = localStorage.getItem('tema'); } catch (erro) {}
+          if (!salvo) aplicarTema(e.matches ? 'escuro' : 'claro', false);
+        });
+        refletirTema();
+      }
+
+      // ---------- horários: destaca o dia de hoje ----------
+      var linhaHoje = document.querySelector('.horarios-lista [data-dia="' + new Date().getDay() + '"]');
+      if (linhaHoje) {
+        linhaHoje.classList.add('hoje');
+        linhaHoje.querySelector('.horario-dia').insertAdjacentText('beforeend', ' (hoje)');
+      }
+
+      // ---------- números: contam até o valor quando aparecem na tela ----------
+      var numeros = document.querySelectorAll('.numero-valor[data-alvo]');
+      if (numeros.length && !reduzMovimentoGeral && 'IntersectionObserver' in window) {
+        var observaNumeros = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) {
+            if (!entrada.isIntersecting) return;
+            observaNumeros.unobserve(entrada.target);
+            var el = entrada.target;
+            var alvo = parseFloat(el.getAttribute('data-alvo'));
+            var casas = parseInt(el.getAttribute('data-casas') || '0', 10);
+            // trava a largura final para o resto da linha não pular enquanto conta
+            el.style.display = 'inline-block';
+            el.style.minWidth = el.offsetWidth + 'px';
+            var inicio = null;
+            function passo(agora) {
+              if (inicio === null) inicio = agora;
+              var progresso = Math.min((agora - inicio) / 1400, 1);
+              var valor = alvo * (1 - Math.pow(1 - progresso, 3));
+              el.textContent = valor.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
+              if (progresso < 1) requestAnimationFrame(passo);
+            }
+            requestAnimationFrame(passo);
+          });
+        }, { threshold: 0.6 });
+        numeros.forEach(function (el) { observaNumeros.observe(el); });
+      }
+
+      // ---------- marcas que trabalhamos ----------
+      // repete a lista até passar da largura da tela e cola uma cópia, para a faixa girar sem emenda
+      var trilhoMarcas = document.querySelector('.marcas-trilho');
+      if (trilhoMarcas && !reduzMovimentoGeral) {
+        var listaMarcas = trilhoMarcas.querySelector('.marcas-lista');
+        var itensMarcas = listaMarcas.innerHTML;
+        trilhoMarcas.classList.add('animada');
+        var largura = Math.max(window.innerWidth, window.screen.width || 0);
+        while (listaMarcas.scrollWidth < largura && listaMarcas.children.length < 80) {
+          listaMarcas.insertAdjacentHTML('beforeend', itensMarcas);
+        }
+        var copiaMarcas = listaMarcas.cloneNode(true);
+        copiaMarcas.setAttribute('aria-hidden', 'true');
+        trilhoMarcas.appendChild(copiaMarcas);
+      }
+    })();
+  </script>
+</body>
+</html>
