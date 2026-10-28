@@ -17,41 +17,50 @@
       try { tema = localStorage.getItem('tema'); } catch (e) {}
       if (tema !== 'claro' && tema !== 'escuro') tema = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
       document.documentElement.setAttribute('data-tema', tema);
+      var cor = null;
+      try { cor = localStorage.getItem('cor'); } catch (e) {}
+      if ('verde|azul|ciano|roxo|vermelho|laranja|amarelo'.split('|').indexOf(cor) > 0) document.documentElement.setAttribute('data-cor', cor);
     })();
   </script>
   <style>
     /* Amigo Fiel */
 
-    /* ---------- cores (as mesmas do site Amigo Fiel) ---------- */
+    /* ---------- cores ----------
+       A cor de destaque vem da paleta escolhida (verde é a padrão). Fundos, bordas,
+       títulos e rodapé são misturas dela, então o site inteiro acompanha a troca. */
     :root {
-      --primaria: #0b7a5c;
-      --primaria-esc: #075c45;
-      --primaria-texto: #0b6b51;
-      --primaria-suave: #cbe5d7;
-      --acento: #4fd1a5;
-      --acento-esc: #0e8f69;
-      --acento-suave: #c6e7d6;
+      --cor: #0b7a5c;          /* destaque no modo claro (botões, logo) */
+      --cor-texto: #0b6b51;    /* destaque em texto no modo claro */
+      --cor-sobre: #ffffff;    /* texto em cima de um botão no modo claro */
+      --cor-clara: #5fd3a8;    /* destaque no modo escuro */
+      --cor-clara-sobre: #0d2219;
+
+      --primaria: var(--cor);
+      --primaria-esc: color-mix(in srgb, var(--cor) 80%, #000);
+      --primaria-texto: var(--cor-texto);
+      --primaria-suave: color-mix(in srgb, var(--cor) 17%, #f4f6f5);
+      --acento: var(--cor-clara);
+      --acento-esc: var(--cor-texto);
+      --acento-suave: color-mix(in srgb, var(--cor) 19%, #f4f6f5);
       --quente: #f2b73b;
       --quente-esc: #e3a21c;
       --tinta-quente: #2b1d00;
-      --botao-fundo: var(--primaria);
-      --botao-hover: var(--primaria-esc);
-      --botao-texto: #ffffff;
-      --faixa: var(--primaria);
-      --faixa-texto: #ffffff;
+      --botao-fundo: var(--cor);
+      --botao-hover: color-mix(in srgb, var(--cor) 82%, #000);
+      --botao-texto: var(--cor-sobre);
 
-      --fundo: #e2ebe3;
-      --fundo-alt: #d7e3d9;
-      --superficie: #eef4ef;
-      --campo: #e6eee7;
-      --borda: #c4d4c8;
-      --titulo: #0d3a2d;
+      --fundo: color-mix(in srgb, var(--cor) 7%, #eff1f0);
+      --fundo-alt: color-mix(in srgb, var(--cor) 10%, #e9ecea);
+      --superficie: color-mix(in srgb, var(--cor) 4%, #f6f7f6);
+      --campo: color-mix(in srgb, var(--cor) 6%, #eff1f0);
+      --borda: color-mix(in srgb, var(--cor) 15%, #d5dad7);
+      --titulo: color-mix(in srgb, var(--cor-texto) 60%, #000);
       --texto: #1c2420;
       --texto-suave: #435049;
       --texto-fraco: #58645d;
-      --rodape-fundo: linear-gradient(180deg, #0f3b2f 0%, #0b2a22 100%);
-      --rodape-texto: #cfe3da;
-      --rodape-fraco: #9dbcaf;
+      --rodape-fundo: linear-gradient(180deg, color-mix(in srgb, var(--cor) 42%, #06100c) 0%, color-mix(in srgb, var(--cor) 30%, #050b09) 100%);
+      --rodape-texto: #d8e3de;
+      --rodape-fraco: #a9b8b1;
 
       --sombra-p: 0 1px 2px rgb(20 40 32 / .05), 0 2px 8px -2px rgb(20 40 32 / .08);
       --sombra: 0 2px 4px rgb(20 40 32 / .04), 0 12px 32px -12px rgb(20 40 32 / .18);
@@ -69,33 +78,39 @@
       color-scheme: light;
     }
 
-    /* Modo escuro suave: verde-floresta, sem chegar ao preto. */
+    /* paletas do seletor de cores */
+    :root[data-cor="azul"] { --cor: #1f63c6; --cor-texto: #1a55ab; --cor-sobre: #ffffff; --cor-clara: #82b4ff; --cor-clara-sobre: #0b1a33; }
+    :root[data-cor="ciano"] { --cor: #0e7490; --cor-texto: #0b6680; --cor-sobre: #ffffff; --cor-clara: #5fd0e8; --cor-clara-sobre: #06222b; }
+    :root[data-cor="roxo"] { --cor: #6b46c1; --cor-texto: #5b3aa6; --cor-sobre: #ffffff; --cor-clara: #b9a2ff; --cor-clara-sobre: #1b1233; }
+    :root[data-cor="vermelho"] { --cor: #c63b2f; --cor-texto: #a8302a; --cor-sobre: #ffffff; --cor-clara: #ff8f80; --cor-clara-sobre: #2e0f0b; }
+    :root[data-cor="laranja"] { --cor: #b9520c; --cor-texto: #9a4309; --cor-sobre: #ffffff; --cor-clara: #ffa45c; --cor-clara-sobre: #2b1300; }
+    :root[data-cor="amarelo"] { --cor: #e2a90b; --cor-texto: #7a5800; --cor-sobre: #2b1d00; --cor-clara: #f5c84a; --cor-clara-sobre: #2b1d00; }
+
+    /* Modo escuro suave: tons da cor de destaque, sem chegar ao preto. */
     :root[data-tema="escuro"] {
-      --primaria: #5fd3a8;
-      --primaria-esc: #7fdfba;
-      --primaria-texto: #7fdcb8;
-      --primaria-suave: #285246;
-      --acento: #5fd3a8;
-      --acento-esc: #7fdcb8;
-      --acento-suave: #285246;
+      --primaria: var(--cor-clara);
+      --primaria-esc: color-mix(in srgb, var(--cor-clara) 80%, #fff);
+      --primaria-texto: color-mix(in srgb, var(--cor-clara) 88%, #fff);
+      --primaria-suave: color-mix(in srgb, var(--cor-clara) 25%, #1c2622);
+      --acento: var(--cor-clara);
+      --acento-esc: var(--primaria-texto);
+      --acento-suave: color-mix(in srgb, var(--cor-clara) 25%, #1c2622);
       --quente: #f5c45e;
       --quente-esc: #f8d27f;
-      --botao-fundo: #5fd3a8;
-      --botao-hover: #7fdfba;
-      --botao-texto: #10241c;
-      --faixa: #1f4a3c;
-      --faixa-texto: #f0f6f2;
+      --botao-fundo: var(--cor-clara);
+      --botao-hover: color-mix(in srgb, var(--cor-clara) 80%, #fff);
+      --botao-texto: var(--cor-clara-sobre);
 
-      --fundo: #192e27;
-      --fundo-alt: #213b32;
-      --superficie: #243d35;
-      --campo: #2b4840;
-      --borda: #38574d;
-      --titulo: #f0f7f2;
-      --texto: #e8f2ec;
-      --texto-suave: #b3cbc0;
-      --texto-fraco: #8aa79a;
-      --rodape-fundo: linear-gradient(180deg, #13261f 0%, #0f1f19 100%);
+      --fundo: color-mix(in srgb, var(--cor-clara) 12%, #121816);
+      --fundo-alt: color-mix(in srgb, var(--cor-clara) 16%, #18201d);
+      --superficie: color-mix(in srgb, var(--cor-clara) 15%, #1d2723);
+      --campo: color-mix(in srgb, var(--cor-clara) 19%, #222c28);
+      --borda: color-mix(in srgb, var(--cor-clara) 24%, #2c3833);
+      --titulo: color-mix(in srgb, var(--cor-clara) 10%, #f4f7f5);
+      --texto: color-mix(in srgb, var(--cor-clara) 6%, #edf1ef);
+      --texto-suave: #b9c6c0;
+      --texto-fraco: #a0afa8;
+      --rodape-fundo: linear-gradient(180deg, color-mix(in srgb, var(--cor-clara) 10%, #0e1311) 0%, color-mix(in srgb, var(--cor-clara) 7%, #0b0f0e) 100%);
       --rodape-texto: #c9d6cf;
       --rodape-fraco: #93a39b;
 
@@ -106,7 +121,7 @@
       color-scheme: dark;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     html { scroll-behavior: smooth; }
 
@@ -173,22 +188,20 @@
       width: 44px; height: 44px; flex: none;
       display: grid; place-items: center;
       border-radius: 14px 14px 14px 4px;
-      background: var(--primaria); color: #fff; font-size: 24px;
+      background: var(--primaria); color: var(--botao-texto); font-size: 24px;
       transition: box-shadow .25s ease;
     }
-    :root[data-tema="escuro"] .logo-icone { color: #10241c; }
     .logo:hover .logo-icone { box-shadow: 0 0 0 4px var(--primaria-suave); }
     .logo-texto { font-size: 24px; line-height: 1; letter-spacing: -.01em; color: var(--titulo); white-space: nowrap; }
 
-    .acoes { display: flex; align-items: center; gap: 10px; }
 
-    .botao-tema, .menu-botao {
+    .botao-tema, .menu-botao, .botao-cores {
       width: 44px; height: 44px; flex: none; display: grid; place-items: center;
       border: 1.5px solid var(--borda); border-radius: 50%;
       background: var(--superficie); color: var(--texto); font-size: 20px; cursor: pointer;
       transition: border-color .2s ease, color .2s ease;
     }
-    .botao-tema:hover, .menu-botao:hover { border-color: var(--primaria); color: var(--primaria-texto); }
+    .botao-tema:hover, .menu-botao:hover, .botao-cores:hover { border-color: var(--primaria); color: var(--primaria-texto); }
     .menu-botao { display: none; }
 
     /* ---------- navegação (dentro do cabeçalho) ---------- */
@@ -204,12 +217,30 @@
     .nav li a:hover { border-color: var(--borda); color: var(--titulo); text-decoration: none; }
     .nav li a.ativo { background: var(--primaria-suave); color: var(--primaria-texto); }
     .nav li a.ativo::after { content: ''; position: absolute; left: 50%; bottom: 3px; width: 16px; height: 3px; margin-left: -8px; border-radius: 3px; background: var(--quente); }
-    .cabecalho .cabecalho-cta { min-height: 44px; padding: 10px 20px; font-size: 14px; }
-    .cabecalho .cabecalho-cta .icone { font-size: 19px; }
-    .nav .nav-cta { display: none; }
+    .aparencia { display: flex; align-items: center; gap: 10px; }
+    .aparencia-rotulo { display: none; }
+    /* seletor de cores */
+    .cores { position: relative; }
+    .botao-cores[aria-expanded="true"] { border-color: var(--primaria); color: var(--primaria-texto); }
+    .paleta {
+      position: absolute; top: calc(100% + 12px); right: 0; z-index: 60;
+      display: grid; grid-template-columns: repeat(4, 34px); gap: 10px; padding: 14px;
+      background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); box-shadow: var(--sombra-g);
+      animation: paleta-abre .2s ease;
+    }
+    .paleta[hidden] { display: none; }
+    @keyframes paleta-abre { from { opacity: 0; transform: translateY(-6px); } }
+    .paleta button {
+      width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+      background: var(--amostra); box-shadow: inset 0 0 0 1px rgb(0 0 0 / .12);
+      transition: box-shadow .2s ease;
+    }
+    :root[data-tema="escuro"] .paleta button { background: var(--amostra-escuro); }
+    .paleta button:hover { box-shadow: 0 0 0 3px var(--superficie), 0 0 0 5px var(--borda); }
+    .paleta button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--superficie), 0 0 0 5px var(--primaria); }
 
     /* ---------- carrossel ---------- */
-    .carrossel { position: relative; background: #12372c; }
+    .carrossel { position: relative; background: var(--titulo); }
     .slides { position: relative; height: 540px; overflow: hidden; }
     .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .9s ease, visibility 0s .9s; }
     .slide.ativo { opacity: 1; visibility: visible; z-index: 2; transition: opacity .9s ease; }
@@ -294,12 +325,11 @@
     .destaque-texto p { font-size: 17px; line-height: 1.75; color: var(--texto-suave); }
     .destaque-texto ul { margin: 0 0 30px; display: grid; gap: 10px; }
     .destaque-texto li { position: relative; padding-left: 36px; font-weight: 600; }
-    .destaque-texto li::before {
-      content: ''; position: absolute; left: 0; top: 2px; width: 24px; height: 24px; border-radius: 50%;
-      background: var(--acento-suave) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e8f69' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center / 14px no-repeat;
-    }
-    :root[data-tema="escuro"] .destaque-texto li::before {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237fdcb8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E");
+    .destaque-texto li::before { content: ''; position: absolute; left: 0; top: 2px; width: 24px; height: 24px; border-radius: 50%; background: var(--acento-suave); }
+    .destaque-texto li::after {
+      content: ''; position: absolute; left: 5px; top: 7px; width: 14px; height: 14px; background: var(--acento-esc);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center / contain no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center / contain no-repeat;
     }
 
     /* ---------- loja (vitrine sem preços: cada card abre o WhatsApp) ---------- */
@@ -445,7 +475,7 @@
     .rodape-grade > * + * { border-left: 1px solid rgb(255 255 255 / .14); }
     .rodape-links ul { grid-template-columns: 1fr; justify-items: center; }
     .rodape-marca .logo, .rodape-marca .logo-texto { color: #fff; }
-    .rodape-marca .logo-icone { background: var(--acento); color: #0b2a22; }
+    .rodape-marca .logo-icone { background: var(--cor-clara); color: var(--cor-clara-sobre); }
     .rodape-marca .logo { justify-content: center; }
     .rodape-marca p { max-width: 24em; margin: 14px auto 0; font-size: 16px; line-height: 1.65; }
     .rodape h4 { margin-bottom: 12px; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
@@ -467,13 +497,22 @@
     .rodape .credito-link:hover { border-color: #fff; background: rgb(255 255 255 / .06); color: #fff; }
     .credito-link .icone { width: 18px; height: 18px; }
 
+    /* WhatsApp em cima; o "voltar ao topo" aparece embaixo depois de rolar e empurra o WhatsApp para cima */
+    .flutuantes { position: fixed; right: 22px; bottom: 22px; z-index: 50; display: flex; flex-direction: column; align-items: center; }
     .whatsapp {
-      position: fixed; right: 22px; bottom: 22px; z-index: 50;
       width: 60px; height: 60px; display: grid; place-items: center;
       border-radius: 50%; background: #25d366; color: #fff; font-size: 30px;
       box-shadow: 0 12px 28px -10px rgb(37 211 102 / .9);
       transition: background-color .2s ease, box-shadow .2s ease;
     }
+    .topo {
+      display: grid; place-items: center; width: 48px; height: 48px; max-height: 0; margin-top: 0; padding: 0; overflow: hidden;
+      border: 1px solid var(--borda); border-radius: 50%; background: var(--superficie); color: var(--texto); font-size: 20px; cursor: pointer;
+      box-shadow: var(--sombra); opacity: 0; transform: scale(.6); visibility: hidden;
+      transition: max-height .3s var(--suave), margin-top .3s var(--suave), opacity .25s ease, transform .3s var(--suave), visibility 0s linear .3s, border-color .2s ease, color .2s ease;
+    }
+    .topo.visivel { max-height: 48px; margin-top: 12px; opacity: 1; transform: none; visibility: visible; transition: max-height .3s var(--suave), margin-top .3s var(--suave), opacity .25s ease, transform .3s var(--suave), border-color .2s ease, color .2s ease; }
+    .topo:hover { border-color: var(--primaria); color: var(--primaria-texto); }
     .whatsapp:hover { background: #1ebe5b; color: #fff; text-decoration: none; box-shadow: 0 0 0 5px rgb(37 211 102 / .25), 0 12px 28px -10px rgb(37 211 102 / .9); }
 
     /* ---------- responsivo ---------- */
@@ -494,17 +533,27 @@
       .menu-botao { display: grid; }
       .cabecalho .container { justify-content: space-between; min-height: 68px; }
       .nav {
-        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        display: flex; position: absolute; top: 100%; left: 0; right: 0;
         flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 16px 18px;
         background: var(--superficie); border-bottom: 1px solid var(--borda); box-shadow: var(--sombra-g);
+        opacity: 0; visibility: hidden; transform: translateY(-10px); pointer-events: none;
+        transition: opacity .25s ease, transform .3s var(--suave), visibility 0s linear .3s;
       }
-      .nav.aberto { display: flex; }
+      .nav.aberto { opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition: opacity .25s ease, transform .3s var(--suave); }
       .nav ul { flex-direction: column; gap: 2px; margin: 0; }
       .nav li a { padding: 15px 16px; border-radius: 12px; font-size: 16px; }
       .nav li a.ativo::after { left: auto; right: 16px; top: 50%; bottom: auto; width: 8px; height: 8px; margin: -4px 0 0; border-radius: 50%; }
-      .cabecalho .cabecalho-cta { display: none; }
-      .nav .nav-cta { display: inline-flex; min-height: 50px; font-size: 15px; }
-      .nav .nav-cta .icone { font-size: 19px; }
+      .nav.aberto li, .nav.aberto .aparencia { animation: item-entra .35s var(--suave) both; }
+      .nav.aberto li:nth-child(2) { animation-delay: .04s; }
+      .nav.aberto li:nth-child(3) { animation-delay: .08s; }
+      .nav.aberto li:nth-child(4) { animation-delay: .12s; }
+      .nav.aberto .aparencia { animation-delay: .16s; }
+      @keyframes item-entra { from { opacity: 0; transform: translateY(-6px); } }
+      /* no menu: linha "Aparência" com a paleta e o tema; a paleta abre logo embaixo */
+      .aparencia { flex-wrap: wrap; margin-top: 6px; padding: 14px 16px 2px; border-top: 1px solid var(--borda); }
+      .aparencia-rotulo { display: block; flex: 1; font-weight: 600; color: var(--texto-suave); }
+      .paleta { position: static; order: 3; flex-basis: 100%; margin-top: 12px; grid-template-columns: repeat(7, 34px); justify-content: space-between; padding: 0; border: 0; box-shadow: none; background: none; }
+      .cores { display: contents; }
       .secao { scroll-margin-top: 68px; }
     }
 
@@ -584,7 +633,10 @@
       .rodape-grade > * { padding: 0 8px; }
       .rodape-grade > .rodape-marca { padding: 0 0 24px; }
       .rodape-fim p { padding-inline: 64px; } /* o botão do WhatsApp fica ao lado do texto, sem cobrir */
-      .whatsapp { right: 16px; bottom: 16px; width: 56px; height: 56px; font-size: 28px; }
+      .flutuantes { right: 16px; bottom: 16px; }
+      .whatsapp { width: 56px; height: 56px; font-size: 28px; }
+      .topo { width: 44px; height: 44px; }
+      .topo.visivel { max-height: 44px; margin-top: 10px; }
     }
 
     @media (max-width: 479px) {
@@ -602,7 +654,9 @@
 
     @media (max-width: 359px) {
       .logo-texto { font-size: 20px; }
-      .botao-tema, .menu-botao { width: 40px; height: 40px; }
+      .botao-tema, .menu-botao, .botao-cores { width: 40px; height: 40px; }
+      .paleta { grid-template-columns: repeat(7, 30px); }
+      .paleta button { width: 30px; height: 30px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -635,6 +689,8 @@
       <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
       <symbol id="i-seta-diagonal" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
       <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+      <symbol id="i-paleta" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18c1 0 1.7-.8 1.7-1.7 0-.5-.2-.9-.5-1.2a1.7 1.7 0 0 1 1.3-2.9H16a5 5 0 0 0 5-5C21 6.2 17 3 12 3z"/><path d="M7.5 11h.01M10 7h.01M14.5 7h.01M17 11h.01"/></symbol>
+      <symbol id="i-seta-cima" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
       <symbol id="i-aspas" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M3.5 18.5v-6c0-4.3 2.4-7.2 6.3-7.9l.8 1.9C8.1 7.3 7 9 6.9 11H10v7.5zm10 0v-6c0-4.3 2.4-7.2 6.3-7.9l.8 1.9c-2.5.8-3.6 2.5-3.7 4.5H20v7.5z"/></symbol>
     </defs>
   </svg>
@@ -652,13 +708,24 @@
           <li><a href="#loja">Loja</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
-        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats nav-cta" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
+        <div class="aparencia">
+          <span class="aparencia-rotulo">Aparência</span>
+          <div class="cores">
+            <button class="botao-cores" type="button" aria-label="Escolher a cor do site" aria-expanded="false" aria-controls="paleta"><svg class="icone" aria-hidden="true"><use href="#i-paleta"/></svg></button>
+            <div class="paleta" id="paleta" role="group" aria-label="Cores do site" hidden>
+            <button type="button" data-cor="verde" style="--amostra: #0b7a5c; --amostra-escuro: #5fd3a8" aria-label="Verde" title="Verde"></button>
+            <button type="button" data-cor="azul" style="--amostra: #1f63c6; --amostra-escuro: #82b4ff" aria-label="Azul" title="Azul"></button>
+            <button type="button" data-cor="ciano" style="--amostra: #0e7490; --amostra-escuro: #5fd0e8" aria-label="Ciano" title="Ciano"></button>
+            <button type="button" data-cor="roxo" style="--amostra: #6b46c1; --amostra-escuro: #b9a2ff" aria-label="Roxo" title="Roxo"></button>
+            <button type="button" data-cor="vermelho" style="--amostra: #c63b2f; --amostra-escuro: #ff8f80" aria-label="Vermelho" title="Vermelho"></button>
+            <button type="button" data-cor="laranja" style="--amostra: #b9520c; --amostra-escuro: #ffa45c" aria-label="Laranja" title="Laranja"></button>
+            <button type="button" data-cor="amarelo" style="--amostra: #e2a90b; --amostra-escuro: #f5c84a" aria-label="Amarelo" title="Amarelo"></button>
+            </div>
+          </div>
+          <button class="botao-tema" type="button" aria-label="Ativar modo escuro"><svg class="icone" aria-hidden="true"><use href="#i-lua"/></svg></button>
+        </div>
       </nav>
-      <div class="acoes">
-        <button class="botao-tema" type="button" aria-label="Ativar modo escuro"><svg class="icone" aria-hidden="true"><use href="#i-lua"/></svg></button>
-        <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><svg class="icone" aria-hidden="true"><use href="#i-menu"/></svg></button>
-        <a href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn btn-whats cabecalho-cta" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg> Conversar no WhatsApp</a>
-      </div>
+      <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><svg class="icone" aria-hidden="true"><use href="#i-menu"/></svg></button>
     </div>
   </header>
 
@@ -1010,7 +1077,10 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/5511900000000" class="whatsapp" aria-label="Falar pelo WhatsApp" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
+  <div class="flutuantes">
+    <a href="https://wa.me/5511900000000" class="whatsapp" aria-label="Falar pelo WhatsApp" target="_blank" rel="noopener"><svg class="icone" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
+    <button class="topo" type="button" aria-label="Voltar ao topo" tabindex="-1"><svg class="icone" aria-hidden="true"><use href="#i-seta-cima"/></svg></button>
+  </div>
 
   <script>
     /* Amigo Fiel */
@@ -1168,7 +1238,7 @@
         var escuro = raiz.getAttribute('data-tema') === 'escuro';
         botaoTema.setAttribute('aria-label', escuro ? 'Ativar modo claro' : 'Ativar modo escuro');
         botaoTema.querySelector('use').setAttribute('href', escuro ? '#i-sol' : '#i-lua');
-        metaCor.setAttribute('content', getComputedStyle(raiz).getPropertyValue('--fundo').trim());
+        metaCor.setAttribute('content', getComputedStyle(document.body).backgroundColor);
       }
       function aplicarTema(tema, salvar) {
         var trocar = function () {
@@ -1263,6 +1333,64 @@
           });
         }, { threshold: 0.6 });
         numeros.forEach(function (el) { observaNumeros.observe(el); });
+      }
+
+      // ---------- seletor de cores ----------
+      var botaoCores = document.querySelector('.botao-cores');
+      var paleta = document.getElementById('paleta');
+      if (botaoCores && paleta) {
+        var amostras = Array.prototype.slice.call(paleta.querySelectorAll('[data-cor]'));
+        var marcarCor = function () {
+          var atualCor = raiz.getAttribute('data-cor') || 'verde';
+          amostras.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-cor') === atualCor); });
+        };
+        var abrirPaleta = function (abrir) {
+          paleta.hidden = !abrir;
+          botaoCores.setAttribute('aria-expanded', abrir);
+        };
+        botaoCores.addEventListener('click', function (e) {
+          e.stopPropagation();
+          abrirPaleta(paleta.hidden);
+        });
+        paleta.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-cor]');
+          if (!b) return;
+          var nova = b.getAttribute('data-cor');
+          var trocarCor = function () {
+            if (nova === 'verde') raiz.removeAttribute('data-cor'); else raiz.setAttribute('data-cor', nova);
+            marcarCor();
+            refletirTema();
+          };
+          if (document.startViewTransition && !reduzMovimentoGeral) document.startViewTransition(trocarCor);
+          else trocarCor();
+          try { localStorage.setItem('cor', nova); } catch (erro) {}
+        });
+        document.addEventListener('click', function (e) {
+          if (!paleta.hidden && !paleta.contains(e.target) && e.target !== botaoCores) abrirPaleta(false);
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !paleta.hidden) { abrirPaleta(false); botaoCores.focus(); }
+        });
+        marcarCor();
+      }
+
+      // ---------- botão de voltar ao topo ----------
+      var botaoTopo = document.querySelector('.topo');
+      if (botaoTopo) {
+        var pendenteTopo = false;
+        var atualizarTopo = function () {
+          pendenteTopo = false;
+          var mostrar = window.scrollY > 600;
+          botaoTopo.classList.toggle('visivel', mostrar);
+          botaoTopo.tabIndex = mostrar ? 0 : -1;
+        };
+        window.addEventListener('scroll', function () {
+          if (!pendenteTopo) { pendenteTopo = true; requestAnimationFrame(atualizarTopo); }
+        }, { passive: true });
+        botaoTopo.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: reduzMovimentoGeral ? 'auto' : 'smooth' });
+        });
+        atualizarTopo();
       }
 
       // ---------- marcas que trabalhamos ----------
