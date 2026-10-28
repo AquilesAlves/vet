@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contato | Clínica Veterinária Bicho Feliz</title>
+  <meta name="description" content="Fale com a Clínica Veterinária Bicho Feliz: telefone, WhatsApp, endereço, horário de atendimento e formulário de contato.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="Clínica Veterinária Bicho Feliz, página inicial">
+        <span class="logo-icone"><i class="fas fa-paw" aria-hidden="true"></i></span>
+        <span class="logo-texto">Bicho Feliz<small>Clínica Veterinária</small></span>
+      </a>
+      <div class="cabecalho-contato">
+        <a href="tel:+551130000000" class="tel"><i class="fas fa-phone-alt" aria-hidden="true"></i>(11) 3000-0000</a>
+        <span>Seg a Sex 8h às 19h · Sáb 8h às 14h</span>
+      </div>
+      <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Principal">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="loja.html">Loja</a></li>
+        <li><a href="contato.html" class="ativo" aria-current="page">Contato</a></li>
+        <li class="so-mobile"><a href="tel:+551130000000">Ligar: (11) 3000-0000</a></li>
+      </ul>
+      <a href="contato.html" class="btn btn-laranja nav-cta">Agende uma consulta</a>
+    </div>
+  </nav>
+
+  <main id="conteudo">
+    <section class="banner-pagina">
+      <div class="container">
+        <h1>Contato</h1>
+        <div class="trilha"><a href="index.html">Início</a><span aria-hidden="true">›</span>Contato</div>
+      </div>
+    </section>
+    <section class="secao">
+      <div class="container contato">
+        <div>
+          <h2>Envie uma mensagem</h2>
+          <p class="legenda-form"><span aria-hidden="true">*</span> campo obrigatório. Ao enviar, abrimos o WhatsApp da clínica com a sua mensagem pronta.</p>
+          <form class="js-whatsapp" novalidate>
+            <div class="campos-2">
+              <div class="campo"><label for="nome">Seu nome <span aria-hidden="true">*</span></label><input id="nome" name="nome" type="text" autocomplete="name" required></div>
+              <div class="campo"><label for="pet">Nome do pet</label><input id="pet" name="pet" type="text"></div>
+            </div>
+            <div class="campos-2">
+              <div class="campo"><label for="tel">Telefone</label><input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"></div>
+              <div class="campo"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email"></div>
+            </div>
+            <div class="campo">
+              <label for="assunto">Assunto</label>
+              <select id="assunto" name="assunto">
+                <option>Agendar consulta</option>
+                <option>Banho e tosa</option>
+                <option>Dúvida sobre a loja</option>
+                <option>Outro assunto</option>
+              </select>
+            </div>
+            <div class="campo"><label for="msg">Mensagem <span aria-hidden="true">*</span></label><textarea id="msg" name="msg" required></textarea></div>
+            <button type="submit" class="btn btn-laranja"><i class="fab fa-whatsapp" aria-hidden="true"></i>Enviar pelo WhatsApp</button>
+            <div class="form-msg" role="status"></div>
+          </form>
+        </div>
+        <div>
+          <h2>Fale com a gente</h2>
+          <ul class="info-contato">
+            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><div><strong>Endereço</strong>Rua das Flores, 123 – Centro<br>São Paulo/SP – CEP 00000-000</div></li>
+            <li><i class="fas fa-phone-alt" aria-hidden="true"></i><div><strong>Telefone</strong><a href="tel:+551130000000">(11) 3000-0000</a></div></li>
+            <li><i class="fab fa-whatsapp" aria-hidden="true"></i><div><strong>WhatsApp</strong><a href="https://wa.me/5511900000000">(11) 90000-0000</a></div></li>
+            <li><i class="far fa-clock" aria-hidden="true"></i><div><strong>Horário</strong>Seg a Sex 8h às 19h<br>Sábado 8h às 14h</div></li>
+          </ul>
+          <div class="mapa">
+            <iframe title="Mapa da clínica" loading="lazy" src="https://www.google.com/maps?q=S%C3%A3o+Paulo+SP&amp;output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-colunas">
+      <div>
+        <h2 class="rodape-titulo">Institucional</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="loja.html">Loja</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="rodape-titulo">Atendimento</h2>
+        <ul>
+          <li><i class="fas fa-phone-alt" aria-hidden="true"></i><a href="tel:+551130000000">(11) 3000-0000</a></li>
+          <li><i class="fab fa-whatsapp" aria-hidden="true"></i><a href="https://wa.me/5511900000000">(11) 90000-0000</a></li>
+          <li><i class="far fa-envelope" aria-hidden="true"></i><a href="mailto:contato@bichofeliz.example">contato@bichofeliz.example</a></li>
+          <li><i class="far fa-clock" aria-hidden="true"></i>Seg a Sex 8h às 19h<br>Sáb 8h às 14h</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="rodape-titulo">Formas de pagamento</h2>
+        <div class="pagamentos"><span>Visa</span><span>Mastercard</span><span>Elo</span><span>Pix</span><span>Boleto</span></div>
+      </div>
+      <div>
+        <h2 class="rodape-titulo">Redes sociais</h2>
+        <ul>
+          <li><i class="fab fa-instagram" aria-hidden="true"></i><a href="#">Instagram</a></li>
+          <li><i class="fab fa-facebook-f" aria-hidden="true"></i><a href="#">Facebook</a></li>
+          <li><i class="fab fa-youtube" aria-hidden="true"></i><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-fim">
+      <div class="container">
+        <span>© 2026 Clínica Veterinária Bicho Feliz. Todos os direitos reservados.</span>
+        <span>CNPJ 00.000.000/0001-00 · Responsável técnico: CRMV-SP 00000</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5511900000000" class="whatsapp" aria-label="Falar pelo WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
