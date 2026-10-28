@@ -3,18 +3,33 @@
 (function () {
   var WHATSAPP = 'https://wa.me/5511900000000';
 
+  // horário de atendimento: dia da semana (0 = domingo) -> [abre, fecha] em horas cheias; dia ausente = fechado
+  var HORARIOS = { 1: [8, 19], 2: [8, 19], 3: [8, 19], 4: [8, 19], 5: [8, 19], 6: [8, 14] };
+  var FUSO = 'America/Sao_Paulo';
+  var NOMES_DIA = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+
   // menu do celular
   var menuBotao = document.querySelector('.menu-botao');
   var nav = document.querySelector('.nav');
   if (menuBotao && nav) {
+    var menuIcone = menuBotao.querySelector('use');
+
+    function abrirMenu(abrir) {
+      nav.classList.toggle('aberto', abrir);
+      menuBotao.setAttribute('aria-expanded', abrir);
+      menuBotao.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
+      menuIcone.setAttribute('href', abrir ? '#i-fechar' : '#i-menu');
+    }
+
     menuBotao.addEventListener('click', function () {
-      var aberto = nav.classList.toggle('aberto');
-      menuBotao.setAttribute('aria-expanded', aberto);
+      abrirMenu(!nav.classList.contains('aberto'));
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) abrirMenu(false);
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && nav.classList.contains('aberto')) {
-        nav.classList.remove('aberto');
-        menuBotao.setAttribute('aria-expanded', 'false');
+        abrirMenu(false);
         menuBotao.focus();
       }
     });
@@ -57,7 +72,7 @@
     function atualizarPausa() {
       var parado = pausadoPeloUsuario || reduzMovimento;
       botaoPausa.setAttribute('aria-label', parado ? 'Retomar a troca automática de slides' : 'Pausar a troca automática de slides');
-      botaoPausa.firstElementChild.className = parado ? 'fas fa-play' : 'fas fa-pause';
+      botaoPausa.querySelector('use').setAttribute('href', parado ? '#i-play' : '#i-pausa');
     }
     botaoPausa.addEventListener('click', function () {
       pausadoPeloUsuario = !pausadoPeloUsuario;
@@ -91,42 +106,65 @@
     iniciar();
   }
 
-  // loja: filtro por categoria e ordenação
-  var grade = document.querySelector('[data-grade]');
-  if (grade) {
-    var itens = Array.prototype.slice.call(grade.querySelectorAll('.produto'));
-    var chips = document.querySelectorAll('.chip');
-    var contagem = document.querySelector('.js-contagem');
-    var ordem = document.querySelector('.js-ordem');
-    var categoria = 'todos';
+  // faixa de informações: "Aberto agora" calculado pelo horário da clínica
+  var statusTitulo = document.querySelector('.js-status-titulo');
+  if (statusTitulo) {
+    var statusPonto = document.querySelector('.js-status-ponto');
+    var statusDetalhe = document.querySelector('.js-status-detalhe');
+    var dias = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    var relogio = new Intl.DateTimeFormat('en-US', { timeZone: FUSO, weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' });
 
-    function filtrar() {
-      var n = 0;
-      itens.forEach(function (el) {
-        var visivel = categoria === 'todos' || el.dataset.categoria === categoria;
-        el.hidden = !visivel;
-        if (visivel) n++;
-      });
-      contagem.textContent = 'Exibindo ' + n + (n === 1 ? ' produto' : ' produtos');
+    function agora() {
+      var v = {};
+      relogio.formatToParts(new Date()).forEach(function (p) { v[p.type] = p.value; });
+      return { dia: dias[v.weekday], hora: +v.hour + (+v.minute) / 60 };
     }
 
-    function ordenar() {
-      var v = ordem.value;
-      itens.slice().sort(function (a, b) {
-        if (v === 'menor') return a.dataset.preco - b.dataset.preco;
-        if (v === 'maior') return b.dataset.preco - a.dataset.preco;
-        return a.dataset.ordem - b.dataset.ordem;
-      }).forEach(function (el) { grade.appendChild(el); });
+    function situacao() {
+      var t = agora();
+      var hoje = HORARIOS[t.dia];
+      if (hoje && t.hora >= hoje[0] && t.hora < hoje[1]) {
+        return { aberto: true, titulo: 'Aberto agora', detalhe: 'Fecha às ' + hoje[1] + 'h' };
+      }
+      if (hoje && t.hora < hoje[0]) {
+        return { aberto: false, titulo: 'Fechado agora', detalhe: 'Abre hoje às ' + hoje[0] + 'h' };
+      }
+      for (var i = 1; i <= 7; i++) {
+        var d = (t.dia + i) % 7;
+        if (HORARIOS[d]) {
+          return { aberto: false, titulo: 'Fechado agora', detalhe: 'Abre ' + (i === 1 ? 'amanhã' : NOMES_DIA[d]) + ' às ' + HORARIOS[d][0] + 'h' };
+        }
+      }
+      return null;
     }
 
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        categoria = chip.dataset.categoria;
-        chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip); });
-        filtrar();
+    function atualizarStatus() {
+      var s = situacao();
+      if (!s) return;
+      statusTitulo.textContent = s.titulo;
+      statusDetalhe.textContent = s.detalhe;
+      statusPonto.className = 'status-ponto js-status-ponto ' + (s.aberto ? 'aberto' : 'fechado');
+    }
+
+    atualizarStatus();
+    setInterval(atualizarStatus, 60000);
+  }
+
+  // menu: marca a seção que está na tela
+  var secoes = document.querySelectorAll('main section[id]');
+  var linksNav = document.querySelectorAll('.nav li a');
+  if (secoes.length && linksNav.length && 'IntersectionObserver' in window) {
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (!entrada.isIntersecting) return;
+        var id = entrada.target.id;
+        linksNav.forEach(function (a) {
+          if (a.getAttribute('href') === '#' + id) { a.setAttribute('aria-current', 'true'); }
+          else { a.removeAttribute('aria-current'); }
+        });
       });
-    });
-    ordem.addEventListener('change', ordenar);
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    secoes.forEach(function (s) { observador.observe(s); });
   }
 
   // contato: monta a mensagem e abre o WhatsApp da clínica
