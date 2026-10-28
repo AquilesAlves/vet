@@ -42,9 +42,10 @@
       --acento: var(--cor-clara);
       --acento-esc: var(--cor-texto);
       --acento-suave: color-mix(in srgb, var(--cor) 19%, #f4f6f5);
-      --quente: #f2b73b;
-      --quente-esc: #e3a21c;
-      --tinta-quente: #2b1d00;
+      /* detalhes (traços dos títulos, estrelas, marcadores) usam a mesma cor de destaque */
+      --quente: var(--primaria);
+      --quente-esc: var(--primaria-esc);
+      --tinta-quente: var(--botao-texto);
       --botao-fundo: var(--cor);
       --botao-hover: color-mix(in srgb, var(--cor) 82%, #000);
       --botao-texto: var(--cor-sobre);
@@ -95,8 +96,6 @@
       --acento: var(--cor-clara);
       --acento-esc: var(--primaria-texto);
       --acento-suave: color-mix(in srgb, var(--cor-clara) 25%, #1c2622);
-      --quente: #f5c45e;
-      --quente-esc: #f8d27f;
       --botao-fundo: var(--cor-clara);
       --botao-hover: color-mix(in srgb, var(--cor-clara) 80%, #fff);
       --botao-texto: var(--cor-clara-sobre);
@@ -342,7 +341,7 @@
       background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g);
       color: var(--texto); transition: border-color .25s ease, box-shadow .25s ease;
     }
-    .produto-card:hover { border-color: #25d366; box-shadow: 0 0 0 3px rgb(37 211 102 / .18); color: var(--texto); text-decoration: none; }
+    .produto-card:hover { border-color: var(--primaria); box-shadow: 0 0 0 3px var(--primaria-suave); color: var(--texto); text-decoration: none; }
     .produto-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--fundo-alt); }
     :root[data-tema="escuro"] .produto-card img { filter: brightness(.9); }
     .produto-corpo { display: flex; flex-direction: column; gap: 6px; flex: 1; padding: 20px 22px 24px; }
@@ -439,9 +438,9 @@
     .mapa iframe { display: block; width: 100%; height: 100%; min-height: 300px; border: 0; }
     :root[data-tema="escuro"] .mapa iframe { filter: brightness(.85); }
 
-    .btn-whats { background: #25d366; color: #fff; min-height: 54px; padding-inline: 28px; font-size: 16px; }
+    .btn-whats { background: var(--botao-fundo); color: var(--botao-texto); min-height: 54px; padding-inline: 28px; font-size: 16px; }
     .btn-whats .icone { font-size: 22px; }
-    .btn-whats:hover { background: #1ebe5b; color: #fff; box-shadow: 0 0 0 4px rgb(37 211 102 / .25); }
+    .btn-whats:hover { background: var(--botao-hover); color: var(--botao-texto); box-shadow: 0 0 0 4px color-mix(in srgb, var(--primaria) 25%, transparent); }
     /* ---------- faixa do WhatsApp (depois dos números) ---------- */
     .faixa-whats-secao { padding: 0 0 44px; background: var(--fundo); }
     .faixa-whats {
@@ -449,7 +448,7 @@
       background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p);
     }
     .faixa-whats-texto { display: flex; align-items: center; gap: 14px; flex: none; }
-    .faixa-whats-icone { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border-radius: 50%; background: #25d366; color: #fff; font-size: 24px; }
+    .faixa-whats-icone { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border-radius: 50%; background: var(--botao-fundo); color: var(--botao-texto); font-size: 24px; }
     .faixa-whats-texto strong { display: block; font-size: 17px; color: var(--titulo); line-height: 1.3; }
     .faixa-whats-texto span span { display: block; font-size: 14px; color: var(--texto-suave); line-height: 1.4; }
     .faixa-whats .atalhos { flex: 1; justify-content: center; gap: 8px; }
@@ -463,8 +462,8 @@
       color: var(--texto); font-size: 15px; font-weight: 600;
       transition: border-color .2s ease, box-shadow .2s ease, color .2s ease;
     }
-    .atalho .icone { color: #1fa855; font-size: 18px; }
-    .atalho:hover { border-color: #25d366; color: var(--texto); box-shadow: 0 0 0 3px rgb(37 211 102 / .18); text-decoration: none; }
+    .atalho .icone { color: var(--primaria-texto); font-size: 18px; }
+    .atalho:hover { border-color: var(--primaria); color: var(--texto); box-shadow: 0 0 0 3px var(--primaria-suave); text-decoration: none; }
 
     /* ---------- rodapé ---------- */
     .rodape { background: var(--rodape-fundo); color: var(--rodape-texto); }
@@ -501,8 +500,8 @@
     .flutuantes { position: fixed; right: 22px; bottom: 22px; z-index: 50; display: flex; flex-direction: column; align-items: center; }
     .whatsapp {
       width: 60px; height: 60px; display: grid; place-items: center;
-      border-radius: 50%; background: #25d366; color: #fff; font-size: 30px;
-      box-shadow: 0 12px 28px -10px rgb(37 211 102 / .9);
+      border-radius: 50%; background: var(--botao-fundo); color: var(--botao-texto); font-size: 30px;
+      box-shadow: 0 12px 28px -10px color-mix(in srgb, var(--botao-fundo) 70%, transparent);
       transition: background-color .2s ease, box-shadow .2s ease;
     }
     .topo {
@@ -513,7 +512,7 @@
     }
     .topo.visivel { max-height: 48px; margin-top: 12px; opacity: 1; transform: none; visibility: visible; transition: max-height .3s var(--suave), margin-top .3s var(--suave), opacity .25s ease, transform .3s var(--suave), border-color .2s ease, color .2s ease; }
     .topo:hover { border-color: var(--primaria); color: var(--primaria-texto); }
-    .whatsapp:hover { background: #1ebe5b; color: #fff; text-decoration: none; box-shadow: 0 0 0 5px rgb(37 211 102 / .25), 0 12px 28px -10px rgb(37 211 102 / .9); }
+    .whatsapp:hover { background: var(--botao-hover); color: var(--botao-texto); text-decoration: none; box-shadow: 0 0 0 5px color-mix(in srgb, var(--primaria) 25%, transparent), 0 12px 28px -10px color-mix(in srgb, var(--botao-fundo) 70%, transparent); }
 
     /* ---------- responsivo ---------- */
     /* a faixa do WhatsApp só cabe numa linha a partir de 1200px; abaixo, os atalhos descem */
@@ -1361,8 +1360,7 @@
             marcarCor();
             refletirTema();
           };
-          if (document.startViewTransition && !reduzMovimentoGeral) document.startViewTransition(trocarCor);
-          else trocarCor();
+          trocarCor(); // a cor troca direto, sem fade
           try { localStorage.setItem('cor', nova); } catch (erro) {}
         });
         document.addEventListener('click', function (e) {
