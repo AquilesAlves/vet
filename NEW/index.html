@@ -565,11 +565,10 @@
       .faixa-whats .atalho { justify-content: center; }
       .faixa-whats .btn-whats { order: 4; }
       .mapa, .mapa iframe { min-height: 240px; }
-      /* celular: um bloco embaixo do outro, separados por linhas */
-      .rodape-grade { grid-template-columns: 1fr; row-gap: 0; padding: 48px 16px 8px; }
-      .rodape-grade > * { padding: 24px 0; border-left: 0; }
-      .rodape-grade > * + * { border-left: 0; border-top: 1px solid rgb(255 255 255 / .14); }
-      .rodape-grade > .rodape-marca { padding: 0 0 24px; border-bottom: 0; }
+      /* celular: marca em cima; Navegue e crédito lado a lado, como no tablet, só mais compactos */
+      .rodape-grade { row-gap: 24px; padding: 48px 16px 32px; }
+      .rodape-grade > * { padding: 0 8px; }
+      .rodape-grade > .rodape-marca { padding: 0 0 24px; }
       .rodape-fim { padding-bottom: 96px; } /* o botão do WhatsApp não cobre o texto */
       .whatsapp { right: 16px; bottom: 16px; width: 56px; height: 56px; font-size: 28px; }
     }
