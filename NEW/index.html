@@ -273,10 +273,10 @@
 
 
     /* ---------- seções ---------- */
-    .secao { padding: 96px 0; scroll-margin-top: 76px; background: var(--fundo); }
+    .secao { padding: 72px 0; scroll-margin-top: 76px; background: var(--fundo); }
     .secao-alt { background: var(--fundo-alt); }
 
-    .titulo-secao { text-align: center; max-width: 820px; margin: 0 auto 48px; }
+    .titulo-secao { text-align: center; max-width: 820px; margin: 0 auto 40px; }
     .titulo-secao h2 { font-size: clamp(30px, 2.2vw + 20px, 44px); letter-spacing: -.02em; text-wrap: balance; }
     @media (min-width: 620px) { .titulo-secao h2 { white-space: nowrap; } }
     .titulo-secao::before { content: ''; display: block; width: 44px; height: 5px; margin: 0 auto 18px; border-radius: 5px; background: var(--quente); }
@@ -352,7 +352,8 @@
     @keyframes deslizar { to { transform: translateX(-50%); } }
 
     /* ---------- depoimentos ---------- */
-    .depoimentos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .depoimentos { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .depoimentos-pontos { display: none; }
     .depoimento {
       position: relative; display: flex; flex-direction: column; padding: 30px 30px 28px;
       background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p);
@@ -412,7 +413,7 @@
     .btn-whats .icone { font-size: 22px; }
     .btn-whats:hover { background: #1ebe5b; color: #fff; box-shadow: 0 0 0 4px rgb(37 211 102 / .25); }
     /* ---------- faixa do WhatsApp (depois dos números) ---------- */
-    .faixa-whats-secao { padding: 0 0 56px; background: var(--fundo); }
+    .faixa-whats-secao { padding: 0 0 44px; background: var(--fundo); }
     .faixa-whats {
       display: flex; align-items: center; gap: 16px; padding: 18px 18px 18px 20px;
       background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio-g); box-shadow: var(--sombra-p);
@@ -439,7 +440,7 @@
     .rodape { background: var(--rodape-fundo); color: var(--rodape-texto); }
     /* três blocos numa linha, separados por linhas verticais */
     /* três colunas iguais na largura toda; todas com a mesma altura, então as linhas que dividem ficam iguais */
-    .rodape-grade { display: grid; grid-template-columns: repeat(3, 1fr); align-items: stretch; padding: 56px 20px 48px; }
+    .rodape-grade { display: grid; grid-template-columns: repeat(3, 1fr); align-items: stretch; padding: 48px 20px 40px; }
     .rodape-grade > * { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 32px; text-align: center; }
     .rodape-grade > * + * { border-left: 1px solid rgb(255 255 255 / .14); }
     .rodape-links ul { grid-template-columns: 1fr; justify-items: center; }
@@ -546,8 +547,8 @@
       .numero:nth-child(odd) { padding-left: 0; border-left: 0; }
       .numero-titulo { font-size: 14px; }
       .numero-detalhe { font-size: 13px; }
-      .secao { padding: 64px 0; scroll-margin-top: 64px; }
-      .titulo-secao { margin-bottom: 36px; }
+      .secao { padding: 52px 0; scroll-margin-top: 64px; }
+      .titulo-secao { margin-bottom: 30px; }
       .titulo-secao p { font-size: 16px; }
       .destaque .container { grid-template-columns: 1fr; gap: 40px; }
       .destaque.invertido .destaque-foto { order: 0; }
@@ -557,20 +558,32 @@
       .marcas-lista li { font-size: 19px; }
 
       .produtos-vitrine, .servicos { --vao: 14px; }
+      /* depoimentos: slide para arrastar com o dedo */
+      .depoimentos {
+        display: flex; gap: 12px; max-width: none; margin: 0 -16px; padding: 4px 16px 10px;
+        overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px;
+        overscroll-behavior-x: contain; scrollbar-width: none;
+      }
+      .depoimentos::-webkit-scrollbar { display: none; }
+      .depoimentos > .depoimento { flex: 0 0 86%; scroll-snap-align: start; }
+      .depoimentos-pontos { display: flex; justify-content: center; gap: 2px; margin-top: 6px; }
+      .depoimentos-pontos button { display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; }
+      .depoimentos-pontos button::before { content: ''; width: 8px; height: 8px; border-radius: 999px; background: var(--borda); transition: width .25s ease, background-color .25s ease; }
+      .depoimentos-pontos button[aria-current="true"]::before { width: 22px; background: var(--primaria); }
       .contato-info { padding: 24px 20px; grid-template-columns: 1fr; gap: 28px; }
       .horarios { padding: 24px 0 0; border-left: 0; border-top: 1px solid var(--borda); }
       .horarios-lista li { padding: 9px 12px; font-size: 15px; }
-      .faixa-whats-secao { padding-bottom: 40px; }
+      .faixa-whats-secao { padding-bottom: 32px; }
       .faixa-whats { flex-direction: column; align-items: stretch; padding: 20px; }
       .faixa-whats .atalhos { display: grid; grid-template-columns: 1fr 1fr; }
       .faixa-whats .atalho { justify-content: center; }
       .faixa-whats .btn-whats { order: 4; }
       .mapa, .mapa iframe { min-height: 240px; }
       /* celular: marca em cima; Navegue e crédito lado a lado, como no tablet, só mais compactos */
-      .rodape-grade { row-gap: 24px; padding: 48px 16px 32px; }
+      .rodape-grade { row-gap: 24px; padding: 40px 16px 28px; }
       .rodape-grade > * { padding: 0 8px; }
       .rodape-grade > .rodape-marca { padding: 0 0 24px; }
-      .rodape-fim { padding-bottom: 96px; } /* o botão do WhatsApp não cobre o texto */
+      .rodape-fim p { padding-inline: 64px; } /* o botão do WhatsApp fica ao lado do texto, sem cobrir */
       .whatsapp { right: 16px; bottom: 16px; width: 56px; height: 56px; font-size: 28px; }
     }
 
@@ -1178,6 +1191,44 @@
           if (!salvo) aplicarTema(e.matches ? 'escuro' : 'claro', false);
         });
         refletirTema();
+      }
+
+      // ---------- depoimentos: no celular viram slide, e os pontinhos mostram qual está na tela ----------
+      var trilhoDepo = document.querySelector('.depoimentos');
+      if (trilhoDepo && trilhoDepo.children.length > 1) {
+        var cardsDepo = Array.prototype.slice.call(trilhoDepo.children);
+        var pontosDepo = document.createElement('div');
+        pontosDepo.className = 'depoimentos-pontos';
+        var recuoDepo = function () { return parseFloat(getComputedStyle(trilhoDepo).scrollPaddingLeft) || 0; };
+        cardsDepo.forEach(function (card, i) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.setAttribute('aria-label', 'Ver depoimento ' + (i + 1));
+          b.addEventListener('click', function () {
+            trilhoDepo.scrollTo({ left: card.offsetLeft - recuoDepo(), behavior: reduzMovimentoGeral ? 'auto' : 'smooth' });
+          });
+          pontosDepo.appendChild(b);
+        });
+        trilhoDepo.after(pontosDepo);
+        var marcarDepo = function () {
+          var atualDepo = 0;
+          if (trilhoDepo.scrollLeft >= trilhoDepo.scrollWidth - trilhoDepo.clientWidth - 4) {
+            atualDepo = cardsDepo.length - 1;
+          } else {
+            var menor = Infinity;
+            cardsDepo.forEach(function (card, i) {
+              var d = Math.abs(card.offsetLeft - recuoDepo() - trilhoDepo.scrollLeft);
+              if (d < menor) { menor = d; atualDepo = i; }
+            });
+          }
+          Array.prototype.forEach.call(pontosDepo.children, function (b, i) { b.setAttribute('aria-current', i === atualDepo); });
+        };
+        var quadroDepo = 0;
+        trilhoDepo.addEventListener('scroll', function () {
+          cancelAnimationFrame(quadroDepo);
+          quadroDepo = requestAnimationFrame(marcarDepo);
+        }, { passive: true });
+        marcarDepo();
       }
 
       // ---------- horários: destaca o dia de hoje ----------
