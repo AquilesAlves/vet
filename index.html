@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14201f">
+  <title>Bicho Feliz · Escolha o estilo do seu site</title>
+  <meta name="description" content="Um mesmo site de clínica veterinária em três estilos. Troque pelos botões e veja qual combina mais com a sua marca.">
+  <style>
+    /* Vitrine: uma moldura leve com a barra de estilos embaixo e os três sites em iframes.
+       Os sites ficam intactos nas pastas NEW, joaquim-version e EDITORIAL. */
+    :root {
+      --barra: 64px;
+      --fundo: #14201f;
+      --fundo-botao: #1f302e;
+      --fio: #34484a;
+      --texto: #eef3f2;
+      --suave: #9fb4b3;
+      --foco: #ffb347;
+      --saida: cubic-bezier(.16, 1, .3, 1);
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: flex; flex-direction: column; overflow: hidden;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--fundo); color: var(--texto);
+    }
+
+    /* palco: onde os sites se empilham */
+    .palco { position: relative; flex: 1; min-height: 0; overflow: hidden; background: #000; }
+    .site {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #fff;
+      visibility: hidden; will-change: transform;
+    }
+    .site.ativo { visibility: visible; z-index: 1; }
+    .site.entrando { visibility: visible; z-index: 3; box-shadow: 0 0 60px rgba(0, 0, 0, .45); }
+    .site.saindo { visibility: visible; z-index: 2; }
+
+    /* barra de estilos */
+    .barra {
+      flex: none; min-height: var(--barra); padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+      background: var(--fundo); border-top: 1px solid var(--fio);
+    }
+    .barra-dica { margin: 0; font-size: 14px; color: var(--suave); white-space: nowrap; }
+    .estilos { display: flex; gap: 6px; padding: 4px; margin: 0; border-radius: 999px; background: #0c1514; list-style: none; }
+    .estilo {
+      appearance: none; display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px 0 12px;
+      border: 1px solid transparent; border-radius: 999px; background: transparent; color: var(--suave);
+      font-family: inherit; font-size: 15px; font-weight: 600; line-height: 1; cursor: pointer;
+      transition: background-color .25s, color .25s, border-color .25s;
+    }
+    .estilo:hover { color: var(--texto); background: var(--fundo-botao); }
+    .estilo[aria-pressed="true"] { color: var(--texto); background: var(--fundo-botao); border-color: var(--fio); }
+    .estilo:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; }
+    .estilo[aria-busy="true"] .amostra { animation: pulsa .8s ease-in-out infinite alternate; }
+    .amostra {
+      flex: none; width: 22px; height: 22px; border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, .18);
+    }
+    .a-vibrante  { background: linear-gradient(135deg, #0b7a5c 50%, #5fd3a8 50%); }
+    .a-acolhedor { background: linear-gradient(135deg, #08737e 50%, #ff8a00 50%); }
+    .a-editorial { background: linear-gradient(135deg, #0a3a40 50%, #fbf8f3 50%); }
+    @keyframes pulsa { to { transform: scale(.7); opacity: .6; } }
+
+    .sem-js { padding: 24px; text-align: center; }
+    .sem-js a { color: var(--foco); }
+
+    @media (max-width: 640px) {
+      .barra { padding-left: 8px; padding-right: 8px; }
+      .barra-dica { display: none; }
+      .estilos { width: 100%; justify-content: space-between; gap: 2px; }
+      .estilo { flex: 1; justify-content: center; gap: 7px; padding: 0 8px; font-size: 14px; }
+      .amostra { width: 18px; height: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .estilo, .estilo[aria-busy="true"] .amostra { transition: none; animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="palco" id="palco">
+    <iframe class="site" id="site-vibrante" title="Site no estilo Vibrante" data-src="NEW/index.html"></iframe>
+    <iframe class="site" id="site-acolhedor" title="Site no estilo Acolhedor" data-src="joaquim-version/index.html"></iframe>
+    <iframe class="site" id="site-editorial" title="Site no estilo Editorial" data-src="EDITORIAL/index.html"></iframe>
+    <noscript>
+      <div class="sem-js">
+        <p>Para trocar de estilo aqui é preciso ativar o JavaScript. Abra direto:</p>
+        <p><a href="NEW/index.html">Vibrante</a> · <a href="joaquim-version/index.html">Acolhedor</a> · <a href="EDITORIAL/index.html">Editorial</a></p>
+      </div>
+    </noscript>
+  </main>
+
+  <nav class="barra" aria-label="Estilo do site">
+    <p class="barra-dica" id="dica">Mesmo site, três estilos:</p>
+    <ul class="estilos" role="group" aria-labelledby="dica">
+      <li><button class="estilo" type="button" data-estilo="vibrante" aria-pressed="false"><span class="amostra a-vibrante" aria-hidden="true"></span>Vibrante</button></li>
+      <li><button class="estilo" type="button" data-estilo="acolhedor" aria-pressed="false"><span class="amostra a-acolhedor" aria-hidden="true"></span>Acolhedor</button></li>
+      <li><button class="estilo" type="button" data-estilo="editorial" aria-pressed="false"><span class="amostra a-editorial" aria-hidden="true"></span>Editorial</button></li>
+    </ul>
+  </nav>
+
+  <script>
+    (function () {
+      var ORDEM = ['vibrante', 'acolhedor', 'editorial'];
+      // ids de seção que mudam de nome de um estilo para outro
+      var SECOES = { sobre: ['sobre'], servicos: ['servicos'], banho: ['banho', 'banho-e-tosa'], loja: ['loja'], depoimentos: ['depoimentos'], contato: ['contato'] };
+      var DURACAO = 650;
+
+      var frames = {}, botoes = {}, carregado = {}, pronto = {};
+      ORDEM.forEach(function (nome) {
+        frames[nome] = document.getElementById('site-' + nome);
+        botoes[nome] = document.querySelector('[data-estilo="' + nome + '"]');
+      });
+
+      var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var atual = null, ocupado = false;
+
+      /* ---------- carregamento ---------- */
+      function carregar(nome) {
+        if (pronto[nome]) return pronto[nome];
+        var f = frames[nome];
+        pronto[nome] = new Promise(function (resolve) {
+          f.addEventListener('load', function () { carregado[nome] = true; resolve(); }, { once: true });
+          f.src = f.getAttribute('data-src');
+        });
+        return pronto[nome];
+      }
+
+      /* ---------- seção em que o visitante está ---------- */
+      function secaoAtual(nome) {
+        try {
+          var win = frames[nome].contentWindow, doc = win.document;
+          if (win.scrollY < 40) return 'topo';
+          var achada = 'topo', melhor = -Infinity;
+          Object.keys(SECOES).forEach(function (chave) {
+            SECOES[chave].forEach(function (id) {
+              var el = doc.getElementById(id);
+              if (!el) return;
+              var topo = el.getBoundingClientRect().top;
+              if (topo <= win.innerHeight * 0.35 && topo > melhor) { melhor = topo; achada = chave; }
+            });
+          });
+          return achada;
+        } catch (e) { return null; }   // file:// bloqueia o acesso entre páginas
+      }
+
+      function irParaSecao(nome, chave) {
+        if (!chave) return;
+        try {
+          var win = frames[nome].contentWindow, doc = win.document;
+          if (chave === 'topo') { win.scrollTo({ top: 0, behavior: 'instant' }); return; }
+          for (var i = 0; i < SECOES[chave].length; i++) {
+            var el = doc.getElementById(SECOES[chave][i]);
+            if (el) { el.scrollIntoView({ behavior: 'instant', block: 'start' }); return; }
+          }
+        } catch (e) {}
+      }
+
+      /* ---------- estado dos botões e da URL ---------- */
+      function marcar(nome) {
+        ORDEM.forEach(function (n) {
+          botoes[n].setAttribute('aria-pressed', n === nome ? 'true' : 'false');
+          var f = frames[n];
+          if (n === nome) { f.removeAttribute('inert'); f.removeAttribute('aria-hidden'); }
+          else { f.setAttribute('inert', ''); f.setAttribute('aria-hidden', 'true'); }
+        });
+        try {
+          var url = new URL(location.href);
+          url.searchParams.set('estilo', nome);
+          history.replaceState(null, '', url);
+        } catch (e) {}
+      }
+
+      /* ---------- troca com cortina lateral ---------- */
+      function trocar(nome, primeira) {
+        if (ocupado || nome === atual) return;
+        if (primeira) {
+          // o primeiro site aparece já, enquanto carrega; não espera as fotos
+          carregar(nome);
+          marcar(nome);
+          frames[nome].className = 'site ativo';
+          atual = nome;
+          return;
+        }
+        ocupado = true;
+        var antigo = atual, novo = nome;
+        botoes[novo].setAttribute('aria-busy', 'true');
+
+        carregar(novo).then(function () {
+          botoes[novo].removeAttribute('aria-busy');
+          var fNovo = frames[novo], fAntigo = antigo && frames[antigo];
+
+          if (fAntigo) irParaSecao(novo, secaoAtual(antigo));
+          marcar(novo);
+          atual = novo;
+
+          var dir = ORDEM.indexOf(novo) > ORDEM.indexOf(antigo) ? 1 : -1;
+          fNovo.className = 'site entrando';
+          fAntigo.className = 'site saindo';
+
+          var opcoes = { duration: reduzido.matches ? 200 : DURACAO, easing: 'cubic-bezier(.16, 1, .3, 1)', fill: 'forwards' };
+          var animNovo, animAntigo;
+          if (reduzido.matches) {
+            animNovo = fNovo.animate([{ opacity: 0 }, { opacity: 1 }], opcoes);
+            animAntigo = fAntigo.animate([{ opacity: 1 }, { opacity: 1 }], opcoes);
+          } else {
+            animNovo = fNovo.animate([{ transform: 'translateX(' + dir * 100 + '%)' }, { transform: 'translateX(0)' }], opcoes);
+            animAntigo = fAntigo.animate(
+              [{ transform: 'translateX(0)', filter: 'brightness(1)' }, { transform: 'translateX(' + -dir * 15 + '%)', filter: 'brightness(.6)' }], opcoes);
+          }
+
+          animNovo.finished.then(function () {
+            fNovo.className = 'site ativo';
+            fAntigo.className = 'site';
+            animNovo.cancel(); animAntigo.cancel();
+            ocupado = false;
+          });
+        });
+      }
+
+      /* ---------- eventos ---------- */
+      ORDEM.forEach(function (nome, i) {
+        botoes[nome].addEventListener('click', function () { trocar(nome); });
+        botoes[nome].addEventListener('keydown', function (e) {
+          var passo = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (!passo) return;
+          e.preventDefault();
+          botoes[ORDEM[(i + passo + ORDEM.length) % ORDEM.length]].focus();
+        });
+      });
+
+      /* ---------- início ---------- */
+      var pedido = new URLSearchParams(location.search).get('estilo');
+      var inicial = ORDEM.indexOf(pedido) > -1 ? pedido : ORDEM[0];
+      trocar(inicial, true);
+
+      // os outros dois carregam depois que o primeiro terminou, para a troca ser instantânea
+      pronto[inicial].then(function () {
+        var resto = ORDEM.filter(function (n) { return n !== inicial; });
+        var iniciar = function () { resto.forEach(carregar); };
+        if ('requestIdleCallback' in window) requestIdleCallback(iniciar, { timeout: 2500 });
+        else setTimeout(iniciar, 800);
+      });
+    })();
+  </script>
+</body>
+</html>
