@@ -1,7 +1,7 @@
 # vet
 
 Site de clínica veterinária com loja pet, em três estilos visuais (cliente de exemplo: **Bicho Feliz**).
-Estático, sem build: abre direto no navegador e publica no GitHub Pages.
+Estático, sem build: abre direto no navegador e é publicado pela Cloudflare a partir do `main` (https://vet.shiftdigitalweb.workers.dev/).
 
 ## Vitrine
 
